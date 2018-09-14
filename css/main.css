@@ -1,0 +1,92 @@
+body {
+}
+
+input {
+    background-image: none !important;
+}
+
+nav ul {
+    padding: 0;
+}
+nav ul li {
+    list-style-type: none;
+    border: 0.0625em solid #ebebeb;
+}
+
+nav ul li a {
+    display: block;
+    padding: 1em;
+}
+
+nav ul li a:hover {
+    text-decoration: none;
+    background-color: #ebebeb;
+}
+
+form input[disabled], select[disabled] {
+    background: rgb(235, 235, 228);
+    cursor: not-allowed !important;
+}
+
+form input[type=text], form input[type=password] {
+    width: 100%;
+}
+
+label {
+    margin-top: 0.5em;
+}
+
+table {
+    border-collapse: collapse;
+}
+
+table, th, td {
+    border: 1px solid black;
+}
+
+td, th{
+    padding: 1em;
+}
+
+th {
+    background: #ebebeb;
+}
+
+input[type=submit] {
+    margin: 0.5em 0;
+    padding: 0.5em 1.5em;
+}
+/* Wrapping element */
+/* Set some basic padding to keep content from hitting the edges */
+.body-content {
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+.required-ast {
+    color: red;
+}
+
+/* Carousel */
+.carousel-caption p {
+    font-size: 20px;
+    line-height: 1.4;
+}
+
+/* Make .svg files in the carousel display properly in older browsers */
+.carousel-inner .item img[src$=".svg"] {
+    width: 100%;
+}
+
+/* QR code generator */
+#qrCode {
+    margin: 15px;
+}
+
+/* Hide/rearrange for smaller screens */
+@media screen and (max-width: 767px) {
+    /* Hide captions */
+    .carousel-caption {
+        display: none;
+    }
+}
