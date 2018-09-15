@@ -33,7 +33,7 @@ CREATE TABLE appointments (
     appointment_id INT AUTO_INCREMENT PRIMARY KEY,
     physician_id INT NOT NULL,
     patient_id INT,
-    date DATE NOT NULL
+    date DATETIME NOT NULL
 );
 
 DROP TABLE IF EXISTS patient_lab_tests_performed;
@@ -116,9 +116,23 @@ INSERT INTO system_user VALUES (
 
 INSERT INTO appointments VALUES (
     NULL,
-    physician_id INT NOT NULL,
-    patient_id INT,
-    date DATE NOT NULL
+    1,
+    NULL,
+    "2018-09-15 13:00:00"
+);
+
+INSERT INTO appointments VALUES (
+    NULL,
+    1,
+    NULL,
+    "2018-09-15 12:30:00"
+);
+
+INSERT INTO appointments VALUES (
+    NULL,
+    1,
+    2,
+    "2018-09-15 11:30:00"
 );
 
 
