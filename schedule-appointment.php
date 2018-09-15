@@ -1,8 +1,30 @@
-<?php include 'layout.php' ?>
-@{
-    ViewData["Title"] = "ScheduleAppointment";
-    Layout = "~/Views/Shared/_Layout.cshtml";
-}
+<?php 
+
+include 'layout.php' 
+
+
+?>
+<script>
+    var http  = new XMLHttpRequest();
+    var url = "api/process.php";
+    //var params = JSON.stringify({"GetAppointments": true});
+    http.open('GET', url + "?GetAppointments=true", true);
+    http.setRequestHeader("Content-type", "application/json; charset=utf-8");
+    http.onload = function() {
+        if (http.status >= 200 && http.status < 400) {
+            // Success!
+            var resp = http.responseText;
+            console.log(resp);
+        } else {
+            // We reached our target server, but it returned an error
+        }
+    };
+    http.onerror = function() {
+    // There was a connection error of some sort
+    };
+    http.send();
+</script>
+
 
 <h3>Schedule Appointment</h3>
 

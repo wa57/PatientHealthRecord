@@ -78,5 +78,47 @@ CREATE TABLE prescriptions (
     rx_type VARCHAR(10)
 );
 
+INSERT INTO system_user VALUES (
+    NULL,
+    1,
+    "Will",
+    "Ashman",
+    "1970-01-01",
+    "2032472285",
+    "wjashman",
+    "HelloItsMelol!",
+    "153 Bayberry Lane",
+    "516",
+    "Westport",
+    "CT",
+    "06880",
+    "99",
+    "ashmanw@mail.sacredheart.edu"
+);
+
+INSERT INTO system_user VALUES (
+    NULL,
+    1,
+    "Will",
+    "Ashman",
+    "1970-01-01",
+    "2032472285",
+    "wjashman",
+    "HelloItsMelol!",
+    "153 Bayberry Lane",
+    "516",
+    "Westport",
+    "CT",
+    "06880",
+    "99",
+    "ashmanw@mail.sacredheart.edu"
+);
+
+INSERT INTO appointments VALUES (
+    NULL,
+    physician_id INT NOT NULL,
+    patient_id INT,
+    date DATE NOT NULL
+);
 
 

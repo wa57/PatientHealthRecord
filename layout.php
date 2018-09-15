@@ -1,3 +1,7 @@
+<?php
+    $api_url = "http://18.214.171.153/api/process.php";
+?>
+
 <!DOCTYPE html>
 <html>
 <head>
