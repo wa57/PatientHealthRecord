@@ -132,6 +132,24 @@ INSERT INTO system_user VALUES (
     "ashmanw@mail.sacredheart.edu"
 );
 
+INSERT INTO system_user VALUES (
+    NULL,
+    2,
+    "Richard",
+    "Singer",
+    "1970-01-01",
+    "2032472285",
+    "wjashman",
+    "HelloItsMelol!",
+    "153 Bayberry Lane",
+    "516",
+    "Westport",
+    "CT",
+    "06880",
+    "99",
+    "ashmanw@mail.sacredheart.edu"
+);
+
 INSERT INTO appointments VALUES (
     NULL,
     1,

@@ -11,6 +11,14 @@ if(isset($_GET["GetAppointments"]))
     exit();
 }
 
+if(isset($_GET["GetPhysicians"]))
+{
+    $stmt = $db->query('SELECT * FROM system_user WHERE role_id = 2');
+    $json = $stmt->fetchAll(PDO::FETCH_ASSOC);
+    echo json_encode($json);
+    exit();
+}
+
 echo json_encode("NOTHING SET");
 
 ?>
