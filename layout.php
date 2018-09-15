@@ -7,6 +7,9 @@
 
     <link rel="stylesheet" href="css/bootstrap.min.css" />
     <link rel="stylesheet" href="css/main.css" />
+	<script src="https://unpkg.com/react@16/umd/react.development.js" crossorigin></script>
+	<script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js" crossorigin></script>
+	<script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
 </head>
 <body>
     <div class="navbar navbar-default navbar-static-top">
@@ -32,7 +35,8 @@
                     </ul>
                 </nav>
             </aside>
-            <div class="col-sm-10">
+			<div class="col-sm-10">
+				<div id="root"></div>
                 <input id="ExitButton" type="submit" value="Exit" />
                 <input id="BackButton" type="submit" value="Back" />
             </div>
