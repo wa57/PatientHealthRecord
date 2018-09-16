@@ -1,16 +1,53 @@
 <?php include 'layout.php'; ?>
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+    
+        document.getElementById("submit-login-credentials").addEventListener('click', function() { 
+            var params = 'AuthenticateUser&username=' + document.getElementById("username").value + "&password=" + document.getElementById("password").value
+            fetch("api/process.php", {
+                method: 'post',
+                headers: {
+                    "Content-type": "application/x-www-form-urlencoded; charset=UTF-8"
+                },
+                body: params
+            })
+            .then(response => response.json())
+            .then(function(response) {
+                //console.log('Success:', JSON.stringify(response));
+                localStorage.setItem("user", JSON.stringify(response));
+                var json_string = localStorage.getItem("user");
+                var array = JSON.parse(json_string);
+                console.log(array);
+                window.location = "index.php";
+            });
+            /*.then(function (response) {
+                console.log(response.json());
+                if(response === true) {
+                    window.location = "index.php"; 
+                }
+            })
+            .catch(function (error) {
+                console.log('Request failed', error);
+            });*/
+        }, false);
+
+        function loginUser(response) {
+            console.log(response);
+        }
+    });
+</script>
 <div class="container main">
     <div>
         <h3>Login</h3>
-        <form>
+        <div>
             <div>
-                <label htmlFor="username">Username</label>
+                <label for="username">Username</label>
             </div>
             <div>
                 <input id="username" type="text" placeholder="Username" title="Username" />
             </div>
             <div>
-                <label htmlFor="password">Password</label>
+                <label for="password">Password</label>
             </div>
             <div>
                 <input id="password" type="password" placeholder="Password" title="Password" />
@@ -22,9 +59,9 @@
                 <a>Forgot My Username</a>
             </div>
             <div>
-                <input id="Text1" type="submit" value="Login" />
+                <input id="submit-login-credentials" type="submit" value="Login" />
             </div>
-        </form>
+        </div>
     </div>
     <div>
         <h3>New User? Register Here</h3>
@@ -175,7 +212,7 @@
             </div>
 
             <div>
-                <input id="Text1" type="submit" value="Register" />
+                <input id="submit-registration" type="submit" value="Register" />
                 <input type="submit" value="Clear" />
             </div>
         </form>

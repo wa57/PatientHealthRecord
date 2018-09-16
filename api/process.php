@@ -19,9 +19,22 @@ if(isset($_GET["GetPhysicians"]))
     exit();
 }
 
-if(isset($_POST["Login"]))
+if(isset($_POST["AuthenticateUser"]))
 {
+
+    $stmt = $db->prepare("SELECT * FROM system_user WHERE username = :username");
+    $stmt->execute([':username' => $_POST["username"]]);
+    $json = $stmt->fetch(PDO::FETCH_ASSOC);
     
+    if($_POST['password'] == $json["password"])
+    {
+        echo json_encode($json);
+    }
+    else
+    {
+        echo json_encode(false);
+    }
+    exit();
 }
 
 echo json_encode("NOTHING SET");
