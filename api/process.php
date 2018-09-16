@@ -19,6 +19,11 @@ if(isset($_GET["GetPhysicians"]))
     exit();
 }
 
+if(isset($_POST["Login"]))
+{
+    
+}
+
 echo json_encode("NOTHING SET");
 
 ?>
