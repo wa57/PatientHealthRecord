@@ -5,7 +5,18 @@
         Get("GetPhysicians", addPhysicians);
 
         document.getElementById("show-availability").addEventListener('click', function() { 
-            Get("GetAppointments", addAppointments);
+            var params = 'GetUnscheduledAppointmentsByPhysicianId&patient_id=' + user.system_user_id + "&physician_id=" + physician_id
+            fetch("api/process.php", {
+                method: 'get',
+                headers: {
+                    "Content-type": "application/x-www-form-urlencoded; charset=UTF-8"
+                },
+                body: params
+            })
+            .then(response => response.json())
+            .then(function(response) {
+                addAppointments(response);
+            });
         }, false);
         
         document.getElementById("schedule-appointment").addEventListener("click", function() {
@@ -54,7 +65,7 @@
         function addPhysicians(response) {
             var html = "";
             response.forEach(function(physician) {
-                html += "<option>";
+                html += "<option data-physician-id='" + physician.physician_id + "'>";
                 html +=     physician.first_name + " " + physician.last_name;
                 html += "</option>";
             });
