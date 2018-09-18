@@ -8,29 +8,57 @@
             Get("GetAppointments", addAppointments);
         }, false);
         
+        document.getElementById("schedule-appointment").addEventListener("click", function() {
+            var user = JSON.parse(localStorage.getItem("user"));
+            
+            var radios = document.getElementsByName('appointment-selection');
+
+            var appointment_id = null;
+            for(var i = 0, length = radios.length; i < length; i++)
+            {
+                if(radios[i].checked)
+                {
+                    appointment_id = radios[i].getAttribute('data-appointment-id');
+                    break;
+                }
+            }
+
+            var params = 'ScheduleAppointment&patient_id=' + user.system_user_id + "&appointment_id=" + appointment_id
+            fetch("api/process.php", {
+                method: 'post',
+                headers: {
+                    "Content-type": "application/x-www-form-urlencoded; charset=UTF-8"
+                },
+                body: params
+            })
+            .then(response => response.json())
+            .then(function(response) {
+                //console.log('Success:', JSON.stringify(response));
+                console.log(response);
+            });
+        }, false);
+
         function addAppointments(response) {
-            var tableBody = document.getElementById("available-appointments-table");
             var html = "";
             response.forEach(function(appointment) {
                 html += "<tr>";
                 html +=     "<td>" + appointment.physician_id + "</td>";
                 html +=     "<td>" + appointment.date + "</td>";
                 html +=     "<td>" + appointment.date + "</td>";
-                html +=     "<td> <input type='radio' name='appointment-selection'/> </td>";
+                html +=     "<td> <input type='radio' name='appointment-selection' data-appointment-id='" + appointment.appointment_id + "'/> </td>";
                 html += "</tr>";
             });
-            tableBody.innerHTML = html;
+            document.getElementById("available-appointments-table").innerHTML = html;
         }
 
         function addPhysicians(response) {
-            var select = document.getElementById("physicians-list");
             var html = "";
             response.forEach(function(physician) {
                 html += "<option>";
                 html +=     physician.first_name + " " + physician.last_name;
                 html += "</option>";
             });
-            select.innerHTML = html;
+            document.getElementById("physicians-list").innerHTML = html;
         }
     });
 </script>
@@ -54,7 +82,7 @@
             </thead>
             <tbody id="available-appointments-table"></tbody>
         </table>
-        <input type="submit" value="Schedule Appointment" />
+        <input id="schedule-appointment" type="submit" value="Schedule Appointment" />
     </div>
 </div>
 

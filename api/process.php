@@ -21,7 +21,6 @@ if(isset($_GET["GetPhysicians"]))
 
 if(isset($_POST["AuthenticateUser"]))
 {
-
     $stmt = $db->prepare("SELECT * FROM system_user WHERE username = :username");
     $stmt->execute([':username' => $_POST["username"]]);
     $json = $stmt->fetch(PDO::FETCH_ASSOC);
@@ -35,6 +34,15 @@ if(isset($_POST["AuthenticateUser"]))
         echo json_encode(false);
     }
     exit();
+}
+
+if(isset($_POST["ScheduleAppointment"]))
+{
+    $stmt = $db->prepare("UPDATE appointments SET patient_id = :patient_id WHERE appointment_id = :appointment_id;");
+    $stmt->execute([':patient_id' => $_POST["patient_id"], ":appointment_id" => $_POST["appointment_id"]]);
+    /*$json = $stmt->fetch(PDO::FETCH_ASSOC);
+    echo json_encode($json);
+    exit();*/
 }
 
 echo json_encode("NOTHING SET");

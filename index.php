@@ -12,8 +12,8 @@
     We hope to make your patient experience a great one.
 </p>
 <p>
-    Be Well,
+    Be Well TEST,
 </p>
 <p>
-    PHR Staff TEST TEST TEST TEST
+    PHR Staff TEST
 </p>
