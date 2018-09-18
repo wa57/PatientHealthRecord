@@ -65,7 +65,7 @@
         function addPhysicians(response) {
             var html = "";
             response.forEach(function(physician) {
-                html += "<option data-physician-id='" + physician.physician_id + "'>";
+                html += "<option data-physician-id='" + physician.system_user_id + "'>";
                 html +=     physician.first_name + " " + physician.last_name;
                 html += "</option>";
             });
