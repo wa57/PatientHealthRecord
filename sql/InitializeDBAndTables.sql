@@ -117,8 +117,8 @@ INSERT INTO system_user VALUES (
 INSERT INTO system_user VALUES (
     NULL,
     2,
-    "Theresa",
-    "Cohen",
+    "Stephanie",
+    "Fanelli",
     "1970-01-01",
     "2032472285",
     "wjashman2",
@@ -143,7 +143,7 @@ INSERT INTO system_user VALUES (
     "HelloItsMelol!",
     "153 Bayberry Lane",
     "516",
-    "Westport",
+    "Westporttest",
     "CT",
     "06880",
     "99",
@@ -166,9 +166,18 @@ INSERT INTO appointments VALUES (
 
 INSERT INTO appointments VALUES (
     NULL,
+    2,
+    NULL,
+    "2018-09-15 12:30:00"
+);
+
+INSERT INTO appointments VALUES (
+    NULL,
     1,
     2,
     "2018-09-15 11:30:00"
 );
+
+
 
 

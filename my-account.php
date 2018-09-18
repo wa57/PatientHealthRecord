@@ -15,6 +15,7 @@
             <div>
                 <input id="fname" disabled="disabled" type="text" value="@user.FirstName" />
             </div>
+            TEST
         </div>
         <div class="col-sm-6">
             <div>

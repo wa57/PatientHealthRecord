@@ -20,5 +20,5 @@
     help make important decisions. PHR will facilitate communication 
     between patients and providers which will reduce costs associated 
     with avoidable emergency visits, while improving the overall quality 
-    of care and patient experience. TEST TEST
+    of care and patient experience. TEST TEST TEST
 </p>
