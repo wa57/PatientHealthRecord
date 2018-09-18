@@ -7,7 +7,7 @@
         document.getElementById("show-availability").addEventListener('click', function() { 
             physicians_list = document.getElementById("physicians-list")
             physician_id = physicians_list.options[physicians_list.selectedIndex].getAttribute("data-physician-id");
-            var params = 'GetUnscheduledAppointmentsByPhysicianId&patient_id=' + user.system_user_id + "&physician_id=" + physician_id
+            var params = "GetUnscheduledAppointmentsByPhysicianId&physician_id=" + physician_id;
             fetch("api/process.php", {
                 method: 'get',
                 headers: {
