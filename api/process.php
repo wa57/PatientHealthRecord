@@ -18,10 +18,6 @@ if(isset($_GET["GetUnscheduledAppointmentsByPhysicianId"]))
     $json = $stmt->fetchAll(PDO::FETCH_ASSOC);
     echo json_encode($json);
     exit();
-
-    $stmt = $db->prepare("SELECT * FROM system_user WHERE username = :username");
-    $stmt->execute([':username' => $_POST["username"]]);
-    $json = $stmt->fetch(PDO::FETCH_ASSOC);
 }
 
 if(isset($_GET["GetPhysicians"]))
