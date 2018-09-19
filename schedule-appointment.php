@@ -18,6 +18,7 @@
             .then(function(response) {
                 addAppointments(response);
             });
+            
         }, false);
         
         document.getElementById("schedule-appointment").addEventListener("click", function() {
