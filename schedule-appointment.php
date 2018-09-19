@@ -7,13 +7,11 @@
         document.getElementById("show-availability").addEventListener('click', function() { 
             physicians_list = document.getElementById("physicians-list")
             physician_id = physicians_list.options[physicians_list.selectedIndex].getAttribute("data-physician-id");
-            var params = "GetUnscheduledAppointmentsByPhysicianId&physician_id=" + physician_id;
-            fetch("api/process.php", {
+            fetch("api/process.php&physician_id=" + physician_id, {
                 method: 'get',
                 headers: {
                     "Content-type": "application/x-www-form-urlencoded; charset=UTF-8"
-                },
-                body: params
+                }
             })
             .then(response => response.json())
             .then(function(response) {
