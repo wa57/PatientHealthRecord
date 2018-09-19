@@ -178,6 +178,13 @@ INSERT INTO appointments VALUES (
     "2018-09-15 11:30:00"
 );
 
+INSERT INTO appointments VALUES (
+    NULL,
+    2,
+    NULL,
+    "2018-09-15 11:30:00"
+);
+
 
 
 
