@@ -7,6 +7,7 @@
         document.getElementById("show-availability").addEventListener('click', function() { 
             physicians_list = document.getElementById("physicians-list")
             physician_id = physicians_list.options[physicians_list.selectedIndex].getAttribute("data-physician-id");
+     
             fetch("api/process.php?GetUnscheduledAppointmentsByPhysicianId&physician_id=" + physician_id, {
                 method: 'get',
                 headers: {
@@ -63,7 +64,7 @@
         }
 
         function addPhysicians(response) {
-            var html = "";
+            var html = "<option selected disabled>Select a Physician</option>";
             response.forEach(function(physician) {
                 html += "<option data-physician-id='" + physician.system_user_id + "'>";
                 html +=     physician.first_name + " " + physician.last_name;
@@ -77,9 +78,11 @@
     <div>
         <h3>Schedule Appointment</h3>
         <span>Select your physician:</span>
-        <select id="physicians-list"></select>
+        <select id="physicians-list">
+            <option selected disabled>Select a Physician</option>
+        </select>
+        <input id="show-availability" type="submit" value="Show Availability" />
         <div>
-            <input id="show-availability" type="submit" value="Show Availability" />
         </div>
 
         <p>Available appointments listed below. Please select the date and time you would like.</p>

@@ -80,9 +80,9 @@ CREATE TABLE prescriptions (
 
 INSERT INTO system_user VALUES (
     NULL,
-    1,
-    "Will",
-    "Ashman",
+    2,
+    "Test",
+    "Doctor",
     "1970-01-01",
     "2032472285",
     "wjashman",

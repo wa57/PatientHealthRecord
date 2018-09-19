@@ -13,22 +13,9 @@
             })
             .then(response => response.json())
             .then(function(response) {
-                //console.log('Success:', JSON.stringify(response));
                 localStorage.setItem("user", JSON.stringify(response));
-                var json_string = localStorage.getItem("user");
-                var array = JSON.parse(json_string);
-                console.log(array);
                 window.location = "index.php";
             });
-            /*.then(function (response) {
-                console.log(response.json());
-                if(response === true) {
-                    window.location = "index.php"; 
-                }
-            })
-            .catch(function (error) {
-                console.log('Request failed', error);
-            });*/
         }, false);
 
         function loginUser(response) {
