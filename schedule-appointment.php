@@ -3,7 +3,7 @@
 <script>
     document.addEventListener("DOMContentLoaded", function() {
         Get("GetPhysicians", addPhysicians);
-
+        rows = [];
         document.getElementById("show-availability").addEventListener('click', function() { 
             physicians_list = document.getElementById("physicians-list")
             physician_id = physicians_list.options[physicians_list.selectedIndex].getAttribute("data-physician-id");
@@ -52,16 +52,17 @@
         }, false);
 
         function addAppointments(response) {
-            var html = "";
             response.forEach(function(appointment) {
-                html += "<tr>";
-                html +=     "<td>" + appointment.physician_id + "</td>";
-                html +=     "<td>" + appointment.date + "</td>";
-                html +=     "<td>" + appointment.date + "</td>";
-                html +=     "<td> <input type='radio' name='appointment-selection' data-appointment-id='" + appointment.appointment_id + "'/> </td>";
-                html += "</tr>";
+                row = "";
+                row += "<tr>";
+                row +=     "<td>" + appointment.physician_id + "</td>";
+                row +=     "<td>" + appointment.date + "</td>";
+                row +=     "<td>" + appointment.time + "</td>";
+                row +=     "<td> <input type='radio' name='appointment-selection' data-appointment-id='" + appointment.appointment_id + "'/> </td>";
+                row += "</tr>";
+                rows.push(row);
             });
-            document.getElementById("available-appointments-table").innerHTML = html;
+            loadData();
         }
 
         function addPhysicians(response) {
@@ -72,6 +73,34 @@
                 html += "</option>";
             });
             document.getElementById("physicians-list").innerHTML = html;
+        }
+
+        var pageSize = 5;
+        var pageNum = 0;
+        function loadData() {
+            page = rows.slice(pageNum * pageSize, (pageNum + 1) * pageSize);
+            nextpage = rows.slice((pageNum + 1)* pageSize, (pageNum + 2) * pageSize);
+            if(pageNum === 0) {
+                document.getElementById("previous-page").disabled = true;
+            } else {
+                document.getElementById("previous-page").disabled = false;
+            }
+            if(page.length < pageSize || nextpage.length === 0 ) {
+                document.getElementById("next-page").disabled = true;
+            } else {
+                document.getElementById("next-page").disabled = false;
+            }
+            document.getElementById('available-appointments-table').innerHTML = page.join("");
+        }
+
+        function nextPage() {
+            pageNum++;
+            loadData();
+        }
+
+        function previousPage() {
+            pageNum--;
+            loadData();
         }
     });
 </script>
@@ -97,6 +126,8 @@
             </thead>
             <tbody id="available-appointments-table"></tbody>
         </table>
+        <input id="previous-page" type="button" value="Back"/>
+        <input id="next-page" type="button" value="Next"/>
         <input id="schedule-appointment" type="submit" value="Schedule Appointment" />
     </div>
 </div>
