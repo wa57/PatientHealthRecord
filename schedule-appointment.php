@@ -3,12 +3,13 @@
 <script>
     document.addEventListener("DOMContentLoaded", function() {
         Get("GetPhysicians", addPhysicians);
-        rows = [];
+
         document.getElementById("show-availability").addEventListener('click', function() { 
+            rows = [];
             physicians_list = document.getElementById("physicians-list")
             physician_id = physicians_list.options[physicians_list.selectedIndex].getAttribute("data-physician-id");
      
-            fetch("api/process.php?GetUnscheduledAppointmentsByPhysicianId&physician_id=" + physician_id, {
+            fetch("api/process.php?GetAppointmentsByPhysicianId&physician_id=" + physician_id, {
                 method: 'get',
                 headers: {
                     "Content-type": "application/x-www-form-urlencoded; charset=UTF-8"
@@ -46,10 +47,17 @@
             })
             .then(response => response.json())
             .then(function(response) {
-                //console.log('Success:', JSON.stringify(response));
                 console.log(response);
             });
         }, false);
+
+        document.getElementById("previous-page").addEventListener("click", function() {
+            previousPage();
+        });
+
+        document.getElementById("next-page").addEventListener("click", function() {
+            nextPage();
+        });
 
         function addAppointments(response) {
             response.forEach(function(appointment) {
@@ -58,6 +66,11 @@
                 row +=     "<td>" + appointment.physician_id + "</td>";
                 row +=     "<td>" + appointment.date + "</td>";
                 row +=     "<td>" + appointment.time + "</td>";
+                var appointment_status = "AVAILABLE";
+                if(appointment.patient_id !== null) {
+                    appointment_status = "BOOKED";
+                }
+                row +=     "<td class='"+ appointment_status.toLowerCase() +"'>" + appointment_status + "</td>";
                 row +=     "<td> <input type='radio' name='appointment-selection' data-appointment-id='" + appointment.appointment_id + "'/> </td>";
                 row += "</tr>";
                 rows.push(row);
@@ -77,6 +90,7 @@
 
         var pageSize = 5;
         var pageNum = 0;
+        var rows = [];
         function loadData() {
             page = rows.slice(pageNum * pageSize, (pageNum + 1) * pageSize);
             nextpage = rows.slice((pageNum + 1)* pageSize, (pageNum + 2) * pageSize);
@@ -116,18 +130,18 @@
         </div>
 
         <p>Available appointments listed below. Please select the date and time you would like.</p>
-
+        <input id="previous-page" type="button" value="Back"/>
+        <input id="next-page" type="button" value="Next"/>
         <table>
             <thead>
                 <th>Physican Name</th>
                 <th>Date</th>
                 <th>Time</th>
+                <th>Status</th>
                 <th>Selection</th>
             </thead>
             <tbody id="available-appointments-table"></tbody>
         </table>
-        <input id="previous-page" type="button" value="Back"/>
-        <input id="next-page" type="button" value="Next"/>
         <input id="schedule-appointment" type="submit" value="Schedule Appointment" />
     </div>
 </div>

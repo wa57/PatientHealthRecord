@@ -18,6 +18,14 @@
                 'menu footer footer footer footer footer';
             grid-gap: 10px;
         }
+
+        .booked {
+            color: red;
+        }
+
+        .available {
+            color: green;
+        }
     </style>
     <link rel="stylesheet" href="css/main.css" />
 	<script>

@@ -11,9 +11,9 @@ if(isset($_GET["GetUnscheduledAppointments"]))
     exit();
 }
 
-if(isset($_GET["GetUnscheduledAppointmentsByPhysicianId"])) 
+if(isset($_GET["GetAppointmentsByPhysicianId"])) 
 {
-    $stmt = $db->prepare('SELECT * FROM `appointments` WHERE patient_id IS NULL AND physician_id = :physician_id');
+    $stmt = $db->prepare('SELECT * FROM `appointments` WHERE physician_id = :physician_id');
     $stmt->execute([':physician_id' => $_GET["physician_id"]]);
     $json = $stmt->fetchAll(PDO::FETCH_ASSOC);
     echo json_encode($json);
