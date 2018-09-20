@@ -3,10 +3,11 @@
 <script>
     document.addEventListener("DOMContentLoaded", function() {
         Get("GetPhysicians", addPhysicians);
-
+        document.getElementById("appointments-section").style.display = 'none';
         document.getElementById("show-availability").addEventListener('click', function() { 
             rows = [];
-            physicians_list = document.getElementById("physicians-list")
+            document.getElementById("appointments-section").style.display = 'block';
+            physicians_list = document.getElementById("physicians-list");
             physician_id = physicians_list.options[physicians_list.selectedIndex].getAttribute("data-physician-id");
      
             fetch("api/process.php?GetAppointmentsByPhysicianId&physician_id=" + physician_id, {
@@ -19,7 +20,6 @@
             .then(function(response) {
                 addAppointments(response);
             });
-            
         }, false);
         
         document.getElementById("schedule-appointment").addEventListener("click", function() {
@@ -47,7 +47,7 @@
             })
             .then(response => response.json())
             .then(function(response) {
-                console.log(response);
+                document.getElementById("show-availability").click();
             });
         }, false);
 
@@ -60,18 +60,22 @@
         });
 
         function addAppointments(response) {
+            physicians_list = document.getElementById("physicians-list");
+            physician_name = physicians_list.options[physicians_list.selectedIndex].getAttribute("data-physician-name");
             response.forEach(function(appointment) {
                 row = "";
                 row += "<tr>";
-                row +=     "<td>" + appointment.physician_id + "</td>";
+                row +=     "<td>" + physician_name + "</td>";
                 row +=     "<td>" + appointment.date + "</td>";
                 row +=     "<td>" + appointment.time + "</td>";
-                var appointment_status = "AVAILABLE";
+                var appointmentStatus = "AVAILABLE";
+                var radioStatus = "";
                 if(appointment.patient_id !== null) {
-                    appointment_status = "BOOKED";
+                    appointmentStatus = "BOOKED";
+                    radioStatus = "disabled";
                 }
-                row +=     "<td class='"+ appointment_status.toLowerCase() +"'>" + appointment_status + "</td>";
-                row +=     "<td> <input type='radio' name='appointment-selection' data-appointment-id='" + appointment.appointment_id + "'/> </td>";
+                row +=     "<td class='"+ appointmentStatus.toLowerCase() +"'>" + appointmentStatus + "</td>";
+                row +=     "<td> <input type='radio' name='appointment-selection' data-appointment-id='" + appointment.appointment_id + "' " + radioStatus + "/> </td>";
                 row += "</tr>";
                 rows.push(row);
             });
@@ -81,7 +85,7 @@
         function addPhysicians(response) {
             var html = "<option selected disabled>Select a Physician</option>";
             response.forEach(function(physician) {
-                html += "<option data-physician-id='" + physician.system_user_id + "'>";
+                html += "<option data-physician-id='" + physician.system_user_id + "' data-physician-name='" + physician.first_name + " " + physician.last_name + "'>";
                 html +=     physician.first_name + " " + physician.last_name;
                 html += "</option>";
             });
@@ -126,23 +130,22 @@
             <option selected disabled>Select a Physician</option>
         </select>
         <input id="show-availability" type="submit" value="Show Availability" />
-        <div>
+        <div id="appointments-section">
+            <p>Available appointments listed below. Please select the date and time you would like.</p>
+            <input id="previous-page" type="button" value="Back"/>
+            <input id="next-page" type="button" value="Next"/>
+            <table>
+                <thead>
+                    <th>Physican Name</th>
+                    <th>Date</th>
+                    <th>Time</th>
+                    <th>Status</th>
+                    <th>Selection</th>
+                </thead>
+                <tbody id="available-appointments-table"></tbody>
+            </table>
+            <input id="schedule-appointment" type="submit" value="Schedule Appointment" />
         </div>
-
-        <p>Available appointments listed below. Please select the date and time you would like.</p>
-        <input id="previous-page" type="button" value="Back"/>
-        <input id="next-page" type="button" value="Next"/>
-        <table>
-            <thead>
-                <th>Physican Name</th>
-                <th>Date</th>
-                <th>Time</th>
-                <th>Status</th>
-                <th>Selection</th>
-            </thead>
-            <tbody id="available-appointments-table"></tbody>
-        </table>
-        <input id="schedule-appointment" type="submit" value="Schedule Appointment" />
     </div>
 </div>
 

@@ -3,17 +3,9 @@ include 'db_connect.php';
 
 header('Content-Type: application/json');
 
-if(isset($_GET["GetUnscheduledAppointments"])) 
-{
-    $stmt = $db->query('SELECT * FROM appointments WHERE patient_id IS NULL');
-    $json = $stmt->fetchAll(PDO::FETCH_ASSOC);
-    echo json_encode($json);
-    exit();
-}
-
 if(isset($_GET["GetAppointmentsByPhysicianId"])) 
 {
-    $stmt = $db->prepare('SELECT * FROM `appointments` WHERE physician_id = :physician_id');
+    $stmt = $db->prepare('SELECT * FROM `appointments` WHERE physician_id = 1 AND date >= CURDATE()');
     $stmt->execute([':physician_id' => $_GET["physician_id"]]);
     $json = $stmt->fetchAll(PDO::FETCH_ASSOC);
     echo json_encode($json);

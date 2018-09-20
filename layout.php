@@ -27,7 +27,6 @@
             color: green;
         }
     </style>
-    <link rel="stylesheet" href="css/main.css" />
 	<script>
         function Get(query, callback) {
             var http  = new XMLHttpRequest();
