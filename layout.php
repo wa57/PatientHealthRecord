@@ -26,6 +26,10 @@
         .available {
             color: green;
         }
+
+        .highlighted {
+            background-color: #ffff99;
+        }
     </style>
     <link rel="stylesheet" type="text/css" href="css/main.css">
 	<script>
