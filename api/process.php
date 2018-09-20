@@ -12,6 +12,14 @@ if(isset($_GET["GetAppointmentsByPhysicianId"]))
     exit();
 }
 
+if(isset($_POST["CancelAppointment"]))
+{
+    $stmt = $db->prepare('UPDATE appointments SET patient_id = NULL WHERE appointment_id = :appointment_id');
+    $stmt->execute([':appointment_id' => $_POST["appointment_id"]]);
+    echo json_encode(true);
+    exit();
+}
+
 if(isset($_GET["GetPhysicians"]))
 {
     $stmt = $db->query('SELECT * FROM system_user WHERE role_id = 2');

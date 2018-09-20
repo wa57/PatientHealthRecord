@@ -15,6 +15,11 @@
                 appointment_id = e.target.getAttribute("data-appointment-id");
                 POST("ScheduleAppointment&patient_id=" + user.system_user_id + "&appointment_id=" + appointment_id, refreshAppointmentsTable);
             }
+
+            if (e.target && e.target.classList.contains("cancel-button")) {
+                appointment_id = e.target.getAttribute("data-appointment-id");
+                POST("CancelAppointment&appointment_id=" + appointment_id, refreshAppointmentsTable);
+            }
         });
 
         document.getElementById("previous-page").addEventListener("click", function() {
@@ -40,20 +45,28 @@
             if(user.system_user_id === appointment.patient_id) {
                 className = "highlighted";
             }
+            
+            var buttonClass = "Schedule";
+            if(user.system_user_id === appointment.patient_id && appointment.patient_id !== null) {
+                buttonClass = "Cancel";
+            }
+            
+            var buttonState = "";
+            if(user.system_user_id !== appointment.patient_id && appointment.patient_id !== null ) {
+                buttonState = "disabled";
+            }
+
+            var appointmentStatus = "AVAILABLE";
+            if(appointment.patient_id !== null) {
+                appointmentStatus = "BOOKED";
+            }
+
             row += "<tr class='" + className + "'>";
             row +=     "<td>" + physician_name + "</td>";
             row +=     "<td>" + appointment.date + "</td>";
             row +=     "<td>" + appointment.time + "</td>";
-            var appointmentStatus = "AVAILABLE";
-            var buttonStatus = "";
-            var buttonClass = "Schedule";
-            if(appointment.patient_id !== null) {
-                appointmentStatus = "BOOKED";
-                buttonStatus = "disabled";
-                buttonClass = "Cancel";
-            }
             row +=     "<td class='"+ appointmentStatus.toLowerCase() +"'>" + appointmentStatus + "</td>";
-            row +=     "<td> <input type='button' class='" + buttonClass + "-button' value='" + buttonClass + "' data-appointment-id='" + appointment.appointment_id + "' " + buttonStatus + "/> </td>";
+            row +=     "<td> <input type='button' class='" + buttonClass.toLowerCase() + "-button' value='" + buttonClass + "' data-appointment-id='" + appointment.appointment_id + "' " + buttonState + "/> </td>";
             row += "</tr>";
             return row;
         }
@@ -83,7 +96,6 @@
         var pageNum = 0;
         var rows = [];
         function loadTableData() {
-            console.log("hello");
             page = rows.slice(pageNum * pageSize, (pageNum + 1) * pageSize);
             nextpage = rows.slice((pageNum + 1)* pageSize, (pageNum + 2) * pageSize);
             if(pageNum === 0) {

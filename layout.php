@@ -30,6 +30,11 @@
         .highlighted {
             background-color: #ffff99;
         }
+
+        .cancel-button {
+            background-color: red;
+            color: #fff;
+        }
     </style>
     <link rel="stylesheet" type="text/css" href="css/main.css">
 	<script>
