@@ -2,31 +2,25 @@
 
 <script>
     document.addEventListener("DOMContentLoaded", function() {
-        Get("GetPhysicians", addPhysicians);
-        document.getElementById("appointments-section").style.display = 'none';
+        init();
+
+        document.getElementById("physicians-list").addEventListener('change', function() {
+            document.getElementById("show-availability").disabled = false;
+        });
+
         document.getElementById("show-availability").addEventListener('click', function() { 
             rows = [];
             document.getElementById("appointments-section").style.display = 'block';
-            physicians_list = document.getElementById("physicians-list");
-            physician_id = physicians_list.options[physicians_list.selectedIndex].getAttribute("data-physician-id");
-     
-            fetch("api/process.php?GetAppointmentsByPhysicianId&physician_id=" + physician_id, {
-                method: 'get',
-                headers: {
-                    "Content-type": "application/x-www-form-urlencoded; charset=UTF-8"
-                }
-            })
-            .then(response => response.json())
-            .then(function(response) {
-                addAppointments(response);
-            });
+            physician_id = getPhysicianData("data-physician-id");
+
+            GET("GetAppointmentsByPhysicianId&physician_id=" + physician_id, addAppointments);
         }, false);
         
         document.getElementById("schedule-appointment").addEventListener("click", function() {
             var user = JSON.parse(localStorage.getItem("user"));
             
             var radios = document.getElementsByName('appointment-selection');
-
+            console.log(this.getAttribute("data-appointment-id"));
             var appointment_id = null;
             for(var i = 0, length = radios.length; i < length; i++)
             {
@@ -37,19 +31,14 @@
                 }
             }
 
-            var params = 'ScheduleAppointment&patient_id=' + user.system_user_id + "&appointment_id=" + appointment_id
-            fetch("api/process.php", {
-                method: 'post',
-                headers: {
-                    "Content-type": "application/x-www-form-urlencoded; charset=UTF-8"
-                },
-                body: params
-            })
-            .then(response => response.json())
-            .then(function(response) {
-                document.getElementById("show-availability").click();
-            });
+            POST("ScheduleAppointment&patient_id=" + user.system_user_id + "&appointment_id=" + appointment_id, refreshAppointmentsTable);
         }, false);
+
+        document.getElementById("appointments-table").addEventListener('click',function(e){
+            if (e.target && e.target.classList.contains('schedule-button')) {
+                console.log('hello');
+            }
+        })
 
         document.getElementById("previous-page").addEventListener("click", function() {
             previousPage();
@@ -60,26 +49,34 @@
         });
 
         function addAppointments(response) {
-            physicians_list = document.getElementById("physicians-list");
-            physician_name = physicians_list.options[physicians_list.selectedIndex].getAttribute("data-physician-name");
+            physician_name = getPhysicianData("data-physician-name");
             response.forEach(function(appointment) {
-                row = "";
-                row += "<tr>";
-                row +=     "<td>" + physician_name + "</td>";
-                row +=     "<td>" + appointment.date + "</td>";
-                row +=     "<td>" + appointment.time + "</td>";
-                var appointmentStatus = "AVAILABLE";
-                var radioStatus = "";
-                if(appointment.patient_id !== null) {
-                    appointmentStatus = "BOOKED";
-                    radioStatus = "disabled";
-                }
-                row +=     "<td class='"+ appointmentStatus.toLowerCase() +"'>" + appointmentStatus + "</td>";
-                row +=     "<td> <input type='radio' name='appointment-selection' data-appointment-id='" + appointment.appointment_id + "' " + radioStatus + "/> </td>";
-                row += "</tr>";
-                rows.push(row);
+                rows.push(createAppointmentRow(appointment, physician_name));
             });
-            loadData();
+            loadTableData();
+        }
+
+        function createAppointmentRow(appointment, physician_name) {
+            row = "";
+            row += "<tr>";
+            row +=     "<td>" + physician_name + "</td>";
+            row +=     "<td>" + appointment.date + "</td>";
+            row +=     "<td>" + appointment.time + "</td>";
+            var appointmentStatus = "AVAILABLE";
+            var buttonStatus = "";
+            if(appointment.patient_id !== null) {
+                appointmentStatus = "BOOKED";
+                buttonStatus = "disabled";
+            }
+            row +=     "<td class='"+ appointmentStatus.toLowerCase() +"'>" + appointmentStatus + "</td>";
+            row +=     "<td> <input type='button' class='schedule-button' name='appointment-selection' value='Schedule' data-appointment-id='" + appointment.appointment_id + "' " + buttonStatus + "/> </td>";
+            row += "</tr>";
+            return row;
+        }
+
+        function getPhysicianData(attribute) {
+            physicians_list = document.getElementById("physicians-list");
+            return physicians_list.options[physicians_list.selectedIndex].getAttribute(attribute);
         }
 
         function addPhysicians(response) {
@@ -95,7 +92,7 @@
         var pageSize = 5;
         var pageNum = 0;
         var rows = [];
-        function loadData() {
+        function loadTableData() {
             page = rows.slice(pageNum * pageSize, (pageNum + 1) * pageSize);
             nextpage = rows.slice((pageNum + 1)* pageSize, (pageNum + 2) * pageSize);
             if(pageNum === 0) {
@@ -113,12 +110,22 @@
 
         function nextPage() {
             pageNum++;
-            loadData();
+            loadTableData();
         }
 
         function previousPage() {
             pageNum--;
-            loadData();
+            loadTableData();
+        }
+
+        function init() {
+            GET("GetPhysicians", addPhysicians);
+            document.getElementById("appointments-section").style.display = 'none';
+            document.getElementById("show-availability").disabled = true;
+        }
+
+        function refreshAppointmentsTable() {
+            document.getElementById("show-availability").click();
         }
     });
 </script>
@@ -134,7 +141,7 @@
             <p>Available appointments listed below. Please select the date and time you would like.</p>
             <input id="previous-page" type="button" value="Back"/>
             <input id="next-page" type="button" value="Next"/>
-            <table>
+            <table id="appointments-table">
                 <thead>
                     <th>Physican Name</th>
                     <th>Date</th>

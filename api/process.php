@@ -5,7 +5,7 @@ header('Content-Type: application/json');
 
 if(isset($_GET["GetAppointmentsByPhysicianId"])) 
 {
-    $stmt = $db->prepare('SELECT * FROM `appointments` WHERE physician_id = 1 AND date >= CURDATE()');
+    $stmt = $db->prepare('SELECT * FROM `appointments` WHERE physician_id = :physician_id AND date >= CURDATE()');
     $stmt->execute([':physician_id' => $_GET["physician_id"]]);
     $json = $stmt->fetchAll(PDO::FETCH_ASSOC);
     echo json_encode($json);

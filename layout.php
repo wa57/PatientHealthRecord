@@ -27,25 +27,34 @@
             color: green;
         }
     </style>
+    <link rel="stylesheet" type="text/css" href="css/main.css">
 	<script>
-        function Get(query, callback) {
-            var http  = new XMLHttpRequest();
-            var url = "api/process.php?";
-            http.open('GET', url + query, true);
-            http.setRequestHeader("Content-type", "application/json; charset=utf-8");
-            http.onload = function() {
-                if (http.status >= 200 && http.status < 400) {
-                    callback(JSON.parse(http.responseText));
-                } else {
-                    // We reached our target server, but it returned an error
+        function GET(query, callback) {
+            fetch("api/process.php?" + query, {
+                method: 'get',
+                headers: {
+                    "Content-type": "application/x-www-form-urlencoded; charset=UTF-8"
                 }
-            };
-            http.onerror = function() {
-                // There was a connection error of some sort
-            };
-            http.send();
+            })
+            .then(response => response.json())
+            .then(function(response) {
+                callback(response);
+            });
         }
-    
+
+        function POST(params, callback) {
+            fetch("api/process.php", {
+                method: 'post',
+                headers: {
+                    "Content-type": "application/x-www-form-urlencoded; charset=UTF-8"
+                },
+                body: params
+            })
+            .then(response => response.json())
+            .then(function(response) {
+                callback(response);
+            });
+        }
     </script>
 </head>
 <body>
