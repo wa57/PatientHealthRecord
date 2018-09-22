@@ -47,9 +47,19 @@ if(isset($_POST["AuthenticateUser"]))
 
 if(isset($_POST["ScheduleAppointment"]))
 {
-    $stmt = $db->prepare("UPDATE appointments SET patient_id = :patient_id WHERE appointment_id = :appointment_id;");
-    $stmt->execute([':patient_id' => $_POST["patient_id"], ":appointment_id" => $_POST["appointment_id"]]);
-    echo json_encode(true);
+    $stmt = $db->prepare("SELECT * FROM appointments WHERE patient_id = :patient_id");
+    $stmt->execute([':patient_id' => $_POST["patient_id"]]);
+    $results = $stmt->fetch(PDO::FETCH_ASSOC);
+    if(count($results) > 1) //?????? 
+    {
+        echo json_encode("Can only sign up for one appointment");
+    } 
+    else 
+    {
+        $stmt = $db->prepare("UPDATE appointments SET patient_id = :patient_id WHERE appointment_id = :appointment_id;");
+        $stmt->execute([':patient_id' => $_POST["patient_id"], ":appointment_id" => $_POST["appointment_id"]]);
+        echo json_encode(true);
+    }
     exit();
 }
 

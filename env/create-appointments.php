@@ -11,7 +11,7 @@ foreach($physicians as $physician)
     $end = new DateTime("17:00");
     for($i = $begin; $i <= $end; $i->modify("+30 minutes"))
     {
-        $stmt = $db->prepare("INSERT INTO appointments VALUES (NULL, :physician_id, NULL, :today, :time)");
+        $stmt = $db->prepare("INSERT INTO appointments VALUES (NULL, :physician_id, NULL, :today, :time, 0)");
         $stmt->execute([':physician_id' => $physician["system_user_id"], ":today" => $today, ":time" => $i->format("H:i")]);
     }
 }
