@@ -95,11 +95,15 @@
         function addPatientAppointments(response) {
             var html = "";
             response.forEach(function(appointment) {
+                var appointment_status = "UPCOMING";
+                if(JSON.parse(appointment.appointment_status) === 1) {
+                    appointment_status = "COMPLETE";
+                }
                 html += "<tr>";
                 html +=     "<td>" + appointment.physician_id + "</td>";
                 html +=     "<td>" + appointment.date + "</td>";
                 html +=     "<td>" + appointment.time + "</td>";
-                html +=     "<td>TODO</td>";
+                html +=     "<td>" + appointment_status + "</td>";
                 html += "</tr>";
             });
             document.getElementById("patient-appointments-tbody").innerHTML = html;
@@ -136,13 +140,18 @@
 
         function init() {
             GET("GetPhysicians", addPhysicians);
+            getAppointmentsByPatientId();
+            document.getElementById("appointments-section").style.display = "none";
+        }
+
+        function getAppointmentsByPatientId() {
             var system_user_id = JSON.parse(localStorage.getItem("user")).system_user_id;
             GET("GetAppointmentsByPatientId&patient_id="+system_user_id, addPatientAppointments);
-            document.getElementById("appointments-section").style.display = "none";
         }
 
         function refreshAppointmentsTable() {
             getAppointmentsByPhysicianId();
+            getAppointmentsByPatientId();
         }
     });
 </script>
