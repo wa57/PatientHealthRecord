@@ -1,5 +1,5 @@
 <?php
-include "../api/db_connect.php";
+include "/var/www/html/api/db_connect.php";
 
 $stmt = $db->query('SELECT * FROM system_user WHERE role_id = 2');
 $physicians = $stmt->fetchAll(PDO::FETCH_ASSOC);
