@@ -166,6 +166,7 @@
             <option selected disabled>Select a Physician</option>
         </select>
         <div id="appointments-section">
+            <p>IMPORTANT: Call 555-5555 for same day appointments</p>
             <p>Available appointments listed below. Please select the date and time you would like.</p>
             <input id="previous-page" type="button" value="Back"/>
             <input id="next-page" type="button" value="Next 5 Appointments"/>

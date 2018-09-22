@@ -35,7 +35,7 @@ CREATE TABLE appointments (
     patient_id INT,
     date DATE NOT NULL,
     time TIME NOT NULL,
-    appointment_status INT
+    appointment_status INT NOT NULL
 );
 
 DROP TABLE IF EXISTS patient_lab_tests_performed;
@@ -152,7 +152,22 @@ INSERT INTO system_user VALUES (
     "ashmanw@mail.sacredheart.edu"
 );
 
+/*
+CREATE TABLE appointments (
+    appointment_id INT AUTO_INCREMENT PRIMARY KEY,
+    physician_id INT NOT NULL,
+    patient_id INT,
+    date DATE NOT NULL,
+    time TIME NOT NULL,
+    appointment_status INT NOT NULL
+);*/
 
-
-
+INSERT INTO appointments VALUES (
+    NULL,
+    2,
+    3,
+    "2018-09-22",
+    "09:00:00",
+    1
+);
 

@@ -5,7 +5,7 @@ header('Content-Type: application/json');
 
 if(isset($_GET["GetAppointmentsByPhysicianId"])) 
 {
-    $stmt = $db->prepare('SELECT * FROM `appointments` WHERE physician_id = :physician_id AND date >= CURDATE()');
+    $stmt = $db->prepare('SELECT * FROM `appointments` WHERE physician_id = :physician_id AND date > CURDATE()');
     $stmt->execute([':physician_id' => $_GET["physician_id"]]);
     $json = $stmt->fetchAll(PDO::FETCH_ASSOC);
     echo json_encode($json);
@@ -58,8 +58,18 @@ if(isset($_POST["ScheduleAppointment"]))
 {
     $stmt = $db->prepare("SELECT * FROM appointments WHERE patient_id = :patient_id");
     $stmt->execute([':patient_id' => $_POST["patient_id"]]);
-    $results = $stmt->fetch(PDO::FETCH_ASSOC);
-    if(count($results) > 1) //?????? 
+    $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
+    
+    $incompleteAppointmentFound = false; 
+    foreach($results as $appointment) 
+    {
+        if($appointment["appointment_status"] == 0)
+        {
+            $incompleteAppointmentFound = true;
+        }
+    }
+    
+    if($incompleteAppointmentFound)
     {
         echo json_encode("A user can only sign up for one appointment per day");
     } 
