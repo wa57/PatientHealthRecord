@@ -35,7 +35,7 @@ CREATE TABLE appointments (
     patient_id INT,
     date DATE NOT NULL,
     time TIME NOT NULL,
-    appointment_completed TINYINT(1)
+    appointment_status INT
 );
 
 DROP TABLE IF EXISTS patient_lab_tests_performed;

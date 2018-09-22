@@ -92,6 +92,19 @@
             document.getElementById("physicians-list").innerHTML = html;
         }
 
+        function addPatientAppointments(response) {
+            var html = "";
+            response.forEach(function(appointment) {
+                html += "<tr>";
+                html +=     "<td>" + appointment.physician_id + "</td>";
+                html +=     "<td>" + appointment.date + "</td>";
+                html +=     "<td>" + appointment.time + "</td>";
+                html +=     "<td>TODO</td>";
+                html += "</tr>";
+            });
+            document.getElementById("patient-appointments-tbody").innerHTML = html;
+        }
+
         var pageSize = 5;
         var pageNum = 0;
         var rows = [];
@@ -123,6 +136,8 @@
 
         function init() {
             GET("GetPhysicians", addPhysicians);
+            var system_user_id = JSON.parse(localStorage.getItem("user")).system_user_id;
+            GET("GetAppointmentsByPatientId&patient_id="+system_user_id, addPatientAppointments);
             document.getElementById("appointments-section").style.display = "none";
         }
 
@@ -133,6 +148,18 @@
 </script>
 <div class="container main">
     <div>
+        <div>
+            <h3>Your Appointments</h3>
+            <table id="patient-appointments">
+                <thead>
+                    <th>Physician Name</th>
+                    <th>Date</th>
+                    <th>Time</th>
+                    <th>Status</th>
+                </thead>
+                <tbody id="patient-appointments-tbody"></tbody>
+            </table>
+        </div>
         <h3>Schedule Appointment</h3>
         <span>Select your physician:</span>
         <select id="physicians-list">

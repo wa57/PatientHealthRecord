@@ -12,6 +12,15 @@ if(isset($_GET["GetAppointmentsByPhysicianId"]))
     exit();
 }
 
+if(isset($_GET["GetAppointmentsByPatientId"]))
+{
+    $stmt = $db->prepare('SELECT * FROM `appointments` WHERE patient_id = :patient_id');
+    $stmt->execute([':patient_id' => $_GET["patient_id"]]);
+    $json = $stmt->fetchAll(PDO::FETCH_ASSOC);
+    echo json_encode($json);
+    exit();
+}
+
 if(isset($_POST["CancelAppointment"]))
 {
     $stmt = $db->prepare('UPDATE appointments SET patient_id = NULL WHERE appointment_id = :appointment_id');
@@ -52,10 +61,10 @@ if(isset($_POST["ScheduleAppointment"]))
     $results = $stmt->fetch(PDO::FETCH_ASSOC);
     if(count($results) > 1) //?????? 
     {
-        echo json_encode("Can only sign up for one appointment");
+        echo json_encode("A user can only sign up for one appointment per day");
     } 
     else 
-    {
+    { 
         $stmt = $db->prepare("UPDATE appointments SET patient_id = :patient_id WHERE appointment_id = :appointment_id;");
         $stmt->execute([':patient_id' => $_POST["patient_id"], ":appointment_id" => $_POST["appointment_id"]]);
         echo json_encode(true);
