@@ -34,7 +34,7 @@ if(isset($_POST["CancelAppointment"]))
 {
     $stmt = $db->prepare('UPDATE appointments SET patient_id = NULL WHERE appointment_id = :appointment_id');
     $stmt->execute([':appointment_id' => $_POST["appointment_id"]]);
-    echo json_encode(true);
+    echo json_encode("cancelled");
     exit();
 }
 
@@ -80,7 +80,7 @@ if(isset($_POST["ScheduleAppointment"]))
     
     if($incompleteAppointmentFound)
     {
-        echo json_encode("A user can only sign up for one appointment per day");
+        echo json_encode(false);
     } 
     else 
     { 

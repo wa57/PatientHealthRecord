@@ -97,9 +97,23 @@
             background-color: red;
             color: #fff;
         }
+
+        #message {
+            font-weight: bold;
+        }
+
+        .error {
+            color: red;
+        }
+
+        .success {
+            color: green;
+        }
     </style>
     <link rel="stylesheet" type="text/css" href="css/main.css">
 	<script>
+        'use strict';
+
         function GET(query, callback) {
             fetch("api/process.php?" + query, {
                 method: 'get',
@@ -135,8 +149,7 @@
             localStorage.setItem("user", null);
         }
 
-        document.addEventListener("DOMContentLoaded", function() {
-            
+        document.addEventListener("DOMContentLoaded", function() {         
             toggleNavState();
 
             document.getElementById("logout-link").addEventListener("click", function() {
@@ -148,7 +161,6 @@
             function toggleNavState() {
                 var user = getUser();
                 var links = document.getElementsByClassName("login-required"); 
-                console.log(links);
                 if(user && user !== null) {
                     document.getElementById("login-link").style.display = "none";
                     document.getElementById("logout-link").style.display = "block";

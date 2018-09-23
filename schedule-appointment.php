@@ -1,6 +1,7 @@
 <?php include 'layout.php' ?>
 
 <script>
+    'use strict';
     document.addEventListener("DOMContentLoaded", function() {
         init();
 
@@ -10,20 +11,18 @@
         });
         document.getElementById("patient-appointments-tbody").addEventListener("click", function(e) {
             if(e.target && e.target.classList.contains("cancel-button")) {
-                appointment_id = e.target.getAttribute("data-appointment-id");
+                var appointment_id = e.target.getAttribute("data-appointment-id");
                 POST("CancelAppointment&appointment_id=" + appointment_id, refreshAppointmentsTable);
             }
         });
 
         document.getElementById("appointments-table").addEventListener("click", function(e) {
+            var appointment_id = e.target.getAttribute("data-appointment-id");
             if(e.target && e.target.classList.contains("schedule-button")) {
-                var user = getUser();
-                appointment_id = e.target.getAttribute("data-appointment-id");
-                POST("ScheduleAppointment&patient_id=" + user.system_user_id + "&appointment_id=" + appointment_id, refreshAppointmentsTable);
+                POST("ScheduleAppointment&patient_id=" + getUser().system_user_id + "&appointment_id=" + appointment_id, refreshAppointmentsTable);
             }
 
             if(e.target && e.target.classList.contains("cancel-button")) {
-                appointment_id = e.target.getAttribute("data-appointment-id");
                 POST("CancelAppointment&appointment_id=" + appointment_id, refreshAppointmentsTable);
             }
         });
@@ -37,7 +36,7 @@
         });
 
         function addAppointments(response) {
-            physician_name = getPhysicianData("data-physician-name");
+            var physician_name = getPhysicianData("data-physician-name");
             response.forEach(function(appointment) {
                 rows.push(createAppointmentRow(appointment, physician_name));
             });
@@ -45,7 +44,7 @@
         }
 
         function createAppointmentRow(appointment, physician_name) {
-            row = "";
+            var row = "";
             var user = JSON.parse(localStorage.getItem("user"))
             var className = "";
             if(user.system_user_id === appointment.patient_id) {
@@ -79,12 +78,12 @@
 
         function getAppointmentsByPhysicianId() {
             rows = [];
-            physician_id = getPhysicianData("data-physician-id");
+            var physician_id = getPhysicianData("data-physician-id");
             GET("GetAppointmentsByPhysicianId&physician_id=" + physician_id, addAppointments);
         }
 
         function getPhysicianData(attribute) {
-            physicians_list = document.getElementById("physicians-list");
+            var physicians_list = document.getElementById("physicians-list");
             return physicians_list.options[physicians_list.selectedIndex].getAttribute(attribute);
         }
 
@@ -124,8 +123,8 @@
         var pageNum = 0;
         var rows = [];
         function loadTableData() {
-            page = rows.slice(pageNum * pageSize, (pageNum + 1) * pageSize);
-            nextpage = rows.slice((pageNum + 1)* pageSize, (pageNum + 2) * pageSize);
+            var page = rows.slice(pageNum * pageSize, (pageNum + 1) * pageSize);
+            var nextpage = rows.slice((pageNum + 1)* pageSize, (pageNum + 2) * pageSize);
             if(pageNum === 0) {
                 document.getElementById("previous-page").disabled = true;
             } else {
@@ -160,9 +159,26 @@
             GET("GetAppointmentsByPatientId&patient_id="+system_user_id, addPatientAppointments);
         }
 
-        function refreshAppointmentsTable() {
+        function refreshAppointmentsTable(response) {
+            displayMessage(response);
             getAppointmentsByPhysicianId();
             getAppointmentsByPatientId();
+        }
+
+        function displayMessage(response) {
+            if(response === true) {
+                document.getElementById("message").innerHTML = "Appointment Scheduled!";
+                document.getElementById("message").classList.add("success");
+                document.getElementById("message").classList.remove("error");
+            } else if(response === "cancelled") {
+                document.getElementById("message").innerHTML = "Appointment Cancelled!";
+                document.getElementById("message").classList.add("success");
+                document.getElementById("message").classList.remove("error");
+            }  else {
+                document.getElementById("message").innerHTML = "You can only sign up for one appointment at a time.";
+                document.getElementById("message").classList.add("error");
+                document.getElementById("message").classList.remove("success");
+            }
         }
     });
 </script>
@@ -187,11 +203,11 @@
                 <option selected disabled>Select a Physician</option>
             </select>
             <div id="appointments-section">
-            
                 <p>IMPORTANT: Call 555-5555 for same day appointments</p>
                 <p>Available appointments listed below. Please select the date and time you would like.</p>
                 <input id="previous-page" type="button" value="Back"/>
                 <input id="next-page" type="button" value="Next 5 Appointments"/>
+                <span id="message"></span>
                 <table id="appointments-table">
                     <thead>
                         <th>Physican Name</th>
