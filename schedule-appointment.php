@@ -8,15 +8,21 @@
             document.getElementById("appointments-section").style.display = "block";
             getAppointmentsByPhysicianId();
         });
+        document.getElementById("patient-appointments-tbody").addEventListener("click", function(e) {
+            if(e.target && e.target.classList.contains("cancel-button")) {
+                appointment_id = e.target.getAttribute("data-appointment-id");
+                POST("CancelAppointment&appointment_id=" + appointment_id, refreshAppointmentsTable);
+            }
+        });
 
-        document.getElementById("appointments-table").addEventListener("click", function(e){
-            if (e.target && e.target.classList.contains("schedule-button")) {
-                var user = JSON.parse(localStorage.getItem("user"));
+        document.getElementById("appointments-table").addEventListener("click", function(e) {
+            if(e.target && e.target.classList.contains("schedule-button")) {
+                var user = getUser();
                 appointment_id = e.target.getAttribute("data-appointment-id");
                 POST("ScheduleAppointment&patient_id=" + user.system_user_id + "&appointment_id=" + appointment_id, refreshAppointmentsTable);
             }
 
-            if (e.target && e.target.classList.contains("cancel-button")) {
+            if(e.target && e.target.classList.contains("cancel-button")) {
                 appointment_id = e.target.getAttribute("data-appointment-id");
                 POST("CancelAppointment&appointment_id=" + appointment_id, refreshAppointmentsTable);
             }
@@ -100,10 +106,15 @@
                     appointment_status = "COMPLETE";
                 }
                 html += "<tr>";
-                html +=     "<td>" + appointment.physician_id + "</td>";
+                html +=     "<td>" + appointment.physician_name + "</td>";
                 html +=     "<td>" + appointment.date + "</td>";
                 html +=     "<td>" + appointment.time + "</td>";
                 html +=     "<td>" + appointment_status + "</td>";
+                html +=     "<td>";
+                if(appointment_status === "UPCOMING") {
+                    html += "<input type='button' class='cancel-button' data-appointment-id='" + appointment.appointment_id + "' value='Cancel'/>";
+                } 
+                html +=     "</td>"
                 html += "</tr>";
             });
             document.getElementById("patient-appointments-tbody").innerHTML = html;
@@ -156,7 +167,6 @@
     });
 </script>
 <div class="container main">
-    <div>
         <div>
             <h3>Your Appointments</h3>
             <table id="patient-appointments">
@@ -165,33 +175,36 @@
                     <th>Date</th>
                     <th>Time</th>
                     <th>Status</th>
+                    <th>Action</th>
                 </thead>
                 <tbody id="patient-appointments-tbody"></tbody>
             </table>
         </div>
-        <h3>Schedule Appointment</h3>
-        <span>Select your physician:</span>
-        <select id="physicians-list">
-            <option selected disabled>Select a Physician</option>
-        </select>
-        <div id="appointments-section">
-            <p>IMPORTANT: Call 555-5555 for same day appointments</p>
-            <p>Available appointments listed below. Please select the date and time you would like.</p>
-            <input id="previous-page" type="button" value="Back"/>
-            <input id="next-page" type="button" value="Next 5 Appointments"/>
-            <table id="appointments-table">
-                <thead>
-                    <th>Physican Name</th>
-                    <th>Date</th>
-                    <th>Time</th>
-                    <th>Status</th>
-                    <th>Selection</th>
-                </thead>
-                <tbody id="available-appointments-table"></tbody>
-            </table>
+        <div>
+            <h3>Schedule Appointment</h3>
+            <span>Select your physician:</span>
+            <select id="physicians-list">
+                <option selected disabled>Select a Physician</option>
+            </select>
+            <div id="appointments-section">
+            
+                <p>IMPORTANT: Call 555-5555 for same day appointments</p>
+                <p>Available appointments listed below. Please select the date and time you would like.</p>
+                <input id="previous-page" type="button" value="Back"/>
+                <input id="next-page" type="button" value="Next 5 Appointments"/>
+                <table id="appointments-table">
+                    <thead>
+                        <th>Physican Name</th>
+                        <th>Date</th>
+                        <th>Time</th>
+                        <th>Status</th>
+                        <th>Selection</th>
+                    </thead>
+                    <tbody id="available-appointments-table"></tbody>
+                </table>
+            </div>
         </div>
-    </div>
 </div>
 
-
+<?php include 'footer.php' ?>
 

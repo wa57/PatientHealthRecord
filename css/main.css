@@ -1,27 +1,7 @@
-body {
-}
-
 input {
     background-image: none !important;
 }
 
-nav ul {
-    padding: 0;
-}
-nav ul li {
-    list-style-type: none;
-    border: 0.0625em solid #ebebeb;
-}
-
-nav ul li a {
-    display: block;
-    padding: 1em;
-}
-
-nav ul li a:hover {
-    text-decoration: none;
-    background-color: #ebebeb;
-}
 
 form input[disabled], select[disabled], input[disabled] {
     background: rgb(235, 235, 228);
