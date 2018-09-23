@@ -16,8 +16,17 @@ if(isset($_GET["GetAppointmentsByPatientId"]))
 {
     $stmt = $db->prepare('SELECT * FROM `appointments` WHERE patient_id = :patient_id');
     $stmt->execute([':patient_id' => $_GET["patient_id"]]);
-    $json = $stmt->fetchAll(PDO::FETCH_ASSOC);
-    echo json_encode($json);
+    $appointments = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+    foreach($appointments as &$appointment) 
+    {
+        $stmt = $db->prepare('SELECT first_name, last_name FROM system_user WHERE system_user_id = :physician_id');
+        $stmt->execute([':physician_id' => $appointment["physician_id"]]);
+        $physician = $stmt->fetch(PDO::FETCH_ASSOC);
+        $appointment["physician_name"] = $physician["first_name"]." ".$physician["last_name"];
+    }
+
+    echo json_encode($appointments);
     exit();
 }
 

@@ -168,6 +168,6 @@ INSERT INTO appointments VALUES (
     3,
     "2018-09-22",
     "09:00:00",
-    0
+    1
 );
 
