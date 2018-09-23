@@ -8,20 +8,33 @@
         body {
             background-color: #ebebeb;
         }
+
         .header { 
             grid-area: header; 
             margin: 0 auto;
         }
+
         .menu { 
             grid-area: menu;
             margin: 0 auto; 
+            background-color: #fff;
+            padding: 1.5em;
         }
+
         .main { 
             grid-area: main; 
             margin: 0 auto;
             background-color: #fff;
+            padding: 1.5em;
+            padding-top: 0;
         }
-        .footer { grid-area: footer; }
+
+        .footer { 
+            grid-area: footer; 
+            margin: 0 auto;
+            background-color: #fff;
+            padding: 1.5em;
+        }
 
         .container {
             display: grid;
@@ -29,16 +42,26 @@
                 'header header header header header header'
                 'menu menu menu menu menu menu'
                 'main main main main main main'
-                'footer footer footer footer footer footer';
+                'footer';
             grid-gap: 10px;
             max-width: 940px;
         }
 
+        h2 a {
+            text-decoration: none;
+        }
+
+        h2 a:visited {
+            color: black;
+        }
+
+        nav {
+            padding-bottom: 35px;
+            border-bottom: 1px solid black;
+        }
+
         nav ul {
             list-style-type: none;
-            margin: 0 auto;
-            padding: 0;
-            overflow: hidden;
             background-color: #333;
         }
 
@@ -48,15 +71,14 @@
 
         nav li a {
             display: block;
-            color: white;
+            color: black;
             text-align: center;
-            padding: 14px 16px;
+            padding: 0 20px;
             text-decoration: none;
         }
 
-        /* Change the link color to #111 (black) on hover */
         nav li a:hover {
-            background-color: #111;
+            text-decoration: underline;
         }
 
         .booked {
@@ -149,24 +171,23 @@
 </head>
 <body>
     <div class="container header">
-        <h2>Patient Health Record</h2>
+        <h2><a href="index.php">Patient Health Record</a></h2>
     </div>
 
     <div class="container menu">
-        <aside>
-            <nav>
-                <ul>
-                    <li><a href="index.php">Home</a></li>
-                    <li id="login-link"><a href="login.php">Login</a></li>
-                    <li id="logout-link"><a href="#">Logout</a><li>
-                    <li class="login-required"><a href="schedule-appointment.php">Schedule Appointment</a></li>
-                    <li class="login-required"><a href="view-lab-reports.php">View Lab Reports</a></li>
-                    <li class="login-required"><a href="view-prescriptions.php">View Prescriptions</a></li>
-                    <li><a href="about.php">About</a></li>
-                    <li><a href="contact.php">Contact</a></li>
-                </ul>
-            </nav>
-        </aside>
+        <nav>
+            <ul>
+                <li><a href="index.php">Home</a></li>
+                <li id="login-link"><a href="login.php">Login</a></li>
+                <li id="logout-link"><a href="#">Logout</a><li>
+                <li class="login-required"><a href="schedule-appointment.php">Schedule Appointment</a></li>
+                <li class="login-required"><a href="view-lab-reports.php">View Lab Reports</a></li>
+                <li class="login-required"><a href="view-prescriptions.php">View Prescriptions</a></li>
+                <li><a href="about.php">About</a></li>
+                <li><a href="contact.php">Contact</a></li>
+            </ul>
+        </nav>
+        <hr/>
     </div>
 </body>
 </html>

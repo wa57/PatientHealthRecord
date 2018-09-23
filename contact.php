@@ -10,3 +10,5 @@
         <p>Database Developer - Dhrumi Patel, PatelD23@sacredheart.edu</p>
     </div>
 </div>
+
+<?php include 'footer.php' ?>
