@@ -183,43 +183,43 @@
     });
 </script>
 <div class="container main">
-        <div>
-            <h3>Your Appointments</h3>
-            <table id="patient-appointments">
+    <div style="float: left;">
+        <h3>Your Appointments</h3>
+        <table id="patient-appointments">
+            <thead>
+                <th>Physician Name</th>
+                <th>Date</th>
+                <th>Time</th>
+                <th>Status</th>
+                <th>Action</th>
+            </thead>
+            <tbody id="patient-appointments-tbody"></tbody>
+        </table>
+    </div>
+    <div style="float: left;">
+        <h3>Schedule Appointment</h3>
+        <span>Select your physician:</span>
+        <select id="physicians-list">
+            <option selected disabled>Select a Physician</option>
+        </select>
+        <div id="appointments-section">
+            <p>IMPORTANT: Call 555-5555 for same day appointments</p>
+            <p>Available appointments listed below. Please select the date and time you would like.</p>
+            <input id="previous-page" type="button" value="Back"/>
+            <input id="next-page" type="button" value="Next 5 Appointments"/>
+            <span id="message"></span>
+            <table id="appointments-table">
                 <thead>
-                    <th>Physician Name</th>
+                    <th>Physican Name</th>
                     <th>Date</th>
                     <th>Time</th>
                     <th>Status</th>
-                    <th>Action</th>
+                    <th>Selection</th>
                 </thead>
-                <tbody id="patient-appointments-tbody"></tbody>
+                <tbody id="available-appointments-table"></tbody>
             </table>
         </div>
-        <div>
-            <h3>Schedule Appointment</h3>
-            <span>Select your physician:</span>
-            <select id="physicians-list">
-                <option selected disabled>Select a Physician</option>
-            </select>
-            <div id="appointments-section">
-                <p>IMPORTANT: Call 555-5555 for same day appointments</p>
-                <p>Available appointments listed below. Please select the date and time you would like.</p>
-                <input id="previous-page" type="button" value="Back"/>
-                <input id="next-page" type="button" value="Next 5 Appointments"/>
-                <span id="message"></span>
-                <table id="appointments-table">
-                    <thead>
-                        <th>Physican Name</th>
-                        <th>Date</th>
-                        <th>Time</th>
-                        <th>Status</th>
-                        <th>Selection</th>
-                    </thead>
-                    <tbody id="available-appointments-table"></tbody>
-                </table>
-            </div>
-        </div>
+    </div>
 </div>
 
 <?php include 'footer.php' ?>

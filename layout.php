@@ -41,7 +41,7 @@
             grid-template-areas:
                 'header header header header header header'
                 'menu menu menu menu menu menu'
-                'main main main main main main'
+                'main main'
                 'footer';
             grid-gap: 10px;
             max-width: 940px;
