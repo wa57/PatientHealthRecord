@@ -80,6 +80,23 @@ CREATE TABLE prescriptions (
     rx_type VARCHAR(10)
 );
 
+INSERT INTO user_role VALUES (
+    1,
+    "Patient",
+    "Patient User"
+);
+
+INSERT INTO user_role VALUES (
+    2,
+    "Physician",
+    "Doctor"
+);
+
+INSERT INTO user_role VALUES (
+    3,
+    "Administrator",
+    "Site Administrator"
+);
 
 INSERT INTO system_user VALUES (
     NULL,
@@ -155,7 +172,7 @@ INSERT INTO system_user VALUES (
 
 INSERT INTO system_user VALUES (
     NULL,
-    5,
+    1,
     "Dhrumi",
     "Patel",
     "1995-06-14",
@@ -171,17 +188,6 @@ INSERT INTO system_user VALUES (
     "pateld23@mail.sacredheart.edu"
 );
 
-
-/*
-CREATE TABLE appointments (
-    appointment_id INT AUTO_INCREMENT PRIMARY KEY,
-    physician_id INT NOT NULL,
-    patient_id INT,
-    date DATE NOT NULL,
-    time TIME NOT NULL,
-    appointment_status INT NOT NULL
-);*/
-
 INSERT INTO appointments VALUES (
     NULL,
     2,
@@ -190,8 +196,6 @@ INSERT INTO appointments VALUES (
     "09:00:00",
     1
 );
-
-
 
 INSERT INTO lab_tests VALUES (
 	NULL, 
@@ -222,8 +226,6 @@ INSERT INTO lab_tests VALUES (
 	"ALT", 
 	"Screen for liver damage or to help diagonse liver disease"
 );
-
-
 
 INSERT INTO lab_tests VALUES (
 	NULL, 
