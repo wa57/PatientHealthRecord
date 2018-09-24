@@ -80,6 +80,7 @@ CREATE TABLE prescriptions (
     rx_type VARCHAR(10)
 );
 
+
 INSERT INTO system_user VALUES (
     NULL,
     2,
@@ -152,6 +153,25 @@ INSERT INTO system_user VALUES (
     "ashmanw@mail.sacredheart.edu"
 );
 
+INSERT INTO system_user VALUES (
+    NULL,
+    5,
+    "Dhrumi",
+    "Patel",
+    "1995-06-14",
+    "475449837",
+    "pateld23",
+    "Dhrumegh!",
+    "woodridge",
+    "402",
+    "shelton",
+    "CT",
+    "06484",
+    "99",
+    "pateld23@mail.sacredheart.edu"
+);
+
+
 /*
 CREATE TABLE appointments (
     appointment_id INT AUTO_INCREMENT PRIMARY KEY,
@@ -169,5 +189,69 @@ INSERT INTO appointments VALUES (
     "2018-09-22",
     "09:00:00",
     1
+);
+
+
+
+INSERT INTO lab_tests VALUES (
+	NULL, 
+	"Hemoglobin", 
+	"A blood test measurement"
+);
+
+INSERT INTO lab_tests VALUES (
+	NULL, 
+	"Blood Count", 
+	"Determines the number of red blood cells and white blood cells"
+);
+
+INSERT INTO lab_tests VALUES (
+	NULL, 
+	"Kidney Fucntion Test", 
+	"Various aspects of kidneys"
+);
+
+INSERT INTO lab_tests VALUES (
+	NULL, 
+	"Pregnancy Test", 
+	"Whether a women is pregnant or not"
+);
+
+INSERT INTO lab_tests VALUES (
+	NULL, 
+	"ALT", 
+	"Screen for liver damage or to help diagonse liver disease"
+);
+
+
+
+INSERT INTO lab_tests VALUES (
+	NULL, 
+	"Glucose Tolerance Test", 
+	"Procedure to assest the ability of the body to metabolise glucose"
+);
+
+INSERT INTO lab_tests VALUES (
+	NULL, 
+	"Blood Typing", 
+	"Classification of blood in terms of distinctive inherited characterisitics"
+);
+
+INSERT INTO lab_tests VALUES (
+	NULL, 
+	"Thymol turbidity", 
+	"test for the non-specfic measurement of the globulins"
+);
+
+INSERT INTO lab_tests VALUES (
+	NULL, 
+	"Thyroid Function Test", 
+	"procedure of two active thyroid hormones thyroxine"
+);
+
+INSERT INTO lab_tests VALUES (
+	NULL, 
+	"Uroscopy", 
+	"medical examination of the urine "
 );
 
