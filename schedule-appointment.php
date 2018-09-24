@@ -183,7 +183,7 @@
     });
 </script>
 <div class="container main">
-    <div style="float: left;">
+    <div>
         <h3>Your Appointments</h3>
         <table id="patient-appointments">
             <thead>
@@ -196,7 +196,7 @@
             <tbody id="patient-appointments-tbody"></tbody>
         </table>
     </div>
-    <div style="float: left;">
+    <div>
         <h3>Schedule Appointment</h3>
         <span>Select your physician:</span>
         <select id="physicians-list">
