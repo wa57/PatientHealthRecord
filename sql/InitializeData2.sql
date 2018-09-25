@@ -13,3 +13,13 @@ VALUES
 	(Null, "hs-CRP:","This test assesses levels of an inflammatory marker that can be helpful in assessing risk for heart disease.")	
 	(Null, "Wound Cultures", "This test checks a wound for sources of infection (fungus, bacteria).")
 	;
+INSERT INTO prescriptions
+    (rx_id, rx_name,description,rx_type) 
+VALUES 
+	(NULL,"ALLEGRA","Reduces the effects of natural chemical histamine in the body","Antihistamine"),
+	(NULL,"ATIVAN"," Management of anxiety disorders or for the short-term relief","Anxiety"),
+	(NULL,"CIPRO","Treatment of infections caused by susceptible isolates of the designated microorganisms","Anti-Biotic"),
+	(NULL,"WELLBUTRIN","Treatment of major depressive disorder (MDD)","Antidepressant"),
+	(NULL,"FLONASE","Relieve seasonal and year-round allergic and non-allergic nasal symptoms, such as stuffy/runny nose, itching, and sneezing.","Nasal Spray"),
+	(NULL,"FUROSEMIDE","Extra water by increasing the amount of urine you make","Diuretic"),
+	;
