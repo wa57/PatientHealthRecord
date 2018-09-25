@@ -51,8 +51,8 @@ CREATE TABLE patient_lab_tests_performed (
 DROP TABLE IF EXISTS lab_tests;
 CREATE TABLE lab_tests (
     test_id INT AUTO_INCREMENT PRIMARY KEY,
-    test_name VARCHAR(25) NOT NULL,
-    description VARCHAR(100)
+    test_name VARCHAR(100) NOT NULL,
+    description VARCHAR(300)
 );
 
 DROP TABLE IF EXISTS patient_prescriptions;
@@ -90,12 +90,6 @@ INSERT INTO user_role VALUES (
     2,
     "Physician",
     "Doctor"
-);
-
-INSERT INTO user_role VALUES (
-    3,
-    "Administrator",
-    "Site Administrator"
 );
 
 INSERT INTO system_user VALUES (
@@ -256,4 +250,3 @@ INSERT INTO lab_tests VALUES (
 	"Uroscopy", 
 	"medical examination of the urine "
 );
-

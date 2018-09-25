@@ -14,5 +14,6 @@ foreach($physicians as $physician)
         $stmt = $db->prepare("INSERT INTO appointments VALUES (NULL, :physician_id, NULL, :tomorrow, :time, 0)");
         $stmt->execute([':physician_id' => $physician["system_user_id"], ":tomorrow" => $tomorrow->format("Y-m-d"), ":time" => $i->format("H:i")]);
     }
+    //$tomorrow->modify("1")
 }
 ?>

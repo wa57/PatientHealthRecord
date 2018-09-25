@@ -1,4 +1,11 @@
 <?php include 'layout.php' ?>
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        
+    });
+</script>
+
+
 <div class="container main">
     <div>
         <h2>View Lab Reports</h2>
