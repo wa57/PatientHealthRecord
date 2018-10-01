@@ -91,6 +91,15 @@ if(isset($_POST["ScheduleAppointment"]))
     exit();
 }
 
+if(isset($_GET["GetLabTestsPerformedByUserId"]))
+{
+    $stmt = $db->prepare("SELECT * FROM patient_lab_tests_performed WHERE patient_id = :patient_id");
+    $stmt->execute([':patient_id' => $_GET["patient_id"]]);
+    $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
+    echo json_encode($results);
+    exit();
+}
+
 echo json_encode("NOTHING SET");
 
 ?>

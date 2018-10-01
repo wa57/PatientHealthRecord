@@ -5,6 +5,14 @@ $stmt = $db->query('SELECT * FROM system_user WHERE role_id = 2');
 $physicians = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
 $tomorrow = new DateTime("tomorrow");
+$begin_date = new DateTime("tomorrow");
+$end_date = $begin_date->modify("+30 days");
+
+for($i = $begin_date; $i <= $end_date; $i->modify("+1 day")) 
+{
+    print_r($i);
+}
+
 foreach($physicians as $physician) 
 {
     $begin = new DateTime("9:00");

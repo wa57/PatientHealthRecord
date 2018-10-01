@@ -76,8 +76,8 @@ DROP TABLE IF EXISTS prescriptions;
 CREATE TABLE prescriptions (
     rx_id INT AUTO_INCREMENT PRIMARY KEY,
     rx_name VARCHAR(50) NOT NULL,
-    description VARCHAR(50),
-    rx_type VARCHAR(10)
+    description VARCHAR(200),
+    rx_type VARCHAR(30)
 );
 
 INSERT INTO user_role VALUES (

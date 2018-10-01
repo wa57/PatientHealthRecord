@@ -1,7 +1,15 @@
-<?php include 'layout.php' ?>
+<?php 
+include 'layout.php';
+
+
+?>
 <script>
     document.addEventListener("DOMContentLoaded", function() {
-        
+        GET("GetLabTestsPerformedByUserId&patient_id=" + getUser().system_user_id, addLabReports);
+
+        function addLabReports(response) {
+            console.log(response);
+        }
     });
 </script>
 
@@ -10,31 +18,14 @@
     <div>
         <h2>View Lab Reports</h2>
 
-        <table>
-            <tr>
+        <table id="lab-tests-table">
+            <thead>
                 <th>Test</th>
                 <th>Date</th>
                 <th>Results</th>
                 <th>Description</th>
-            </tr>
-            <tr>
-                <td>Vitamin B12</td>
-                <td>01/23/2017</td>
-                <td>Normal: 110-1500 (pg/mL)</td>
-                <td></td>
-            </tr>
-            <tr>
-                <td>Triglycerides</td>
-                <td>11/14/2016</td>
-                <td>Under 100/mg/dL</td>
-                <td></td>
-            </tr>
-            <tr>
-                <td>HDL</td>
-                <td>11/14/2016</td>
-                <td>Over 55 mg/dL</td>
-                <td></td>
-            </tr>
+            </thead>
+            <tbody id="lab-tests-tbody"></tbody>
         </table>
     </div>
 </div>
