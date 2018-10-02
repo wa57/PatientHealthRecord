@@ -1,7 +1,6 @@
 <?php 
 include 'layout.php';
 
-
 ?>
 <script>
     document.addEventListener("DOMContentLoaded", function() {
@@ -9,6 +8,16 @@ include 'layout.php';
 
         function addLabReports(response) {
             console.log(response);
+            var html = "";
+            response.forEach(function(labTest) {
+                html += "<tr>";
+                html +=     "<td>" + labTest.physician_id + "</td>";
+                html +=     "<td>" + labTest.test_id + "</td>";
+                html +=     "<td>" + labTest.results + "</td>";
+                html +=     "<td>" + labTest.test_lab_addr + "</td>";
+                html += "</tr>";
+            });
+            document.getElementById("lab-tests-tbody").innerHTML = html;
         }
     });
 </script>
@@ -23,7 +32,7 @@ include 'layout.php';
                 <th>Test</th>
                 <th>Date</th>
                 <th>Results</th>
-                <th>Description</th>
+                <th>Test Lab Address</th>
             </thead>
             <tbody id="lab-tests-tbody"></tbody>
         </table>

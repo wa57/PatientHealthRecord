@@ -112,7 +112,7 @@ INSERT INTO system_user VALUES (
 
 INSERT INTO system_user VALUES (
     NULL,
-    2,
+    1,
     "Will",
     "Ashman",
     "1970-01-01",
