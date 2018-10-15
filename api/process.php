@@ -100,6 +100,15 @@ if(isset($_GET["GetLabTestsPerformedByUserId"]))
     exit();
 }
 
+if(isset($_GET["GetPatientPrescriptionsByPatientId"])) 
+{
+    $stmt = $db->prepare("SELECT * FROM  patient_prescriptions WHERE patient_id = :patient_id");
+    $stmt->execute([':patient_id' => $_GET["patient_id"]]);
+    $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
+    echo json_encode($results);
+    exit();
+}
+
 echo json_encode("NOTHING SET");
 
 ?>

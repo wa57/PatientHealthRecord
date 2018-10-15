@@ -24,7 +24,7 @@ VALUES
 INSERT INTO patient_lab_tests_performed
  	(patient_lab_tests_performed_id, patient_id, physician_id, test_id, test_lab_addr, results) 
 VALUES 
-	(NULL, "5","2", "1", "quest diagnostics", "normal")
+	(NULL, "5","2", "1", "quest diagnostics", "normal"),
 	(NULL, "9", "2", "2", "Quest Diagnostics", "Normal")
 
  
