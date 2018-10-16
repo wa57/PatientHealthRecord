@@ -104,6 +104,10 @@
         .success {
             color: green;
         }
+
+        td {
+            white-space: nowrap;
+        }
     </style>
     <link rel="stylesheet" type="text/css" href="css/main.css">
 	<script>
@@ -178,7 +182,9 @@
 </head>
 <body>
     <div class="container header">
-        <h2><a href="index.php">Patient Health Record</a></h2>
+        <h2>
+            <a href="index.php">Patient Health Record</a>
+        </h2>
     </div>
 
     <div class="container menu">

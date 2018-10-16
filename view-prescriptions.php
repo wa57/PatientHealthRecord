@@ -4,6 +4,7 @@
         GET("GetPatientPrescriptionsByPatientId&patient_id=" + getUser().system_user_id, addLabReports);
 
         function addLabReports(response) {
+            console.log(response);
             var html = "";
             response.forEach(function(prescription) {
                 html += "<tr>";
@@ -27,15 +28,20 @@
 </script>
 <div class="container main">
     <div>
-    GetPatientPrescriptionsByPatientId
         <h2>View Lab Reports</h2>
-
         <table id="patient-prescriptions-table">
             <thead>
-                <th>Test</th>
-                <th>Date</th>
-                <th>Results</th>
-                <th>Test Lab Address</th>
+                <th>Prescribing Physician</th>
+                <th>Prescribed To</th>
+                <th>Prescription Name</th>
+                <th>Expires</th>
+                <th>Prescription Date</th>
+                <th>Dosage</th>
+                <th>Quantity</th>
+                <th>Description</th>
+                <th>Refills</th>
+                <th>Instructions</th>
+                <th>Pharmacy Address</th>
             </thead>
             <tbody id="patient-prescriptions-tbody"></tbody>
         </table>

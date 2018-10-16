@@ -1,4 +1,4 @@
-INSERT INTO lab_tests 
+ INSERT INTO lab_tests 
     (test_id, test_name, description) 
 VALUES 
 	(NULL, "ANA", "helps to diagnose lupus and to rule out certain other autoimmune diseases"),
@@ -23,4 +23,13 @@ VALUES
 	(NULL,"FLONASE","Relieve seasonal and year-round allergic and non-allergic nasal symptoms, such as stuffy/runny nose, itching, and sneezing.","Nasal Spray"),
 	(NULL,"FUROSEMIDE","Extra water by increasing the amount of urine you make","Diuretic"),
 	(NULL,"PREDNISOLONE","Can treat many diseases and conditions, especially those related to inflammation.","Steroid"),
-	(NULL,"VICODIN","Used to relieve moderate to severe pain.","Pain Killer");	
+	(NULL,"VICODIN","Used to relieve moderate to severe pain.","Pain Killer");
+
+
+INSERT INTO patient_prescriptions
+   (patient_prescription_id, rx_id, patient_id, physician_id, prescription_date, expires, dosage, quantity, description, refills, instructions, pharmacy_addr, controlled_substance) 
+VALUES 
+	(NULL, '1', '5', '3', '2018-10-16', '2020-10-15', 'one tablet twice a day', '100', 'Reduces the effects of natural chemical histamine in the body', '2', 'Keep out of reach from children', 'walgreens', '0'),
+	(NULL, '2', '6', '3', '2018-09-22', '2021-09-21', ' one pill a day', '50', 'Management of anxiety disorders or for the short-term relief', '2', 'do not take with empty stomach', 'CVS', '0'),
+
+		
