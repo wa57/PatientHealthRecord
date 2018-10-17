@@ -6,10 +6,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title> - Patient Health Record</title>
     <style>
-        body {
-            background-color: #ebebeb;
-        }
 
+        main {
+            padding: 1em;
+        }
         .header, .menu, .main, .footer{ 
             margin: 0 auto;
             padding: 1.5em;
@@ -38,9 +38,20 @@
             background: #ebebeb;
         }
 
-        nav h5 a {
-            color: #FE7F9C
+        nav h4 a {
+            color: #F25652;
         }
+
+        nav h4 {
+            padding: 1em;
+            margin-bottom: 0;
+        }
+
+        nav h4 a:hover {
+            color: #F25652;
+            text-decoration: none;
+        }
+
         nav li a {
             color: black;
             text-decoration: none;
@@ -50,7 +61,13 @@
         }
 
         nav li a:hover {
-            background: #000;
+            background: #575757;
+            color: #ebebeb;
+            text-decoration: none;
+        }
+
+        nav i {
+            margin-right: 15px;
         }
 
         .booked {
@@ -160,9 +177,9 @@
     <div class="container-fluid">
         <div class="row">
             <nav>
-                <h5>
+                <h4>
                     <a href="?path=homepage">Patient Health Record</a>
-                </h5>
+                </h4>
                 <ul class="nav flex-column">
                     <li>
                         <a href="?path=homepage">
@@ -184,31 +201,31 @@
                     <li>
                     <li class="login-required">
                         <a href="?path=schedule-appointment">
-                            <i class="fas fa-home"></i>
-                            Schedule Appointment
+                            <i class="fas fa-calendar-alt"></i>
+                            Schedule An Appointment
                         </a>
                     </li>
                     <li class="login-required">
                         <a href="?path=view-lab-reports">
-                            <i class="fas fa-home"></i>
+                            <i class="fas fa-clipboard-list"></i>
                             View Lab Reports
                         </a>
                     </li>
                     <li class="login-required">
                         <a href="?path=view-prescriptions">
-                            <i class="fas fa-home"></i>
+                            <i class="fas fa-prescription-bottle-alt"></i>
                             View Prescriptions
                         </a>
                     </li>
                     <li>
                         <a href="?path=about">
-                            <i class="fas fa-home"></i>
+                            <i class="fas fa-user"></i>
                             About
                         </a>
                     </li>
                     <li>
                         <a href="?path=contact">
-                            <i class="fas fa-home"></i>
+                            <i class="fas fa-envelope"></i>
                             Contact
                         </a>
                     </li>
@@ -217,7 +234,14 @@
             <div class="col">
                 <main>
                     <?php
-                        include $_GET["path"].".php";
+                        if(isset($_GET["path"]))
+                        {
+                            include $_GET["path"].".php";
+                        }
+                        else 
+                        {
+                            include "homepage.php";
+                        }
                     ?>
                 </main>
             </div>

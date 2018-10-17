@@ -18,19 +18,15 @@
     });
 </script>
 
-
-<div class="container main">
-    <div>
-        <h2>View Lab Reports</h2>
-        <table id="lab-tests-table">
-            <thead>
-                <th>Test</th>
-                <th>Date</th>
-                <th>Results</th>
-                <th>Test Lab Address</th>
-            </thead>
-            <tbody id="lab-tests-tbody"></tbody>
-        </table>
-    </div>
-</div>
+<h3>View Lab Reports</h3>
+<table id="lab-tests-table">
+    <thead>
+        <th>Test</th>
+        <th>Date</th>
+        <th>Results</th>
+        <th>Test Lab Address</th>
+    </thead>
+    <tbody id="lab-tests-tbody"></tbody>
+</table>
+   
 

@@ -180,22 +180,8 @@
         }
     });
 </script>
-<h1>Appointment Scheduling</h1>
 <div>
-    <h3>Your Appointments</h3>
-    <table id="patient-appointments">
-        <thead>
-            <th>Physician Name</th>
-            <th>Date</th>
-            <th>Time</th>
-            <th>Status</th>
-            <th>Action</th>
-        </thead>
-        <tbody id="patient-appointments-tbody"></tbody>
-    </table>
-</div>
-<div>
-    <h3>Schedule Appointment</h3>
+    <h3>Schedule An Appointment</h3>
     <span>Select your physician:</span>
     <select id="physicians-list">
         <option selected disabled>Select a Physician</option>
@@ -218,3 +204,17 @@
         </table>
     </div>
 </div>
+<div>
+    <h3>Your Appointments</h3>
+    <table id="patient-appointments">
+        <thead>
+            <th>Physician Name</th>
+            <th>Date</th>
+            <th>Time</th>
+            <th>Status</th>
+            <th>Action</th>
+        </thead>
+        <tbody id="patient-appointments-tbody"></tbody>
+    </table>
+</div>
+

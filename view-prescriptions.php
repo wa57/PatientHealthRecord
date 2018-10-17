@@ -25,25 +25,23 @@
         }
     });
 </script>
-<div class="container main">
-    <div>
-        <h3>View Prescriptions</h3>
-        <table id="patient-prescriptions-table">
-            <thead>
-                <th>Prescribing Physician</th>
-                <th>Prescribed To</th>
-                <th>Prescription Name</th>
-                <th>Expires</th>
-                <th>Prescription Date</th>
-                <th>Dosage</th>
-                <th>Quantity</th>
-                <th>Description</th>
-                <th>Refills</th>
-                <th>Instructions</th>
-                <th>Pharmacy Address</th>
-            </thead>
-            <tbody id="patient-prescriptions-tbody"></tbody>
-        </table>
-    </div>
-</div>
+
+<h3>View Prescriptions</h3>
+<table id="patient-prescriptions-table">
+    <thead>
+        <th>Prescribing Physician</th>
+        <th>Prescribed To</th>
+        <th>Prescription Name</th>
+        <th>Expires</th>
+        <th>Prescription Date</th>
+        <th>Dosage</th>
+        <th>Quantity</th>
+        <th>Description</th>
+        <th>Refills</th>
+        <th>Instructions</th>
+        <th>Pharmacy Address</th>
+    </thead>
+    <tbody id="patient-prescriptions-tbody"></tbody>
+</table>
+  
 
