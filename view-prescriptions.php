@@ -28,7 +28,7 @@
 </script>
 <div class="container main">
     <div>
-        <h2>View Lab Reports</h2>
+        <h3>View Prescriptions</h3>
         <table id="patient-prescriptions-table">
             <thead>
                 <th>Prescribing Physician</th>

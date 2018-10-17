@@ -182,7 +182,7 @@
         }
     });
 </script>
-<div class="container main">
+<div>
     <div>
         <h3>Your Appointments</h3>
         <table id="patient-appointments">

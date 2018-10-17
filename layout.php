@@ -48,10 +48,6 @@
             color: black;
         }
 
-        nav {
-            padding: 1em;
-        }
-
         nav ul {
             list-style-type: none;
             background-color: #333;
@@ -105,11 +101,11 @@
             color: green;
         }
 
-        td {
-            white-space: nowrap;
-        }
     </style>
     <link rel="stylesheet" type="text/css" href="css/main.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <script src="https://unpkg.com/react@16/umd/react.development.js" crossorigin></script>
+    <script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js" crossorigin></script>
 	<script>
         'use strict';
 
@@ -181,25 +177,40 @@
     </script>
 </head>
 <body>
-    <div class="container header">
+    <div class="container">
         <h2>
             <a href="index.php">Patient Health Record</a>
         </h2>
     </div>
 
-    <div class="container menu">
-        <nav>
-            <ul>
-                <li><a href="index.php">Home</a></li>
-                <li id="login-link"><a href="login.php">Login</a></li>
-                <li id="logout-link"><a href="#">Logout</a><li>
-                <li class="login-required"><a href="schedule-appointment.php">Schedule Appointment</a></li>
-                <li class="login-required"><a href="view-lab-reports.php">View Lab Reports</a></li>
-                <li class="login-required"><a href="view-prescriptions.php">View Prescriptions</a></li>
-                <li><a href="about.php">About</a></li>
-                <li><a href="contact.php">Contact</a></li>
-            </ul>
-        </nav>
-    </div>
+    <nav>
+        <ul class="nav flex-column">
+            <li>
+                <a class="nav-link" href="index.php">Home</a>
+            </li>
+            <li id="login-link">
+                <a class="nav-link" href="login.php">Login</a>
+            </li>
+            <li id="logout-link">
+                <a class="nav-link" href="#">Logout</a>
+            <li>
+            <li class="login-required">
+                <a class="nav-link" href="schedule-appointment.php">Schedule Appointment</a>
+            </li>
+            <li class="login-required">
+                <a class="nav-link" href="view-lab-reports.php">View Lab Reports</a>
+            </li>
+            <li class="login-required">
+                <a class="nav-link" href="view-prescriptions.php">View Prescriptions</a>
+            </li>
+            <li>
+                <a class="nav-link" href="about.php">About</a>
+            </li>
+            <li>
+                <a class="nav-link" href="contact.php">Contact</a>
+            </li>
+        </ul>
+    </nav>
+
 </body>
 </html>
