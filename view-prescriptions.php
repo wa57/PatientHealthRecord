@@ -1,4 +1,3 @@
-<?php include 'layout.php' ?>
 <script>
     document.addEventListener("DOMContentLoaded", function() {
         GET("GetPatientPrescriptionsByPatientId&patient_id=" + getUser().system_user_id, addLabReports);

@@ -1,4 +1,3 @@
-<?php include 'layout.php' ?>
 <div class="container main">
     <div>
         <p>Systems Analyst - Stephanie Fanelli, FanelliS4@sacredheart.edu</p>
@@ -10,5 +9,3 @@
         <p>Database Developer - Dhrumi Patel, PatelD23@sacredheart.edu</p>
     </div>
 </div>
-
-<?php include 'footer.php' ?>

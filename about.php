@@ -1,4 +1,3 @@
-<?php include 'layout.php' ?>
 <div class="container main">
     <div>
         <p>
@@ -25,5 +24,3 @@
         </p>
     </div>
 </div>
-
-<?php include 'footer.php' ?>

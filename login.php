@@ -1,4 +1,3 @@
-<?php include 'layout.php'; ?>
 <script>
     document.addEventListener("DOMContentLoaded", function() {
     
@@ -205,5 +204,3 @@
         </form>
     </div>
 </div>
-
-<?php include 'footer.php' ?>
