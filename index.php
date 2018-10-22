@@ -38,16 +38,16 @@
             background: #ebebeb;
         }
 
-        nav h4 a {
+        nav h3 a {
             color: #F25652;
         }
 
-        nav h4 {
+        nav h3 {
             padding: 1em;
             margin-bottom: 0;
         }
 
-        nav h4 a:hover {
+        nav h3 a:hover {
             color: #F25652;
             text-decoration: none;
         }
@@ -177,9 +177,9 @@
     <div class="container-fluid">
         <div class="row">
             <nav>
-                <h4>
-                    <a href="?path=homepage">Patient Health Record</a>
-                </h4>
+                <h3>
+                    <a href="?path=homepage"><i class="fas fa-file-medical-alt"></i>Patient Health Record</a>
+                </h3>
                 <ul class="nav flex-column">
                     <li>
                         <a href="?path=homepage">
