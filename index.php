@@ -113,6 +113,15 @@
 	<script>
         'use strict';
 
+        console.log(JSON.stringify({
+            isEdge: /Edge/.test(navigator.userAgent),
+            isFirefox: /Firefox/.test(navigator.userAgent),
+            isChrome: /Google Inc/.test(navigator.vendor),
+            isIE: /Trident/.test(navigator.userAgent),
+        }, null, '  '));
+
+
+
         function GET(query, callback) {
             fetch("api/process.php?" + query, {
                 method: 'get',
@@ -157,12 +166,31 @@
                 window.location = "index.php";
             });
 
+            document.getElementById("exit-button").addEventListener("click", function() {
+                window.location = "https://www.google.com/_/chrome/newtab";
+            });
+
+            document.getElementById("home-button").addEventListener("click", function() {
+                window.location = "index.php";
+            });
+
+            document.getElementById("previous-button").addEventListener("click", function() {
+                history.back();
+            });
+
+            document.getElementById("logout-button").addEventListener("click", function() {
+                setUser(null);
+                toggleNavState();
+                window.location = "index.php";
+            });
+
             function toggleNavState() {
                 var user = getUser();
                 var links = document.getElementsByClassName("login-required"); 
                 if(user && user !== null) {
                     document.getElementById("login-link").style.display = "none";
                     document.getElementById("logout-link").style.display = "block";
+                    let navButtons = document.querySelectorAll(".nav-button");
                 } else {
                     document.getElementById("login-link").style.display = "block";
                     document.getElementById("logout-link").style.display = "none";
@@ -177,6 +205,7 @@
                 }
             }
         });
+
 
     </script>
 </head>
@@ -251,11 +280,10 @@
                         }
                     ?>
                     <div>
-                        <button id="back-button">Previous</button>
-                        <button>Logout</button>
-                        <button>Exit</button>
-                        <button>Home</button>
-                    previous logout exit the system (back to last visited page before PHR) home first page 
+                        <button class="nav-button" id="previous-button">Previous</button>
+                        <button class="nav-button" id="logout-button">Logout</button>
+                        <button class="nav-button" id="exit-button">Exit</button>
+                        <button class="nav-button" id="home-button">Home</button>
                     </div>
                 </main>
             </div>
