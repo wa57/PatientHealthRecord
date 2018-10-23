@@ -6,10 +6,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title> - Patient Health Record</title>
     <style>
-
         main {
             padding: 1em;
         }
+
         .header, .menu, .main, .footer{ 
             margin: 0 auto;
             padding: 1.5em;
@@ -99,6 +99,13 @@
             color: green;
         }
 
+        #color-bar {
+            height: 50px;
+            width: 960px;
+            margin: 0 auto;
+            background: #F25652;
+        }
+
     </style>
     <link rel="stylesheet" type="text/css" href="css/main.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
@@ -176,7 +183,7 @@
 <body>
     <div class="container-fluid">
         <div class="row">
-            <nav>
+            <nav class="sticky-top">
                 <h3>
                     <a href="?path=homepage"><i class="fas fa-file-medical-alt"></i>Patient Health Record</a>
                 </h3>
@@ -243,6 +250,13 @@
                             include "homepage.php";
                         }
                     ?>
+                    <div>
+                        <button id="back-button">Previous</button>
+                        <button>Logout</button>
+                        <button>Exit</button>
+                        <button>Home</button>
+                    previous logout exit the system (back to last visited page before PHR) home first page 
+                    </div>
                 </main>
             </div>
         </div>

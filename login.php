@@ -23,7 +23,7 @@
     });
 </script>
 <div class="row">
-    <div class="col-sm-2">
+    <div class="col-sm-3">
         <h3>Login</h3>
         <div>
             <div>
