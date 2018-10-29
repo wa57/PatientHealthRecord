@@ -1,3 +1,6 @@
+<script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/gijgo@1.9.10/js/gijgo.min.js" type="text/javascript"></script>
+<link href="https://cdn.jsdelivr.net/npm/gijgo@1.9.10/css/gijgo.min.css" rel="stylesheet" type="text/css" />
 <script>
     document.addEventListener("DOMContentLoaded", function() {
     
@@ -17,9 +20,24 @@
             });
         }, false);
 
+        document.getElementById("submit-registration").addEventListener("click", function() {
+            let fields = {
+                "fname": document.getElementById("fname").value,
+                "lname": document.getElementById("lname").value,
+                "birthdate": document.getElementById("datepicker").value,
+
+            }
+
+            console.log(fields);
+        });
+
         function loginUser(response) {
             console.log(response);
         }
+
+        $('#datepicker').datepicker({
+            uiLibrary: 'bootstrap4'
+        });
     });
 </script>
 <div class="row">
@@ -52,7 +70,7 @@
     <div class="col">
         <h3>New User? Register Here</h3>
         <span class="required-ast">&ast;</span> Required Field
-        <form>
+        <div>
             <div class="row">
                 <div class="col-sm-6">
                     <div>
@@ -78,17 +96,7 @@
                         <label for="bdate">Birth Date<span class="required-ast">&ast;</span></label>
                     </div>
                     <div>
-                        <select>
-                            <option selected disabled>Day</option>
-                            <option>01</option>
-                        </select>
-                        <select>
-                            <option selected disabled>Month</option>
-                        </select>
-                        <select>
-                            <option selected disabled>Year</option>
-                            <option>@DateTime.Now.Year</option>
-                        </select>
+                        <input id="datepicker"/>
                     </div>
                 </div>
 
@@ -137,7 +145,6 @@
                     <div>
                         <select>
                             <option disabled defaultValue>Select State</option>
-                            <option>CT</option>
                         </select>
                     </div>
                 </div>
@@ -198,9 +205,9 @@
             </div>
 
             <div>
-                <input id="submit-registration" type="submit" value="Register" />
+                <button id="submit-registration" value="Register">Register</button>
                 <input type="submit" value="Clear" />
             </div>
-        </form>
+        </div>
     </div>
 </div>
