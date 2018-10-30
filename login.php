@@ -20,15 +20,43 @@
             });
         }, false);
 
+
         document.getElementById("submit-registration").addEventListener("click", function() {
+            let el = document.getElementById("state");
+            let state = el.options[el.selectedIndex].text;
+            
             let fields = {
                 "fname": document.getElementById("fname").value,
                 "lname": document.getElementById("lname").value,
                 "birthdate": document.getElementById("datepicker").value,
-
-            }
+                "phone": document.getElementById("phone").value,
+                "address": document.getElementById("address").value,
+                "apartment": document.getElementById("apartment-num").value,
+                "city": document.getElementById("city").value,
+                "state": state,
+                "email": document.getElementById("email").value,
+                "zipcode": document.getElementById("zipcode").value,
+                "zipcode-ext": document.getElementById("zipcode-ext").value,
+                "username": document.getElementById("reg-username").value,
+                "password": document.getElementById("reg-password").value
+            };
 
             console.log(fields);
+        });
+
+        document.getElementById("test-button").addEventListener("click", function() {
+                document.getElementById("fname").value = "William"
+                document.getElementById("lname").value = "Ashman"
+                document.getElementById("datepicker").value = "06/05/1984";
+                document.getElementById("phone").value = "5555555555";
+                document.getElementById("address").value = "666 Test Avenue";
+                document.getElementById("apartment-num").value = "2";
+                document.getElementById("city").value = "Fairfield";
+                document.getElementById("zipcode").value = "06880";
+                document.getElementById("zipcode-ext").value = "66";
+                document.getElementById("reg-username").value = "USERNAME";
+                document.getElementById("reg-password").value = "PASSWORD";
+                document.getElementById("email").value = "test@test.com";
         });
 
         function loginUser(response) {
@@ -96,7 +124,7 @@
                         <label for="bdate">Birth Date<span class="required-ast">&ast;</span></label>
                     </div>
                     <div>
-                        <input id="datepicker"/>
+                        <input id="datepicker" width="200"/>
                     </div>
                 </div>
 
@@ -143,8 +171,59 @@
                         <label htmlFor="state">State<span class="required-ast">&ast;</span></label>
                     </div>
                     <div>
-                        <select>
+                        <select id="state">
                             <option disabled defaultValue>Select State</option>
+                            <option>AL</option>
+<option>AK</option>
+<option>AZ</option>
+<option>AR</option>
+<option>CA</option>
+<option>CO</option>
+<option>CT</option>
+<option>DE</option>
+<option>FL</option>
+<option>GA</option>
+<option>HI</option>
+<option>ID</option>
+<option>IL</option>
+<option>IN</option>
+<option>IA</option>
+<option>KS</option>
+<option>KY</option>
+<option>LA</option>
+<option>ME</option>
+<option>MD</option>
+<option>MA</option>
+<option>MI</option>
+<option>MN</option>
+<option>MS</option>
+<option>MO</option>
+<option>MT</option>
+<option>NE</option>
+<option>NV</option>
+<option>NH</option>
+<option>NJ</option>
+<option>NM</option>
+<option>NY</option>
+<option>NC</option>
+<option>ND</option>
+<option>OH</option>
+<option>OK</option>
+<option>OR</option>
+<option>PA</option>
+<option>RI</option>
+<option>SC</option>
+<option>SD</option>
+<option>TN</option>
+<option>TX</option>
+<option>UT</option>
+<option>VT</option>
+<option>VA</option>
+<option>WA</option>
+<option>WV</option>
+<option>WI</option>
+<option>WY</option>
+
                         </select>
                     </div>
                 </div>
@@ -180,7 +259,7 @@
                         <label htmlFor="username">Username<span class="required-ast">&ast;</span></label>
                     </div>
                     <div>
-                        <input id="username" type="text" placeholder="Username"/>
+                        <input id="reg-username" type="text" placeholder="Username"/>
                     </div>
                 </div>
             </div>
@@ -191,7 +270,7 @@
                         <label htmlFor="password">Password<span class="required-ast">&ast;</span></label>
                     </div>
                     <div>
-                        <input id="password" type="text" placeholder="Password"/>
+                        <input id="reg-password" type="text" placeholder="Password"/>
                     </div>
                 </div>
                 <div class="col-sm-6">
@@ -207,6 +286,7 @@
             <div>
                 <button id="submit-registration" value="Register">Register</button>
                 <input type="submit" value="Clear" />
+                <button id="test-button">TEST</button>
             </div>
         </div>
     </div>
