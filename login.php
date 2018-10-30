@@ -5,21 +5,8 @@
     document.addEventListener("DOMContentLoaded", function() {
     
         document.getElementById("submit-login-credentials").addEventListener('click', function() { 
-            var params = 'AuthenticateUser&username=' + document.getElementById("username").value + "&password=" + document.getElementById("password").value
-            fetch("api/process.php", {
-                method: 'post',
-                headers: {
-                    "Content-type": "application/x-www-form-urlencoded; charset=UTF-8"
-                },
-                body: params
-            })
-            .then(response => response.json())
-            .then(function(response) {
-                localStorage.setItem("user", JSON.stringify(response));
-                window.location = "index.php";
-            });
-        }, false);
-
+            loginUser(document.getElementById("username").value, document.getElementById("password").value);
+        });
 
         document.getElementById("submit-registration").addEventListener("click", function() {
             let el = document.getElementById("state");
@@ -41,8 +28,28 @@
                 "password": document.getElementById("reg-password").value
             };
 
-            console.log(fields);
+            POST("RegisterUser&userInfo=" + JSON.stringify(fields), handleResponse);
         });
+
+        function loginUser(username, password) {
+            var params = 'AuthenticateUser&username=' + username + "&password=" + password;
+            POST(params, handleLogin);
+        }
+
+        function handleLogin(response) {
+            localStorage.setItem("user", JSON.stringify(response));
+            window.location = "index.php";
+        }
+
+        function handleResponse(response) {
+            if(response.invalid) {
+                document.getElementById("message").textContent = response.message;
+                document.getElementById("message").style.color = "red";
+                document.getElementById("message").style.display = "inline";
+            } else {
+                loginUser(response.user[0].username, response.user[0].password);
+            }
+        }
 
         document.getElementById("test-button").addEventListener("click", function() {
                 document.getElementById("fname").value = "William"
@@ -54,15 +61,11 @@
                 document.getElementById("city").value = "Fairfield";
                 document.getElementById("zipcode").value = "06880";
                 document.getElementById("zipcode-ext").value = "66";
-                document.getElementById("reg-username").value = "USERNAME";
+                document.getElementById("reg-username").value = "USERNAME" + guid();
                 document.getElementById("reg-password").value = "PASSWORD";
                 document.getElementById("email").value = "test@test.com";
         });
-
-        function loginUser(response) {
-            console.log(response);
-        }
-
+        
         $('#datepicker').datepicker({
             uiLibrary: 'bootstrap4'
         });
@@ -100,7 +103,7 @@
         <span class="required-ast">&ast;</span> Required Field
         <div>
             <div class="row">
-                <div class="col-sm-6">
+                <div class="col">
                     <div>
                         <label for="fname">First Name<span class="required-ast">&ast;</span></label>
                     </div>
@@ -108,7 +111,7 @@
                         <input id="fname" type="text" title="First Name" placeholder="First Name" />
                     </div>
                 </div>
-                <div class="col-sm-6">
+                <div class="col">
                     <div>
                         <label for="lname">Last Name<span class="required-ast">&ast;</span></label>
                     </div>
@@ -119,16 +122,16 @@
             </div>
 
             <div class="row">
-                <div class="col-sm-6">
+                <div class="col">
                     <div>
                         <label for="bdate">Birth Date<span class="required-ast">&ast;</span></label>
                     </div>
                     <div>
-                        <input id="datepicker" width="200"/>
+                        <input id="datepicker" disabled width="300"/>
                     </div>
                 </div>
 
-                <div class="col-sm-6">
+                <div class="col">
                     <div>
                         <label for="phone">Best phone number to be reached at<span class="required-ast">*</span></label>
                     </div>
@@ -139,7 +142,7 @@
             </div>
 
             <div class="row">
-                <div class="col-sm-6">
+                <div class="col">
                     <div>
                         <label for="address">Address<span class="required-ast">*</span></label>
                     </div>
@@ -147,7 +150,7 @@
                         <input id="address" type="text" placeholder="Address"/>
                     </div>
                 </div>
-                <div class="col-sm-6">
+                <div class="col">
                     <div>
                         <label for="apartment-num">Apartment #</label>
                     </div>
@@ -158,7 +161,7 @@
             </div>
 
             <div class="row">
-                <div class="col-sm-4">
+                <div class="col">
                     <div>
                         <label htmlFor="city">City<span class="required-ast">&ast;</span></label>
                     </div>
@@ -166,7 +169,7 @@
                         <input id="city" type="text" placeholder="City"/>
                     </div>
                 </div>
-                <div class="col-sm-2">
+                <div class="col">
                     <div>
                         <label htmlFor="state">State<span class="required-ast">&ast;</span></label>
                     </div>
@@ -174,60 +177,59 @@
                         <select id="state">
                             <option disabled defaultValue>Select State</option>
                             <option>AL</option>
-<option>AK</option>
-<option>AZ</option>
-<option>AR</option>
-<option>CA</option>
-<option>CO</option>
-<option>CT</option>
-<option>DE</option>
-<option>FL</option>
-<option>GA</option>
-<option>HI</option>
-<option>ID</option>
-<option>IL</option>
-<option>IN</option>
-<option>IA</option>
-<option>KS</option>
-<option>KY</option>
-<option>LA</option>
-<option>ME</option>
-<option>MD</option>
-<option>MA</option>
-<option>MI</option>
-<option>MN</option>
-<option>MS</option>
-<option>MO</option>
-<option>MT</option>
-<option>NE</option>
-<option>NV</option>
-<option>NH</option>
-<option>NJ</option>
-<option>NM</option>
-<option>NY</option>
-<option>NC</option>
-<option>ND</option>
-<option>OH</option>
-<option>OK</option>
-<option>OR</option>
-<option>PA</option>
-<option>RI</option>
-<option>SC</option>
-<option>SD</option>
-<option>TN</option>
-<option>TX</option>
-<option>UT</option>
-<option>VT</option>
-<option>VA</option>
-<option>WA</option>
-<option>WV</option>
-<option>WI</option>
-<option>WY</option>
-
+                            <option>AK</option>
+                            <option>AZ</option>
+                            <option>AR</option>
+                            <option>CA</option>
+                            <option>CO</option>
+                            <option>CT</option>
+                            <option>DE</option>
+                            <option>FL</option>
+                            <option>GA</option>
+                            <option>HI</option>
+                            <option>ID</option>
+                            <option>IL</option>
+                            <option>IN</option>
+                            <option>IA</option>
+                            <option>KS</option>
+                            <option>KY</option>
+                            <option>LA</option>
+                            <option>ME</option>
+                            <option>MD</option>
+                            <option>MA</option>
+                            <option>MI</option>
+                            <option>MN</option>
+                            <option>MS</option>
+                            <option>MO</option>
+                            <option>MT</option>
+                            <option>NE</option>
+                            <option>NV</option>
+                            <option>NH</option>
+                            <option>NJ</option>
+                            <option>NM</option>
+                            <option>NY</option>
+                            <option>NC</option>
+                            <option>ND</option>
+                            <option>OH</option>
+                            <option>OK</option>
+                            <option>OR</option>
+                            <option>PA</option>
+                            <option>RI</option>
+                            <option>SC</option>
+                            <option>SD</option>
+                            <option>TN</option>
+                            <option>TX</option>
+                            <option>UT</option>
+                            <option>VT</option>
+                            <option>VA</option>
+                            <option>WA</option>
+                            <option>WV</option>
+                            <option>WI</option>
+                            <option>WY</option>
                         </select>
                     </div>
                 </div>
-                <div class="col-sm-3">
+                <div class="col">
                     <div>
                         <label htmlFor="zipcode">Zipcode<span class="required-ast">&ast;</span></label>
                     </div>
@@ -235,7 +237,7 @@
                         <input id="zipcode" type="text" placeholder="Zipcode"/>
                     </div>
                 </div>
-                <div class="col-sm-3">
+                <div class="col">
                     <div>
                         <label htmlFor="zipcode-ext">Zipcode Ext.</label>
                     </div>
@@ -246,7 +248,7 @@
             </div>
 
             <div class="row">
-                <div class="col-sm-6">
+                <div class="col">
                     <div>
                         <label htmlFor="email">Email<span class="required-ast">&ast;</span></label>
                     </div>
@@ -254,7 +256,7 @@
                         <input id="email" type="text" placeholder="Email"/>
                     </div>
                 </div>
-                <div class="col-sm-6">
+                <div class="col">
                     <div>
                         <label htmlFor="username">Username<span class="required-ast">&ast;</span></label>
                     </div>
@@ -265,20 +267,20 @@
             </div>
 
             <div class="row">
-                <div class="col-sm-6">
+                <div class="col">
                     <div>
                         <label htmlFor="password">Password<span class="required-ast">&ast;</span></label>
                     </div>
                     <div>
-                        <input id="reg-password" type="text" placeholder="Password"/>
+                        <input id="reg-password" type="password" placeholder="Password"/>
                     </div>
                 </div>
-                <div class="col-sm-6">
+                <div class="col">
                     <div>
                         <label htmlFor="confirm-password">Confirm Password<span class="required-ast">&ast;</span></label>
                     </div>
                     <div>
-                        <input id="confirm-password" type="text" placeholder="Confirm Password"/>
+                        <input id="confirm-password" type="password" placeholder="Confirm Password"/>
                     </div>
                 </div>
             </div>
@@ -287,6 +289,7 @@
                 <button id="submit-registration" value="Register">Register</button>
                 <input type="submit" value="Clear" />
                 <button id="test-button">TEST</button>
+                <span id="message"></span>
             </div>
         </div>
     </div>

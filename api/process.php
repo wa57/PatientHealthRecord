@@ -1,5 +1,6 @@
 <?php
 include 'db_connect.php';
+include 'util.php';
 
 header('Content-Type: application/json');
 
@@ -51,7 +52,7 @@ if(isset($_POST["AuthenticateUser"]))
     $stmt = $db->prepare("SELECT * FROM system_user WHERE username = :username");
     $stmt->execute([':username' => $_POST["username"]]);
     $json = $stmt->fetch(PDO::FETCH_ASSOC);
-    
+
     if($_POST['password'] == $json["password"])
     {
         echo json_encode($json);
@@ -60,6 +61,54 @@ if(isset($_POST["AuthenticateUser"]))
     {
         echo json_encode(false);
     }
+    exit();
+}
+
+if(isset($_POST["RegisterUser"]))
+{
+    $user_info = json_decode($_POST['userInfo'], true);
+
+    $form_exceptions = ["apartment", "zipcode-ext"];
+
+    $response = array(
+        "invalid" => false,
+        "message" => "",
+        "user" => $user_info
+    );
+
+    foreach($user_info as $key => $value) 
+    {
+        if(empty($value) && !in_array($key, $form_exceptions)) 
+        {
+            $response["invalid"] = true;
+            $response["message"] = "All required fields must be filled in.";
+        }
+    }
+
+    if($response["invalid"] == false)
+    {
+        $stmt = $db->prepare("SELECT * FROM system_user WHERE username = :username");
+        $stmt->execute([':username' => $user_info["username"]]);
+        $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+        if(!empty($results)) 
+        {
+            $response["invalid"] = true;
+            $response["message"] = "Someone with that username is already registered.";
+        } 
+        else 
+        {
+            $stmt = $db->prepare("INSERT INTO system_user VALUES (NULL, 1, :fname, :lname, :birthdate, :phone, :username, :password, :address, :apartment, :city, :state,:zipcode, :zipcode_ext, :email)");
+            $stmt->execute([':fname' => $user_info["fname"], ':lname' => $user_info["lname"], ':birthdate' => $user_info["birthdate"], ':phone' => $user_info["phone"], ':username' => $user_info["username"], ':password' => $user_info["password"], ':address' => $user_info["address"], ':apartment' => $user_info["apartment"], ':city' => $user_info["city"], ':state' => $user_info["state"], ':zipcode' => $user_info["zipcode"], ':zipcode_ext' => $user_info["zipcode-ext"], ':email' => $user_info["email"]]);
+            
+            $stmt = $db->prepare("SELECT * FROM system_user WHERE username = :username");
+            $stmt->execute([':username' => $user_info["username"]]);
+            $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
+            $response["user"] = $results;
+        }
+    }
+
+    echo json_encode($response);
     exit();
 }
 

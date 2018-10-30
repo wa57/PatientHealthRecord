@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title> - Patient Health Record</title>
+    <!--<title> - Patient Health Record</title>-->
     <style>
         main {
             padding: 1em;
@@ -106,6 +106,10 @@
             background: #F25652;
         }
 
+        gj-datepicker {
+            width: 100px;
+        }
+
     </style>
     <link rel="stylesheet" type="text/css" href="css/main.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
@@ -155,6 +159,15 @@
 
         function setUser(user) {
             localStorage.setItem("user", null);
+        }
+
+        function guid() {
+            function s4() {
+                return Math.floor((1 + Math.random()) * 0x10000)
+                .toString(16)
+                .substring(1);
+            }
+            return s4() + s4() + '-' + s4();
         }
 
         document.addEventListener("DOMContentLoaded", function() {         
@@ -214,7 +227,7 @@
         <div class="row">
             <nav class="sticky-top">
                 <h3>
-                    <a href="?path=homepage"><i class="fas fa-file-medical-alt"></i>Patient Health Record</a>
+                    <!--<a href="?path=homepage"><i class="fas fa-file-medical-alt"></i>Patient Health Record</a>-->
                 </h3>
                 <ul class="nav flex-column">
                     <li>
