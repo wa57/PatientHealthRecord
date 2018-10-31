@@ -45,7 +45,8 @@ CREATE TABLE patient_lab_tests_performed (
     physician_id INT NOT NULL,
     test_id INT NOT NULL,
     test_lab_addr VARCHAR(150),
-    results VARCHAR(200)
+    results VARCHAR(200),
+    date_performed DATE
 );
 
 DROP TABLE IF EXISTS lab_tests;
@@ -77,7 +78,8 @@ CREATE TABLE prescriptions (
     rx_id INT AUTO_INCREMENT PRIMARY KEY,
     rx_name VARCHAR(50) NOT NULL,
     description VARCHAR(200),
-    rx_type VARCHAR(30)
+    rx_type VARCHAR(30),
+    rx_num VARCHAR(50) NOT NULL
 );
 
 INSERT INTO user_role VALUES (

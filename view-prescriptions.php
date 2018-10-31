@@ -3,45 +3,31 @@
         GET("GetPatientPrescriptionsByPatientId&patient_id=" + getUser().system_user_id, addLabReports);
 
         function addLabReports(response) {
-            console.log(response);
             var html = "";
             response.forEach(function(prescription) {
-                html += "<tr>";
-                html +=     "<td>" + prescription.physician_id + "</td>";
-                html +=     "<td>" + prescription.patient_id + "</td>";
-                html +=     "<td>" + prescription.rx_id + "</td>";
-                html +=     "<td>" + prescription.expires + "</td>";
-                html +=     "<td>" + prescription.prescription_date + "</td>";
-                html +=     "<td>" + prescription.dosage + "</td>";
-                html +=     "<td>" + prescription.quantity + "</td>";
-                html +=     "<td>" + prescription.description + "</td>";
-                html +=     "<td>" + prescription.refills + "</td>";
-                html +=     "<td>" + prescription.instructions + "</td>";
-                html +=     "<td>" + prescription.pharmacy_addr + "</td>";
-                html += "</tr>";
+                html += "<article class='card'>";
+                html +=     "<p>Prescribing Physician: <strong>" + prescription.first_name + " " + prescription.last_name + "</strong></p>";
+                html +=     "<p>Prescription Name: <strong>" + prescription.rx_name + "</strong></p>";
+                html +=     "<p>Rx Number: <strong>" + prescription.rx_num + "</strong></p>";
+                html +=     "<p>Expires: <strong>" + prescription.expires + "</strong></p>";
+                html +=     "<p>Prescription Date: <strong>" + prescription.prescription_date + "</strong></p>";
+                html +=     "<p>Dosage: <strong>" + prescription.dosage + "</strong></p>";
+                html +=     "<p>Quantity: <strong>" + prescription.quantity + "</strong></p>";
+                html +=     "<p>Description: <strong>" + prescription.description + "</strong></p>";
+                html +=     "<p>Refills: <strong>" + prescription.refills + "</strong></p>";
+                html +=     "<p>Instructions: <strong>" + prescription.instructions + "</strong></p>";
+                html +=     "<p>Pharmacy Address: <strong>" + prescription.pharmacy_addr + "</strong></p>";
+                html += "</article>";
                 
             });
-            document.getElementById("patient-prescriptions-tbody").innerHTML = html;
+            document.getElementById("patient-prescriptions-cards").innerHTML = html;
         }
     });
 </script>
 
 <h3>View Prescriptions</h3>
-<table id="patient-prescriptions-table">
-    <thead>
-        <th>Prescribing Physician</th>
-        <th>Prescribed To</th>
-        <th>Prescription Name</th>
-        <th>Expires</th>
-        <th>Prescription Date</th>
-        <th>Dosage</th>
-        <th>Quantity</th>
-        <th>Description</th>
-        <th>Refills</th>
-        <th>Instructions</th>
-        <th>Pharmacy Address</th>
-    </thead>
-    <tbody id="patient-prescriptions-tbody"></tbody>
-</table>
+<div class="centered">
+    <section id="patient-prescriptions-cards" class="cards"></section>
+</div>
   
 

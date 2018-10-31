@@ -142,19 +142,44 @@ if(isset($_POST["ScheduleAppointment"]))
 
 if(isset($_GET["GetLabTestsPerformedByUserId"]))
 {
+    $response = [];
     $stmt = $db->prepare("SELECT * FROM patient_lab_tests_performed WHERE patient_id = :patient_id");
     $stmt->execute([':patient_id' => $_GET["patient_id"]]);
     $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
-    echo json_encode($results);
+
+    foreach($results as $result) 
+    {
+        $stmt = $db->prepare("SELECT * FROM lab_tests WHERE test_id = :test_id");
+        $stmt->execute([':test_id' => $result["test_id"]]);
+        $labTest = $stmt->fetch(PDO::FETCH_ASSOC);
+        $response[] = array_merge($result, $labTest);
+    }
+
+    echo json_encode($response);
     exit();
 }
 
 if(isset($_GET["GetPatientPrescriptionsByPatientId"])) 
 {
+    $response = [];
     $stmt = $db->prepare("SELECT * FROM  patient_prescriptions WHERE patient_id = :patient_id");
     $stmt->execute([':patient_id' => $_GET["patient_id"]]);
     $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
-    echo json_encode($results);
+
+    foreach($results as $result) 
+    {
+        $stmt = $db->prepare("SELECT * FROM prescriptions WHERE rx_id = :rx_id");
+        $stmt->execute([':rx_id' => $result["rx_id"]]);
+        $prescription = $stmt->fetch(PDO::FETCH_ASSOC);
+
+        $stmt = $db->prepare("SELECT * FROM system_user WHERE system_user_id = :system_user_id");
+        $stmt->execute([':system_user_id' => $result["physician_id"]]);
+        $physician = $stmt->fetch(PDO::FETCH_ASSOC);
+
+        $response[] = array_merge($result, $prescription, $physician);
+    }
+
+    echo json_encode($response);
     exit();
 }
 

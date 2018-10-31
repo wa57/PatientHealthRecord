@@ -106,8 +106,35 @@
             background: #F25652;
         }
 
-        gj-datepicker {
+        .gj-datepicker {
             width: 100px;
+        }
+
+        #patient-prescriptions-table {
+            width: 100%;
+        }
+
+        #nav-buttons {
+            margin-top: 15px;
+        }
+
+        .header {
+            background: #F25652;
+        }
+
+        .cards {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+        }
+        
+        .card {
+            flex: 0 1 24%;
+            padding: 25px;
+        }
+
+        .card p {
+            margin-bottom: 5px;
         }
 
     </style>
@@ -116,15 +143,6 @@
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css" integrity="sha384-5sAR7xN1Nv6T6+dT2mhtzEpVJvfS3NScPQTrOxhwjIuvcA67KV2R5Jz6kr4abQsz" crossorigin="anonymous">
     <script>
         'use strict';
-
-        console.log(JSON.stringify({
-            isEdge: /Edge/.test(navigator.userAgent),
-            isFirefox: /Firefox/.test(navigator.userAgent),
-            isChrome: /Google Inc/.test(navigator.vendor),
-            isIE: /Trident/.test(navigator.userAgent),
-        }, null, '  '));
-
-
 
         function GET(query, callback) {
             fetch("api/process.php?" + query, {
@@ -292,7 +310,7 @@
                             include "homepage.php";
                         }
                     ?>
-                    <div>
+                    <div id="nav-buttons">
                         <button class="nav-button" id="previous-button">Previous</button>
                         <button class="nav-button" id="logout-button">Logout</button>
                         <button class="nav-button" id="exit-button">Exit</button>

@@ -3,30 +3,23 @@
         GET("GetLabTestsPerformedByUserId&patient_id=" + getUser().system_user_id, addLabReports);
 
         function addLabReports(response) {
-            console.log(response);
             var html = "";
             response.forEach(function(labTest) {
-                html += "<tr>";
-                html +=     "<td>" + labTest.physician_id + "</td>";
-                html +=     "<td>" + labTest.test_id + "</td>";
-                html +=     "<td>" + labTest.results + "</td>";
-                html +=     "<td>" + labTest.test_lab_addr + "</td>";
-                html += "</tr>";
+                html += "<article class='card'>";
+                html +=     "<p>Test: <strong>" + labTest.test_name + "</strong></p>";
+                html +=     "<p>Results: <strong>" + labTest.results + "</strong></p>";
+                html +=     "<p>Test Lab Address: <strong>" + labTest.test_lab_addr + "</strong></p>";
+                html +=     "<p>Date Performed: <strong>" + labTest.date_performed + "</strong></p>"
+                html += "</article>";
             });
-            document.getElementById("lab-tests-tbody").innerHTML = html;
+            document.getElementById("patient-lab-cards").innerHTML = html;
         }
     });
 </script>
 
 <h3>View Lab Reports</h3>
-<table id="lab-tests-table">
-    <thead>
-        <th>Test</th>
-        <th>Date</th>
-        <th>Results</th>
-        <th>Test Lab Address</th>
-    </thead>
-    <tbody id="lab-tests-tbody"></tbody>
-</table>
+<div class="centered">
+    <section id="patient-lab-cards" class="cards"></section>
+</div>
    
 

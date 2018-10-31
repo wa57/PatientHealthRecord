@@ -1,13 +1,3 @@
-INSERT INTO lab_tests 
-    (test_id, test_name, description) 
-VALUES 
-	(NULL, "ANA", "helps to diagnose lupus and to rule out certain other autoimmune diseases"),
-	(NULL, "Glycohemoglobin", "monitor a person's diabetes and to aid in treatment decisions"),
-	(NULL, "Glucose Level", "Identifies blood glucose level, and to screen for, diagnose, and monitor diabetes, pre-diabetes, and hypoglycemia."),
-	(NULL, "Urinalysis", "Analysis of urine by physical, chemical, and microscopical means to test for the presence of disease, drugs, etc."),
-	(NULL, "Liver Function Panel (LFT)", "Used to detect liver damage or disease"),
-	(NULL, "Complete Blood Count", "Used to measure different parts and features of your blood");
-
 INSERT INTO system_user
 	(system_user_id, role_id, first_name, last_name, birth_date, phone, username, password, address, apartment_num, city, state, zipcode, zipcode_ext, email) 
 VALUES 
@@ -22,9 +12,12 @@ VALUES
 
 
 INSERT INTO patient_lab_tests_performed
- 	(patient_lab_tests_performed_id, patient_id, physician_id, test_id, test_lab_addr, results) 
+ 	(patient_lab_tests_performed_id, patient_id, physician_id, test_id, test_lab_addr, results, date_performed) 
 VALUES 
-	(NULL, "5","2", "1", "quest diagnostics", "normal"),
-	(NULL, "9", "2", "2", "Quest Diagnostics", "Normal")
+	(NULL, "5","2", "1", "Quest Diagnostics", "normal", "2018-09-18"),
+	(NULL, "5","2", "1", "Quest Diagnostics", "normal1", "2018-09-25"),
+	(NULL, "5","2", "1", "Quest Diagnostics", "normal2", "2018-10-05"),
+	(NULL, "5","2", "1", "Quest Diagnostics", "normal3", "2018-10-16"),
+	(NULL, "9", "2", "2", "Quest Diagnostics", "Normal", "2018-10-27")
 
  

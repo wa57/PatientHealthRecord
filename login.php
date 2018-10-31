@@ -52,18 +52,33 @@
         }
 
         document.getElementById("test-button").addEventListener("click", function() {
-                document.getElementById("fname").value = "William"
-                document.getElementById("lname").value = "Ashman"
-                document.getElementById("datepicker").value = "06/05/1984";
-                document.getElementById("phone").value = "5555555555";
-                document.getElementById("address").value = "666 Test Avenue";
-                document.getElementById("apartment-num").value = "2";
-                document.getElementById("city").value = "Fairfield";
-                document.getElementById("zipcode").value = "06880";
-                document.getElementById("zipcode-ext").value = "66";
-                document.getElementById("reg-username").value = "USERNAME" + guid();
-                document.getElementById("reg-password").value = "PASSWORD";
-                document.getElementById("email").value = "test@test.com";
+            document.getElementById("fname").value = "William";
+            document.getElementById("lname").value = "Ashman";
+            document.getElementById("datepicker").value = "06/05/1984";
+            document.getElementById("phone").value = "5555555555";
+            document.getElementById("address").value = "666 Test Avenue";
+            document.getElementById("apartment-num").value = "2";
+            document.getElementById("city").value = "Fairfield";
+            document.getElementById("zipcode").value = "06880";
+            document.getElementById("zipcode-ext").value = "66";
+            document.getElementById("reg-username").value = "USERNAME" + guid();
+            document.getElementById("reg-password").value = "PASSWORD";
+            document.getElementById("email").value = "test@test.com";
+        });
+
+        document.getElementById("clear-button").addEventListener("click", function() {
+            document.getElementById("fname").value = ""
+            document.getElementById("lname").value = ""
+            document.getElementById("datepicker").value = "";
+            document.getElementById("phone").value = "";
+            document.getElementById("address").value = "";
+            document.getElementById("apartment-num").value = "";
+            document.getElementById("city").value = "";
+            document.getElementById("zipcode").value = "";
+            document.getElementById("zipcode-ext").value = "";
+            document.getElementById("reg-username").value = "";
+            document.getElementById("reg-password").value = "";
+            document.getElementById("email").value = "";
         });
         
         $('#datepicker').datepicker({
@@ -287,7 +302,7 @@
 
             <div>
                 <button id="submit-registration" value="Register">Register</button>
-                <input type="submit" value="Clear" />
+                <button id="clear-button">Clear</button>
                 <button id="test-button">TEST</button>
                 <span id="message"></span>
             </div>
