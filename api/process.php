@@ -1,15 +1,15 @@
 <?php
 include 'db_connect.php';
 include 'util.php';
+include 'SystemUser.php';
+include 'Appointment.php';
 
 header('Content-Type: application/json');
 
 if(isset($_GET["GetAppointmentsByPhysicianId"])) 
 {
-    $stmt = $db->prepare('SELECT * FROM `appointments` WHERE physician_id = :physician_id AND date > CURDATE()');
-    $stmt->execute([':physician_id' => $_GET["physician_id"]]);
-    $json = $stmt->fetchAll(PDO::FETCH_ASSOC);
-    echo json_encode($json);
+    $Appointment = new Appointment();
+    echo $Appointment->getAppointmentsByPhysicianId($_GET["physician_id"]);
     exit();
 }
 
@@ -33,82 +33,29 @@ if(isset($_GET["GetAppointmentsByPatientId"]))
 
 if(isset($_POST["CancelAppointment"]))
 {
-    $stmt = $db->prepare('UPDATE appointments SET patient_id = NULL WHERE appointment_id = :appointment_id');
-    $stmt->execute([':appointment_id' => $_POST["appointment_id"]]);
-    echo json_encode("cancelled");
+    $Appointment = new Appointment();
+    echo $Appointment->cancelAppointment($_POST["appointment_id"]);
     exit();
 }
 
 if(isset($_GET["GetPhysicians"]))
 {
-    $stmt = $db->query('SELECT * FROM system_user WHERE role_id = 2');
-    $json = $stmt->fetchAll(PDO::FETCH_ASSOC);
-    echo json_encode($json);
+    $SystemUser = new SystemUser();
+    echo $SystemUser->getPhysicians();
     exit();
 }
 
 if(isset($_POST["AuthenticateUser"]))
 {
-    $stmt = $db->prepare("SELECT * FROM system_user WHERE username = :username");
-    $stmt->execute([':username' => $_POST["username"]]);
-    $json = $stmt->fetch(PDO::FETCH_ASSOC);
-
-    if($_POST['password'] == $json["password"])
-    {
-        echo json_encode($json);
-    }
-    else
-    {
-        echo json_encode(false);
-    }
+    $SystemUser = new SystemUser();
+    echo $SystemUser->authenticateUser($_POST["username"], $_POST["password"]);
     exit();
 }
 
 if(isset($_POST["RegisterUser"]))
 {
-    $user_info = json_decode($_POST['userInfo'], true);
-
-    $form_exceptions = ["apartment", "zipcode-ext"];
-
-    $response = array(
-        "invalid" => false,
-        "message" => "",
-        "user" => $user_info
-    );
-
-    foreach($user_info as $key => $value) 
-    {
-        if(empty($value) && !in_array($key, $form_exceptions)) 
-        {
-            $response["invalid"] = true;
-            $response["message"] = "All required fields must be filled in.";
-        }
-    }
-
-    if($response["invalid"] == false)
-    {
-        $stmt = $db->prepare("SELECT * FROM system_user WHERE username = :username");
-        $stmt->execute([':username' => $user_info["username"]]);
-        $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
-
-        if(!empty($results)) 
-        {
-            $response["invalid"] = true;
-            $response["message"] = "Someone with that username is already registered.";
-        } 
-        else 
-        {
-            $stmt = $db->prepare("INSERT INTO system_user VALUES (NULL, 1, :fname, :lname, :birthdate, :phone, :username, :password, :address, :apartment, :city, :state,:zipcode, :zipcode_ext, :email)");
-            $stmt->execute([':fname' => $user_info["fname"], ':lname' => $user_info["lname"], ':birthdate' => $user_info["birthdate"], ':phone' => $user_info["phone"], ':username' => $user_info["username"], ':password' => $user_info["password"], ':address' => $user_info["address"], ':apartment' => $user_info["apartment"], ':city' => $user_info["city"], ':state' => $user_info["state"], ':zipcode' => $user_info["zipcode"], ':zipcode_ext' => $user_info["zipcode-ext"], ':email' => $user_info["email"]]);
-            
-            $stmt = $db->prepare("SELECT * FROM system_user WHERE username = :username");
-            $stmt->execute([':username' => $user_info["username"]]);
-            $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
-            $response["user"] = $results;
-        }
-    }
-
-    echo json_encode($response);
+    $SystemUser = new SystemUser();
+    echo $SystemUser->registerUser($_POST["userInfo"]);
     exit();
 }
 

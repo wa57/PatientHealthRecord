@@ -1,6 +1,6 @@
 <?php
-include(dirname(__DIR__)."/api/db_connect.php");
-
+//include(dirname(__DIR__)."/api/db_connect.php");
+date_default_timezone_set('America/New_York');
 $stmt = $db->query('SELECT * FROM system_user WHERE role_id = 2');
 $physicians = $stmt->fetchAll(PDO::FETCH_ASSOC);
 

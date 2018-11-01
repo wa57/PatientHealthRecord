@@ -168,7 +168,7 @@ INSERT INTO system_user VALUES (
 
 INSERT INTO system_user VALUES (
     NULL,
-    1,
+    3,
     "Dhrumi",
     "Patel",
     "1995-06-14",

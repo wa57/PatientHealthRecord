@@ -234,6 +234,15 @@
                         links[i].style.display = "none";
                     }
                 }
+
+                var adminLinks = document.getElementsByClassName("admin-required");
+                for (let i = 0; i < adminLinks.length; i++) {
+                    if(JSON.parse(user.role_id) === 3) {
+                        adminLinks[i].style.display = "block";
+                    } else {
+                        adminLinks[i].style.display = "none";
+                    }
+                }
             }
         });
 
@@ -296,6 +305,11 @@
                             Contact
                         </a>
                     </li>
+                    <li class="admin-required login-required">
+                        <a href="?path=env/create-appointments";>
+                        <i class="fas fa-lock"></i>
+                        Create Appointments</a>
+                    </li>
                 </ul>
             </nav>
             <div class="col">
@@ -303,7 +317,7 @@
                     <?php
                         if(isset($_GET["path"]))
                         {
-                            include $_GET["path"].".php";
+                            @include_once $_GET["path"].".php";
                         }
                         else 
                         {
