@@ -15,9 +15,21 @@ INSERT INTO patient_lab_tests_performed
  	(patient_lab_tests_performed_id, patient_id, physician_id, test_id, test_lab_addr, results, date_performed) 
 VALUES 
 	(NULL, "5","2", "1", "Quest Diagnostics", "normal", "2018-09-18"),
-	(NULL, "5","2", "1", "Quest Diagnostics", "normal1", "2018-09-25"),
-	(NULL, "5","2", "1", "Quest Diagnostics", "normal2", "2018-10-05"),
-	(NULL, "5","2", "1", "Quest Diagnostics", "normal3", "2018-10-16"),
+	(NULL, "5","2", "2", "Quest Diagnostics", "normal", "2018-09-25"),
+	(NULL, "5","2", "7", "Quest Diagnostics", "normal", "2018-10-05"),
+	(NULL, "5","2", "13", "Quest Diagnostics", "normal", "2018-10-16"),
 	(NULL, "9", "2", "2", "Quest Diagnostics", "Normal", "2018-10-27")
+	
+
+#INSERT INTO appointments (appointment_id, physician_id, patient_id, date, time, appointment_status)
+#VALUES
+	#(NULL, "1", "5", "2018-10-16", "15:30:00", "1"),
+	#(NULL, '3', '5', '2018-09-22', '13:15:00', '1'),
+	#(NULL, '1', '5', '2018-10-19', '12:30:00', '1')
+
+
+
+
+
 
  

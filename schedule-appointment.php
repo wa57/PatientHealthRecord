@@ -97,24 +97,30 @@
 
         function addPatientAppointments(response) {
             var html = "";
-            response.forEach(function(appointment) {
-                var appointment_status = "UPCOMING";
-                if(JSON.parse(appointment.appointment_status) === 1) {
-                    appointment_status = "COMPLETE";
-                }
-                html += "<tr>";
-                html +=     "<td>" + appointment.physician_name + "</td>";
-                html +=     "<td>" + appointment.date + "</td>";
-                html +=     "<td>" + appointment.time + "</td>";
-                html +=     "<td>" + appointment_status + "</td>";
-                html +=     "<td>";
-                if(appointment_status === "UPCOMING") {
-                    html += "<input type='button' class='cancel-button' data-appointment-id='" + appointment.appointment_id + "' value='Cancel'/>";
-                } 
-                html +=     "</td>"
-                html += "</tr>";
-            });
-            document.getElementById("patient-appointments-tbody").innerHTML = html;
+            console.log(response);
+            if(response.length > 0) {
+                response.forEach(function(appointment) {
+                    var appointment_status = "UPCOMING";
+                    if(JSON.parse(appointment.appointment_status) === 1) {
+                        appointment_status = "COMPLETE";
+                    }
+                    html += "<tr>";
+                    html +=     "<td>" + appointment.physician_name + "</td>";
+                    html +=     "<td>" + appointment.date + "</td>";
+                    html +=     "<td>" + appointment.time + "</td>";
+                    html +=     "<td>" + appointment_status + "</td>";
+                    html +=     "<td>";
+                    if(appointment_status === "UPCOMING") {
+                        html += "<input type='button' class='cancel-button' data-appointment-id='" + appointment.appointment_id + "' value='Cancel'/>";
+                    } 
+                    html +=     "</td>"
+                    html += "</tr>";
+                });
+                document.getElementById("patient-appointments-tbody").innerHTML = html;
+            } else {
+                document.getElementById("patient-appointments-tbody").innerHTML = "<p>You are not scheduled for any appointments</p>";
+            }
+            
         }
 
         var pageSize = 5;
@@ -188,6 +194,7 @@
     </select>
     <div id="appointments-section">
         <p>IMPORTANT: Call 555-5555 for same day appointments</p>
+        <p>Office is open from 9AM through 5PM 7 days a week</p>
         <p>Available appointments listed below. Please select the date and time you would like.</p>
         <input id="previous-page" type="button" value="Back"/>
         <input id="next-page" type="button" value="Next 5 Appointments"/>

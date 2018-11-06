@@ -15,7 +15,7 @@ if(isset($_GET["GetAppointmentsByPhysicianId"]))
 
 if(isset($_GET["GetAppointmentsByPatientId"]))
 {
-    $stmt = $db->prepare('SELECT * FROM `appointments` WHERE patient_id = :patient_id');
+    $stmt = $db->prepare('SELECT * FROM `appointments` WHERE patient_id = :patient_id ORDER BY date DESC');
     $stmt->execute([':patient_id' => $_GET["patient_id"]]);
     $appointments = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
