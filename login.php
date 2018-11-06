@@ -52,8 +52,8 @@
         }
 
         document.getElementById("test-button").addEventListener("click", function() {
-            document.getElementById("fname").value = "William";
-            document.getElementById("lname").value = "Ashman";
+            document.getElementById("fname").value = "Hepseeba";
+            document.getElementById("lname").value = "Kode";
             document.getElementById("datepicker").value = "06/05/1984";
             document.getElementById("phone").value = "5555555555";
             document.getElementById("address").value = "666 Test Avenue";

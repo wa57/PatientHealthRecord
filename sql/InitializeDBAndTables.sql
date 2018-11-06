@@ -96,7 +96,7 @@ INSERT INTO user_role VALUES (
 
 INSERT INTO system_user VALUES (
     NULL,
-    2,
+    3,
     "Test",
     "Doctor",
     "1970-01-01",
@@ -168,7 +168,7 @@ INSERT INTO system_user VALUES (
 
 INSERT INTO system_user VALUES (
     NULL,
-    3,
+    2,
     "Dhrumi",
     "Patel",
     "1995-06-14",

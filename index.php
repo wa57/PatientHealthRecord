@@ -131,6 +131,7 @@
         .card {
             flex: 0 1 24%;
             padding: 25px;
+            flex-grow: 1;
         }
 
         .card p {
@@ -193,16 +194,17 @@
 
             document.getElementById("logout-link").addEventListener("click", function() {
                 setUser(null);
-                toggleNavState();
-                window.location = "index.php";
+                //toggleNavState();
+                window.location.href = "index.php?path=homepage";
             });
 
             document.getElementById("exit-button").addEventListener("click", function() {
-                window.location = "https://www.google.com/_/chrome/newtab";
+                setUser(null);
+                window.location.href = "https://www.google.com/_/chrome/newtab";
             });
 
             document.getElementById("home-button").addEventListener("click", function() {
-                window.location = "index.php";
+                window.location.href = "index.php";
             });
 
             document.getElementById("previous-button").addEventListener("click", function() {
@@ -211,8 +213,8 @@
 
             document.getElementById("logout-button").addEventListener("click", function() {
                 setUser(null);
-                toggleNavState();
-                window.location = "index.php";
+                //toggleNavState();
+                window.location.href = "index.php?path=homepage";
             });
 
             function toggleNavState() {
@@ -220,16 +222,16 @@
                 var links = document.getElementsByClassName("login-required"); 
                 if(user && user !== null) {
                     document.getElementById("login-link").style.display = "none";
-                    document.getElementById("logout-link").style.display = "block";
+                    document.getElementById("logout-link").style.display = "inline-block";
                     let navButtons = document.querySelectorAll(".nav-button");
                 } else {
-                    document.getElementById("login-link").style.display = "block";
+                    document.getElementById("login-link").style.display = "inline-block";
                     document.getElementById("logout-link").style.display = "none";
                 }
 
                 for (var i = 0; i < links.length; i++) {
                     if(user && user !== null) {
-                        links[i].style.display = "block";
+                        links[i].style.display = "inline-block";
                     } else {
                         links[i].style.display = "none";
                     }
@@ -254,7 +256,7 @@
         <div class="row">
             <nav class="sticky-top">
                 <h3>
-                    <!--<a href="?path=homepage"><i class="fas fa-file-medical-alt"></i>Patient Health Record</a>-->
+                    <a href="?path=homepage"><i class="fas fa-file-medical-alt"></i>Patient Health Record</a>
                 </h3>
                 <ul class="nav flex-column">
                     <li>
@@ -325,10 +327,10 @@
                         }
                     ?>
                     <div id="nav-buttons">
-                        <button class="nav-button" id="previous-button">Previous</button>
-                        <button class="nav-button" id="logout-button">Logout</button>
-                        <button class="nav-button" id="exit-button">Exit</button>
-                        <button class="nav-button" id="home-button">Home</button>
+                        <button id="previous-button">Previous</button>
+                        <button id="logout-button" class="login-required">Logout</button>
+                        <button id="exit-button">Exit</button>
+                        <button id="home-button">Home</button>
                     </div>
                 </main>
             </div>
