@@ -18,8 +18,9 @@ VALUES
 	(NULL, "5","2", "2", "Quest Diagnostics", "normal", "2018-09-25"),
 	(NULL, "5","2", "7", "Quest Diagnostics", "normal", "2018-10-05"),
 	(NULL, "5","2", "13", "Quest Diagnostics", "normal", "2018-10-16"),
-	(NULL, "9", "2", "2", "Quest Diagnostics", "Normal", "2018-10-27")
-	
+	(NULL, "9", "2", "2", "Quest Diagnostics", "Normal", "2018-10-27"),
+	(NULL, '7', '1', '4', 'Quest Diagnostics', 'Not Pregnant', '2018-11-02'),
+	(NULL, '7', '1', '7', 'Quest Diagnostics', 'O positive', '2018-11-02')
 
 #INSERT INTO appointments (appointment_id, physician_id, patient_id, date, time, appointment_status)
 #VALUES
