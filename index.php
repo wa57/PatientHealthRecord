@@ -52,7 +52,7 @@
             text-decoration: none;
         }
 
-        nav li a {
+        nav li a, #logout-link {
             color: black;
             text-decoration: none;
             width: 100%;
@@ -60,10 +60,18 @@
             padding: 1rem 1.5rem;
         }
 
-        nav li a:hover {
+        nav li a:hover, .active-link, #logout-link:hover {
             background: #575757;
             color: #ebebeb;
             text-decoration: none;
+        }
+
+        #logout-link {
+            background:none;
+            border:none; 
+            cursor: pointer;
+            outline: none;
+            text-align: left;
         }
 
         nav i {
@@ -141,8 +149,6 @@
 
     </style>
     <link rel="stylesheet" type="text/css" href="css/main.css">
-    <!--<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css" integrity="sha384-5sAR7xN1Nv6T6+dT2mhtzEpVJvfS3NScPQTrOxhwjIuvcA67KV2R5Jz6kr4abQsz" crossorigin="anonymous">-->
     <link rel="stylesheet" href="css/all.min.css">
     <link rel="stylesheet" href="css/bootstrap.min.css">
     <script>
@@ -194,10 +200,10 @@
 
         document.addEventListener("DOMContentLoaded", function() {         
             toggleNavState();
+            addActiveLink();
 
             document.getElementById("logout-link").addEventListener("click", function() {
                 setUser(null);
-                //toggleNavState();
                 window.location.href = "index.php?path=homepage";
             });
 
@@ -216,7 +222,6 @@
 
             document.getElementById("logout-button").addEventListener("click", function() {
                 setUser(null);
-                //toggleNavState();
                 window.location.href = "index.php?path=homepage";
             });
 
@@ -240,6 +245,22 @@
                     }
                 }
             }
+
+            function addActiveLink() {
+                let navLinks = document.querySelectorAll("ul li a");
+                for(let i = 0; i < navLinks.length; i++) {
+                    var linkName = navLinks[i].getAttribute("href").split('=').pop();
+                    var locationName = document.location.href.split("=").pop();
+
+                    if(linkName === locationName) {
+                        navLinks[i].classList.add("active-link");
+                    }
+
+                    if(locationName === "https://www.patienthealthrecord.net/index.php" || locationName === "https://www.patienthealthrecord.net/") {
+                        document.getElementById("homepage-link").classList.add("active-link");
+                    }
+                }
+            }
         });
 
 
@@ -254,7 +275,7 @@
                 </h3>
                 <ul class="nav flex-column">
                     <li>
-                        <a href="?path=homepage">
+                        <a id="homepage-link" href="?path=homepage">
                             <i class="fas fa-home"></i>
                             Home
                         </a>
@@ -265,12 +286,12 @@
                             Login
                         </a>
                     </li>
-                    <li id="logout-link">
-                        <a href="#">
+                    <li>
+                        <button id="logout-link">
                             <i class="fas fa-sign-out-alt"></i>
                             Logout
-                        </a>
-                    <li>
+                        </button>
+                    </li>
                     <li class="login-required">
                         <a href="?path=schedule-appointment">
                             <i class="fas fa-calendar-alt"></i>

@@ -147,10 +147,12 @@ if(isset($_POST["SendPasswordResetEmail"])) {
         
         $to = $user["email"];
         $subject = "Password Reset";
-        $message = "Your password has been reset to: ".$user["password"]."\nPlease change it at your earliest convenience";
+        $message = $util->passwordResetEmailTemplate($user["password"]);
         $headers = 'From: noreply@patienthealthrecord.net' . "\r\n" .
                 'Reply-To: noreply@patienthealthrecord.net' . "\r\n" .
                 'X-Mailer: PHP/' . phpversion();
+        $headers .= "MIME-Version: 1.0\r\n";
+        $headers .= "Content-Type: text/html; charset=UTF-8\r\n";
 
         mail($to, $subject, $message,  $headers);
         $state = true;
