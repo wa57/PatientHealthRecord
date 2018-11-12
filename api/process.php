@@ -8,6 +8,7 @@ include 'SystemUser.php';
 include 'Appointment.php';
 
 header('Content-Type: application/json');
+$util = new Util();
 
 if(isset($_GET["GetAppointmentsByPhysicianId"])) 
 {
@@ -134,26 +135,31 @@ if(isset($_GET["GetPatientPrescriptionsByPatientId"]))
 }
 
 if(isset($_POST["SendPasswordResetEmail"])) {
-    $stmt = $db->prepare("SELECT email FROM system_user WHERE username = :username");
+    $stmt = $db->prepare("SELECT * FROM system_user WHERE username = :username");
     $stmt->execute([':username' => $_POST["username"]]);
-    $email = $stmt->fetch(PDO::FETCH_ASSOC);
+    $user = $stmt->fetch(PDO::FETCH_ASSOC);
+    $state = false;
+    if(!empty($user)) {
+        $user["password"] = $util->randomPassword();
 
-    $to = $email["email"];
-    $subject = "Password Reset";
-    $message = "Password has been reset to: Please change it at your earliest convenience";
-    $headers = 'From: noreply@patienthealthrecord.net' . "\r\n" .
-    'Reply-To: noreply@patienthealthrecord.net' . "\r\n" .
-    'X-Mailer: PHP/' . phpversion();
+        $stmt = $db->prepare("UPDATE system_user SET password = :password WHERE system_user_id = :system_user_id;");
+        $stmt->execute([':system_user_id' => $user["system_user_id"], ':password' => $user["password"]]);
+        
+        $to = $user["email"];
+        $subject = "Password Reset";
+        $message = "Your password has been reset to: ".$user["password"]."\nPlease change it at your earliest convenience";
+        $headers = 'From: noreply@patienthealthrecord.net' . "\r\n" .
+                'Reply-To: noreply@patienthealthrecord.net' . "\r\n" .
+                'X-Mailer: PHP/' . phpversion();
 
-    mail($to, $subject, $message,  $headers);
-
-    if(!mail($to, $subject, $message,  $headers)){
-        var_dump(error_get_last()['message']);
+        mail($to, $subject, $message,  $headers);
+        $state = true;
     }
 
-    echo json_encode("EMAIL SENT");
+    echo json_encode($state);
     exit();
 }
+
 echo json_encode("NOTHING SET");
 
 ?>
