@@ -133,15 +133,26 @@ if(isset($_GET["GetPatientPrescriptionsByPatientId"]))
     exit();
 }
 
-if(isset($_POST["SendPasswordResetEmail"])) {\
-    $to = $_POST["email"];
+if(isset($_POST["SendPasswordResetEmail"])) {
+    $stmt = $db->prepare("SELECT email FROM system_user WHERE username = :username");
+    $stmt->execute([':username' => $_POST["username"]]);
+    $email = $stmt->fetch(PDO::FETCH_ASSOC);
+
+    $to = $email["email"];
     $subject = "Password Reset";
     $message = "Password has been reset to: Please change it at your earliest convenience";
     $headers = 'From: noreply@patienthealthrecord.net' . "\r\n" .
     'Reply-To: noreply@patienthealthrecord.net' . "\r\n" .
     'X-Mailer: PHP/' . phpversion();
 
-    mail($to, $subject, $message,  $headers)
+    mail($to, $subject, $message,  $headers);
+
+    if(!mail($to, $subject, $message,  $headers)){
+        var_dump(error_get_last()['message']);
+    }
+
+    echo json_encode("EMAIL SENT");
+    exit();
 }
 echo json_encode("NOTHING SET");
 
