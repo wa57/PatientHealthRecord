@@ -39,5 +39,5 @@ VALUES
 	(NULL, '8', '9', '3', '2018-10-16', '2019-10-15', '1 pill per day', '50', '2', 'Do not take with empty stomach', 'Walgreens', '0'),
 	(NULL, '6', '10', '4', '2018-10-16', '2018-10-15', 'one pill per day', '100', '1', 'Keep it in a cool place', 'CVS', '0'),
 	(NULL, '7', '11', '3', '2018-10-17', '2019-10-16', 'take 1 pill, twice a day', '100', '2', 'do not take with empty stomach', 'Walgreens', '0'),
-	(NULL, '8', '7', '1', '2018-11-09', '2019-11-08', 'one pill per day', '50', 'Used to relieve moderate to severe pain.', '1', 'do not take with empty stomach', 'wallgreens', NULL)
+	(NULL, '8', '7', '1', '2018-11-09', '2019-11-08', 'one pill per day', '50', '1', 'do not take with empty stomach', 'wallgreens', '1')
 			

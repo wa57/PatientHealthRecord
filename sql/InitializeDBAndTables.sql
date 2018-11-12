@@ -66,7 +66,6 @@ CREATE TABLE patient_prescriptions (
     expires DATE,
     dosage VARCHAR(25),
     quantity INT,
-    description VARCHAR(100),
     refills INT,
     instructions VARCHAR(150),
     pharmacy_addr VARCHAR(150),

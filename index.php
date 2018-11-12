@@ -239,7 +239,7 @@
 
                 var adminLinks = document.getElementsByClassName("admin-required");
                 for (let i = 0; i < adminLinks.length; i++) {
-                    if(JSON.parse(user.role_id) === 3) {
+                    if(user !== null && JSON.parse(user.role_id) === 3) {
                         adminLinks[i].style.display = "block";
                     } else {
                         adminLinks[i].style.display = "none";
