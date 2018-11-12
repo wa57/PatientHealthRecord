@@ -1,4 +1,7 @@
 <?php
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
 include 'db_connect.php';
 include 'util.php';
 include 'SystemUser.php';
@@ -130,6 +133,16 @@ if(isset($_GET["GetPatientPrescriptionsByPatientId"]))
     exit();
 }
 
+if(isset($_POST["SendPasswordResetEmail"])) {\
+    $to = $_POST["email"];
+    $subject = "Password Reset";
+    $message = "Password has been reset to: Please change it at your earliest convenience";
+    $headers = 'From: noreply@patienthealthrecord.net' . "\r\n" .
+    'Reply-To: noreply@patienthealthrecord.net' . "\r\n" .
+    'X-Mailer: PHP/' . phpversion();
+
+    mail($to, $subject, $message,  $headers)
+}
 echo json_encode("NOTHING SET");
 
 ?>

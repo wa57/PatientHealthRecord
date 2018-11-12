@@ -9,8 +9,8 @@ CREATE TABLE system_user (
     first_name VARCHAR(25) NOT NULL,
     last_name VARCHAR(25) NOT NULL,
     birth_date DATE NOT NULL,
-    phone INT NOT NULL,
-    username VARCHAR(25) NOT NULL,
+    phone VARCHAR(25) NOT NULL,
+    username VARCHAR(100) NOT NULL,
     password VARCHAR(25) NOT NULL,
     address VARCHAR(50) NOT NULL,
     apartment_num INT,
@@ -95,7 +95,7 @@ INSERT INTO user_role VALUES (
 
 INSERT INTO system_user VALUES (
     NULL,
-    3,
+    2,
     "Test",
     "Doctor",
     "1970-01-01",
@@ -167,7 +167,7 @@ INSERT INTO system_user VALUES (
 
 INSERT INTO system_user VALUES (
     NULL,
-    2,
+    1,
     "Dhrumi",
     "Patel",
     "1995-06-14",

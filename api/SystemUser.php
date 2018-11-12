@@ -63,12 +63,14 @@ class SystemUser
             }
         }
 
+        //echo "hello";
+
         if($response["invalid"] == false)
         {
             $stmt = $this->db->prepare("SELECT * FROM system_user WHERE username = :username");
             $stmt->execute([':username' => $user_info["username"]]);
             $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
-
+            
             if(!empty($results)) 
             {
                 $response["invalid"] = true;
@@ -76,8 +78,24 @@ class SystemUser
             } 
             else 
             {
-                $stmt = $this->db->prepare("INSERT INTO system_user VALUES (NULL, 1, :fname, :lname, :birthdate, :phone, :username, :password, :address, :apartment, :city, :state,:zipcode, :zipcode_ext, :email)");
-                $stmt->execute([':fname' => $user_info["fname"], ':lname' => $user_info["lname"], ':birthdate' => $user_info["birthdate"], ':phone' => $user_info["phone"], ':username' => $user_info["username"], ':password' => $user_info["password"], ':address' => $user_info["address"], ':apartment' => $user_info["apartment"], ':city' => $user_info["city"], ':state' => $user_info["state"], ':zipcode' => $user_info["zipcode"], ':zipcode_ext' => $user_info["zipcode-ext"], ':email' => $user_info["email"]]);
+                $stmt = $this->db->prepare("INSERT INTO system_user VALUES (NULL, 1, :fname, :lname, :birthdate, :phone, :username, :password, :address, :apartment, :city, :state, :zipcode, :zipcode_ext, :email)");
+                $stmt->execute(
+                    [
+                        ':fname' => $user_info["fname"], 
+                        ':lname' => $user_info["lname"], 
+                        ':birthdate' => $user_info["birthdate"], 
+                        ':phone' => $user_info["phone"], 
+                        ':username' => $user_info["username"], 
+                        ':password' => $user_info["password"], 
+                        ':address' => $user_info["address"], 
+                        ':apartment' => $user_info["apartment"], 
+                        ':city' => $user_info["city"], 
+                        ':state' => $user_info["state"], 
+                        ':zipcode' => $user_info["zipcode"], 
+                        ':zipcode_ext' => $user_info["zipcode-ext"], 
+                        ':email' => $user_info["email"]
+                    ]
+                );
                 
                 $stmt = $this->db->prepare("SELECT * FROM system_user WHERE username = :username");
                 $stmt->execute([':username' => $user_info["username"]]);

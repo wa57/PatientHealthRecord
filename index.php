@@ -132,6 +132,7 @@
             flex: 0 1 24%;
             padding: 25px;
             flex-grow: 1;
+            margin-right: 10px;
         }
 
         .card p {
@@ -236,15 +237,6 @@
                         links[i].style.display = "none";
                     }
                 }
-
-                var adminLinks = document.getElementsByClassName("admin-required");
-                for (let i = 0; i < adminLinks.length; i++) {
-                    if(user !== null && JSON.parse(user.role_id) === 3) {
-                        adminLinks[i].style.display = "block";
-                    } else {
-                        adminLinks[i].style.display = "none";
-                    }
-                }
             }
         });
 
@@ -306,11 +298,6 @@
                             <i class="fas fa-envelope"></i>
                             Contact
                         </a>
-                    </li>
-                    <li class="admin-required login-required">
-                        <a href="?path=env/create-appointments";>
-                        <i class="fas fa-lock"></i>
-                        Create Appointments</a>
                     </li>
                 </ul>
             </nav>
