@@ -90,11 +90,6 @@
             background-color: #ffff99;
         }
 
-        .cancel-button {
-            background-color: red;
-            color: #fff;
-        }
-
         #message {
             font-weight: bold;
         }
@@ -145,6 +140,10 @@
 
         .card p {
             margin-bottom: 5px;
+        }
+
+        table {
+            border-radius: 5px;
         }
 
     </style>
@@ -247,7 +246,7 @@
             }
 
             function addActiveLink() {
-                let navLinks = document.querySelectorAll("ul li a");
+                let navLinks = document.querySelectorAll("nav ul li a");
                 for(let i = 0; i < navLinks.length; i++) {
                     var linkName = navLinks[i].getAttribute("href").split('=').pop();
                     var locationName = document.location.href.split("=").pop();

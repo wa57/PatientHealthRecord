@@ -18,10 +18,11 @@ label {
 
 table {
     border-collapse: collapse;
+    border: 1px solid #ebebeb;
 }
 
-table, th, td {
-    border: 1px solid black;
+table tr:nth-child(even) {
+    background-color: #ebebeb;
 }
 
 td, th{

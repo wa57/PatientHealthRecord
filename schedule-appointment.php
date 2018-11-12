@@ -50,8 +50,10 @@
             }
             
             var buttonClass = "Schedule";
+            var buttonStyles = "btn-success";
             if(user.system_user_id === appointment.patient_id && appointment.patient_id !== null) {
                 buttonClass = "Cancel";
+                buttonStyles = "btn-danger";
             }
             
             var buttonState = "";
@@ -69,7 +71,7 @@
             row +=     "<td>" + appointment.date + "</td>";
             row +=     "<td>" + appointment.time + "</td>";
             row +=     "<td class='"+ appointmentStatus.toLowerCase() +"'>" + appointmentStatus + "</td>";
-            row +=     "<td> <input type='button' class='" + buttonClass.toLowerCase() + "-button' value='" + buttonClass + "' data-appointment-id='" + appointment.appointment_id + "' " + buttonState + "/> </td>";
+            row +=     "<td> <input type='button' class='btn " + buttonClass.toLowerCase() + "-button " + buttonStyles + "' value='" + buttonClass + "' data-appointment-id='" + appointment.appointment_id + "' " + buttonState + "/> </td>";
             row += "</tr>";
             return row;
         }
@@ -111,7 +113,7 @@
                     html +=     "<td>" + appointment_status + "</td>";
                     html +=     "<td>";
                     if(appointment_status === "UPCOMING") {
-                        html += "<input type='button' class='cancel-button' data-appointment-id='" + appointment.appointment_id + "' value='Cancel'/>";
+                        html += "<input type='button' class='cancel-button btn btn-danger' data-appointment-id='" + appointment.appointment_id + "' value='Cancel'/>";
                     } 
                     html +=     "</td>"
                     html += "</tr>";
@@ -193,11 +195,16 @@
         <option selected disabled>Select a Physician</option>
     </select>
     <div id="appointments-section">
-        <p>IMPORTANT: Call 555-5555 for same day appointments</p>
-        <p>Office is open from 9AM through 5PM 7 days a week</p>
+        <div class="alert alert-info" style="margin-top: 15px; width: 500px;">
+            <h5 class="alert-heading"><i class="fas fa-info-circle"></i> Important Information</h5>
+            <ul>
+                <li>Call (555)-555-5555 for same day appointments</li>
+                <li>Office is open from 9 AM through 5 PM 7 days a week</li>
+            </ul>
+        </div>
         <p>Available appointments listed below. Please select the date and time you would like.</p>
-        <input id="previous-page" type="button" value="Back"/>
-        <input id="next-page" type="button" value="Next 5 Appointments"/>
+        <input id="previous-page" type="button" class="btn btn-secondary" value="Back"/>
+        <input id="next-page" type="button" class="btn btn-secondary" value="Next 5 Appointments"/>
         <span id="message"></span>
         <table id="appointments-table">
             <thead>
