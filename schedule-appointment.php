@@ -50,7 +50,7 @@
             }
             
             var buttonClass = "Schedule";
-            var buttonStyles = "btn-success";
+            var buttonStyles = "btn-primary";
             if(user.system_user_id === appointment.patient_id && appointment.patient_id !== null) {
                 buttonClass = "Cancel";
                 buttonStyles = "btn-danger";

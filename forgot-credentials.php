@@ -8,10 +8,11 @@ document.addEventListener("DOMContentLoaded", function() {
     }
 
     function handlePasswordReset(response) {
-        console.log(response);
+        document.getElementById("message").style.display = "block";
     }
 
     document.getElementById("reset-password").addEventListener("click", function(e) {
+        document.getElementById("message").style.display = "none";
         sendPasswordReset(document.getElementById("username").value);
     });
 });;
@@ -25,7 +26,7 @@ document.addEventListener("DOMContentLoaded", function() {
 <div>
     <label for="username">Username you used to register: </label>
 </div>
-<div class="row">
+<div class="row form-group">
     <div class="col-sm-4">
         <input id="username" type="text" placeholder="username" />
     </div>
@@ -33,4 +34,6 @@ document.addEventListener("DOMContentLoaded", function() {
         <button id="reset-password">Send Password Reset</button>
     </div>
 </div>
-<p>An email has been sent to the email address provided.</p>
+<div id="message" class="alert alert-success" style="width: 450px; display: none;">
+    An email has been sent to the email address provided.
+</div>

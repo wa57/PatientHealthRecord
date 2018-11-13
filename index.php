@@ -146,6 +146,10 @@
             border-radius: 5px;
         }
 
+        .alert {
+            margin-top: 20px;
+        }
+
     </style>
     <link rel="stylesheet" type="text/css" href="css/main.css">
     <link rel="stylesheet" href="css/all.min.css">
@@ -335,11 +339,12 @@
                             include "homepage.php";
                         }
                     ?>
+                    <hr>
                     <div id="nav-buttons">
-                        <button id="previous-button">Previous</button>
-                        <button id="logout-button" class="login-required">Logout</button>
-                        <button id="exit-button">Exit</button>
-                        <button id="home-button">Home</button>
+                        <button id="previous-button" class="btn btn-secondary">Previous</button>
+                        <button id="logout-button" class="login-required btn btn-warning">Logout</button>
+                        <button id="exit-button" class="btn btn-danger">Exit</button>
+                        <button id="home-button" class="btn btn-primary">Home</button>
                     </div>
                 </main>
             </div>

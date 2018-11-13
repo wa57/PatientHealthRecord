@@ -91,14 +91,15 @@
     });
 </script>
 <div class="row">
-    <div class="col-sm-3">
+    <div class="col-sm-4">
         <h3>Login</h3>
+        <span class="required-ast">&ast;</span> Required Field
         <div class="form-group">
-            <label for="username">Username</label>
+            <label for="username">Username<span class="required-ast">*</span></label>
             <input type="text" class="form-control" id="username">
         </div>
         <div class="form-group">
-            <label for="password">Password</label>
+            <label for="password">Password<span class="required-ast">*</span></label>
             <input type="password" class="form-control" id="password">
         </div>
         <div>
@@ -109,83 +110,52 @@
         </div>
     </div>
     
-    <div class="col">
+    <div class="col" >
         <h3>New User? Register Here</h3>
         <span class="required-ast">&ast;</span> Required Field
         <div>
             <div class="row">
-                <div class="col">
-                    <div>
-                        <label for="fname">First Name<span class="required-ast">&ast;</span></label>
-                    </div>
-                    <div>
-                        <input id="fname" type="text" title="First Name" placeholder="First Name" />
-                    </div>
+                <div class="form-group col">
+                    <label for="fname">First Name<span class="required-ast">&ast;</span></label>
+                    <input id="fname" type="text" title="First Name" class="form-control"/>
                 </div>
-                <div class="col">
-                    <div>
-                        <label for="lname">Last Name<span class="required-ast">&ast;</span></label>
-                    </div>
-                    <div>
-                        <input id="lname" type="text" title="Last Name" placeholder="Last Name" />
-                    </div>
+                <div class="form-group col">
+                    <label for="lname">Last Name<span class="required-ast">&ast;</span></label>
+                    <input id="lname" type="text" class="form-control" title="Last Name"/>
                 </div>
             </div>
 
             <div class="row">
-                <div class="col">
-                    <div>
-                        <label for="bdate">Birth Date<span class="required-ast">&ast;</span></label>
-                    </div>
-                    <div>
-                        <input id="datepicker" disabled width="300"/>
-                    </div>
+                <div class="form-group col">
+                    <label for="bdate">Birth Date<span class="required-ast">&ast;</span></label>
+                    <input id="datepicker" class="form-control" disabled/>
                 </div>
 
-                <div class="col">
-                    <div>
-                        <label for="phone">Best phone number to be reached at<span class="required-ast">*</span></label>
-                    </div>
-                    <div>
-                        <input id="phone" type="text" tile="Phone Number" placeholder="Phone Number" />
-                    </div>
+                <div class="form-group col">
+                    <label for="phone">Best phone number to be reached at<span class="required-ast">*</span></label>
+                    <input id="phone" type="text" class="form-control" tile="Phone Number" placeholder="Phone Number" />
                 </div>
             </div>
 
             <div class="row">
-                <div class="col">
-                    <div>
-                        <label for="address">Address<span class="required-ast">*</span></label>
-                    </div>
-                    <div>
-                        <input id="address" type="text" placeholder="Address"/>
-                    </div>
+                <div class="form-group col">
+                    <label for="address">Address<span class="required-ast">*</span></label>
+                    <input id="address" type="text" class="form-control" placeholder="Address"/>
                 </div>
-                <div class="col">
-                    <div>
-                        <label for="apartment-num">Apartment #</label>
-                    </div>
-                    <div>
-                        <input id="apartment-num" type="text" placeholder="Apartment"/>
-                    </div>
+                <div class="form-group col">
+                    <label for="apartment-num">Apartment #</label>
+                    <input id="apartment-num" type="text" class="form-control" placeholder="Apartment"/>
                 </div>
             </div>
 
             <div class="row">
-                <div class="col">
-                    <div>
-                        <label htmlFor="city">City<span class="required-ast">&ast;</span></label>
-                    </div>
-                    <div>
-                        <input id="city" type="text" placeholder="City"/>
-                    </div>
+                <div class="form-group col">
+                    <label htmlFor="city">City<span class="required-ast">&ast;</span></label>
+                    <input id="city" type="text" class="form-control" placeholder="City"/>
                 </div>
-                <div class="col">
-                    <div>
-                        <label htmlFor="state">State<span class="required-ast">&ast;</span></label>
-                    </div>
-                    <div>
-                        <select id="state">
+                <div class="form-group col">
+                    <label htmlFor="state">State<span class="required-ast">&ast;</span></label>
+                    <select id="state" class="form-control">
                             <option disabled defaultValue>Select State</option>
                             <option>AL</option>
                             <option>AK</option>
@@ -238,68 +208,50 @@
                             <option>WI</option>
                             <option>WY</option>
                         </select>
+                    <div>
+                        
                     </div>
                 </div>
-                <div class="col">
+                <div class="col form-group">
                     <div>
                         <label htmlFor="zipcode">Zipcode<span class="required-ast">&ast;</span></label>
                     </div>
                     <div>
-                        <input id="zipcode" type="text" placeholder="Zipcode"/>
+                        <input id="zipcode" type="text" class="form-control" placeholder="Zipcode"/>
                     </div>
                 </div>
-                <div class="col">
-                    <div>
-                        <label htmlFor="zipcode-ext">Zipcode Ext.</label>
-                    </div>
-                    <div>
-                        <input id="zipcode-ext" type="text" placeholder="Zipcode Ext."/>
-                    </div>
+                <div class="col form-group">
+                    <label htmlFor="zipcode-ext">Zipcode Ext.</label>
+                    <input id="zipcode-ext" type="text" class="form-control" placeholder="Zipcode Ext."/>
                 </div>
             </div>
 
             <div class="row">
-                <div class="col">
-                    <div>
-                        <label htmlFor="email">Email<span class="required-ast">&ast;</span></label>
-                    </div>
-                    <div>
-                        <input id="email" type="text" placeholder="Email"/>
-                    </div>
+                <div class="col form-group">
+                    <label htmlFor="email">Email<span class="required-ast">&ast;</span></label>
+                    <input id="email" type="text" class="form-control" placeholder="Email"/>
                 </div>
-                <div class="col">
-                    <div>
-                        <label htmlFor="username">Username<span class="required-ast">&ast;</span></label>
-                    </div>
-                    <div>
-                        <input id="reg-username" type="text" placeholder="Username"/>
-                    </div>
+                <div class="col form-group">
+                    <label htmlFor="username">Username<span class="required-ast">&ast;</span></label>
+                    <input id="reg-username" type="text" class="form-control" placeholder="Username"/>
                 </div>
             </div>
 
-            <div class="row">
-                <div class="col">
-                    <div>
-                        <label htmlFor="password">Password<span class="required-ast">&ast;</span></label>
-                    </div>
-                    <div>
-                        <input id="reg-password" type="password" placeholder="Password"/>
-                    </div>
+            <div class="row" style="margin-bottom: 15px;">
+                <div class="col form-group">
+                    <label htmlFor="password">Password<span class="required-ast">&ast;</span></label>
+                    <input id="reg-password" type="password" class="form-control" placeholder="Password"/>
                 </div>
-                <div class="col">
-                    <div>
-                        <label htmlFor="confirm-password">Confirm Password<span class="required-ast">&ast;</span></label>
-                    </div>
-                    <div>
-                        <input id="confirm-password" type="password" placeholder="Confirm Password"/>
-                    </div>
+                <div class="col form-group">
+                    <label htmlFor="confirm-password">Confirm Password<span class="required-ast">&ast;</span></label>
+                    <input id="confirm-password" type="password" class="form-control" placeholder="Confirm Password"/>
                 </div>
             </div>
 
             <div>
-                <button id="submit-registration" value="Register">Register</button>
-                <button id="clear-button">Clear</button>
-                <button id="test-button">TEST</button>
+                <button id="submit-registration" class="btn btn-primary" value="Register">Register</button>
+                <button id="clear-button" class="btn btn-secondary">Clear</button>
+                <button id="test-button" class="btn btn-link">TEST</button>
                 <span id="message"></span>
             </div>
         </div>
