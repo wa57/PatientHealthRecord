@@ -8,7 +8,8 @@
             loginUser(document.getElementById("username").value, document.getElementById("password").value);
         });
 
-        document.getElementById("submit-registration").addEventListener("click", function() {
+        document.getElementById("submit-registration").addEventListener("click", function() {           
+             document.getElementById("message").style.display = "none";
             let el = document.getElementById("state");
             let state = el.options[el.selectedIndex].text;
             
@@ -64,6 +65,7 @@
             document.getElementById("reg-username").value = "USERNAME" + guid();
             document.getElementById("reg-password").value = "PASSWORD";
             document.getElementById("email").value = "test@test.com";
+            document.getElementById("message").style.display = "none";
         });
 
         document.getElementById("clear-button").addEventListener("click", function() {
@@ -79,6 +81,7 @@
             document.getElementById("reg-username").value = "";
             document.getElementById("reg-password").value = "";
             document.getElementById("email").value = "";
+            document.getElementById("message").style.display = "none";
         });
         
         $('#datepicker').datepicker({
@@ -90,40 +93,20 @@
 <div class="row">
     <div class="col-sm-3">
         <h3>Login</h3>
+        <div class="form-group">
+            <label for="username">Username</label>
+            <input type="text" class="form-control" id="username">
+        </div>
+        <div class="form-group">
+            <label for="password">Password</label>
+            <input type="password" class="form-control" id="password">
+        </div>
         <div>
-            <div>
-                <label for="username">Username</label>
-            </div>
-            <div>
-                <input id="username" type="text" placeholder="Username" title="Username" />
-            </div>
-            <div>
-                <label for="password">Password</label>
-            </div>
-            <div>
-                <input id="password" type="password" placeholder="Password" title="Password" />
-            </div>
-            <div>
-                <a href="?path=forgot-credentials">Forgot My Password</a>
-            </div>
-            <div>
-                <input id="submit-login-credentials" type="submit" value="Login" />
-            </div>
+            <a href="?path=forgot-credentials">Forgot My Password</a>
         </div>
-        <div class="form-group">
-            <label for="exampleInputEmail1">Email address</label>
-            <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
-            <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+        <div>
+            <input id="submit-login-credentials" class="btn btn-primary" style="width: 100%" type="submit" value="Login" />
         </div>
-        <div class="form-group">
-            <label for="exampleInputPassword1">Password</label>
-            <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
-        </div>
-        <div class="form-check">
-            <input type="checkbox" class="form-check-input" id="exampleCheck1">
-            <label class="form-check-label" for="exampleCheck1">Check me out</label>
-        </div>
-        <button type="submit" class="btn btn-primary">Submit</button>
     </div>
     
     <div class="col">
