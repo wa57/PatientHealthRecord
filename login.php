@@ -117,23 +117,23 @@
             <div class="row">
                 <div class="form-group col">
                     <label for="fname">First Name<span class="required-ast">&ast;</span></label>
-                    <input id="fname" type="text" title="First Name" class="form-control"/>
+                    <input id="fname" type="text" title="First Name" placeholder="First Name" class="form-control"/>
                 </div>
                 <div class="form-group col">
                     <label for="lname">Last Name<span class="required-ast">&ast;</span></label>
-                    <input id="lname" type="text" class="form-control" title="Last Name"/>
+                    <input id="lname" type="text" class="form-control" placeholder="Last Name" title="Last Name"/>
                 </div>
             </div>
 
             <div class="row">
                 <div class="form-group col">
                     <label for="bdate">Birth Date<span class="required-ast">&ast;</span></label>
-                    <input id="datepicker" class="form-control" disabled/>
+                    <input id="datepicker" class="form-control" value="YYYY-MM-DD" disabled/>
                 </div>
 
                 <div class="form-group col">
                     <label for="phone">Best phone number to be reached at<span class="required-ast">*</span></label>
-                    <input id="phone" type="text" class="form-control" tile="Phone Number" placeholder="Phone Number" />
+                    <input id="phone" type="text" class="form-control" tile="Phone Number" placeholder="(555)-555-5555" />
                 </div>
             </div>
 

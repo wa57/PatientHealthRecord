@@ -69,7 +69,7 @@
             row += "<tr class='" + className + "'>";
             row +=     "<td>" + physician_name + "</td>";
             row +=     "<td>" + appointment.date + "</td>";
-            row +=     "<td>" + appointment.time + "</td>";
+            row +=     "<td>" + formatTime(appointment.time) + "</td>";
             row +=     "<td class='"+ appointmentStatus.toLowerCase() +"'>" + appointmentStatus + "</td>";
             row +=     "<td> <input type='button' class='btn " + buttonClass.toLowerCase() + "-button " + buttonStyles + "' value='" + buttonClass + "' data-appointment-id='" + appointment.appointment_id + "' " + buttonState + "/> </td>";
             row += "</tr>";
@@ -97,6 +97,16 @@
             document.getElementById("physicians-list").innerHTML = html;
         }
 
+        function formatTime(time) {
+            let splitTime = time.split(":");
+            let test = [];
+            test.push(splitTime[0]);
+            test.push(splitTime[1]);
+            test = test.join(":");
+            test = test.replace(",", ":");
+            return test;
+        }
+
         function addPatientAppointments(response) {
             var html = "";
             console.log(response);
@@ -109,7 +119,7 @@
                     html += "<tr>";
                     html +=     "<td>" + appointment.physician_name + "</td>";
                     html +=     "<td>" + appointment.date + "</td>";
-                    html +=     "<td>" + appointment.time + "</td>";
+                    html +=     "<td>" + formatTime(appointment.time) + "</td>";
                     html +=     "<td>" + appointment_status + "</td>";
                     html +=     "<td>";
                     if(appointment_status === "UPCOMING") {
