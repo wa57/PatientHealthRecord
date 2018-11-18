@@ -3,37 +3,105 @@
 class Util
 {
     //https://stackoverflow.com/questions/19271381/correctly-determine-if-date-string-is-a-valid-date-in-that-format
-    public function validate_date($date, $format = 'Y-m-d')
+    public function validate_date($date)
     {
-        $d = DateTime::createFromFormat($format, $date);
-        // The Y ( 4 digits year ) returns TRUE for any integer with any number of digits so changing the comparison from == to === fixes the issue.
-        return $d && $d->format($format) === $date;
+        $dt = DateTime::createFromFormat("Y-m-d", $date);
+        return $dt !== false && !array_sum($dt->getLastErrors());
     }
 
-    public function validate_email($email) {
+    public function validate_all_alpha($test_case) 
+    {
+        return ctype_alpha($test_case);
+    }
+
+    public function validate_email($email) 
+    {
         return !!filter_var($email, FILTER_VALIDATE_EMAIL);
     }
 
-    function validate_phone_num($phone_num)
+    public function validate_phone_num($phone_num)
     {
         return preg_match('/^[0-9]{10}+$/', $phone_num);
     } 
+
+    public function validate_address($address) {
+        return preg_match("^[-a-z0-9 ,#'\/.]{3,50}$^", $address);
+    }
     
-    function validate_zip_code($zip_code) {
+    public function validate_zip_code($zip_code) 
+    {
         return (preg_match('#[0-9]{5}#', $zip_code)) ? true : false;
     }
 
-    function validate_zip_code_ext($zip_code_ext) {
+    public function validate_zip_code_ext($zip_code_ext) 
+    {
         return (preg_match('#[0-9]{4}#', $zip_code_ext)) ? true : false;
     }
-    public function fetchAll($sql, $params)
-    {
 
+    public function validate_all_numbers($test_case)
+    {
+        return ctype_digit($test_case);
     }
 
-    public function fetch($sql, $params)
+    public function validate_user_fields($user_info, $response) 
     {
+        $form_exceptions = ["apartment", "zipcode-ext"];
 
+        foreach($user_info as $key => $value) 
+        {
+            if(empty($value) && !in_array($key, $form_exceptions)) 
+            {
+                $response["invalid"] = true;
+                $response["message"] = "All required fields must be filled in.";
+            }
+        }
+
+        if($response['invalid']) 
+        {
+            return $response;
+        }
+
+        if(!$this->validate_all_alpha($user_info['fname'])) 
+        {
+            $response['invalid'] = true;
+            $response['message'] = 'First name must be all letters.';
+            return $response;
+        }
+
+        if(!$this->validate_all_alpha($user_info['lname'])) 
+        {
+            $response['invalid'] = true;
+            $response['message'] = 'Last name must be all letters.';
+            return $response;
+        }
+
+        if(!$this->validate_date($user_info['birthdate']))
+        {
+            $response['invalid'] = true;
+            $response['message'] = 'Invalid birthdate';
+            return $response;
+        }
+
+        if(!$this->validate_phone_num($user_info['phone'])) {
+            $response['invalid'] = true;
+            $response['message'] = 'Invalid phone number';
+            return $response;
+        }
+
+        if(!$this->validate_address($user_info['address'])) {
+            $response['invalid'] = true;
+            $response['message'] = 'Invalid address';
+            return $response;
+        }
+
+        if(!empty($user_info['apartment'])) {
+            if(!$this->validate_all_numbers($user_info['apartment'])) {
+                $response['invalid'] = true;
+                $response['message'] = 'Apartment must be all numbers';
+                return $response;
+            }
+        }
+        
     }
 
     //https://stackoverflow.com/a/6101969

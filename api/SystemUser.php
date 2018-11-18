@@ -1,15 +1,17 @@
 <?php
 
 require_once "db_connect.php";
-
+require_once "util.php";
 class SystemUser 
 {
     private $db;
+    private $util;
 
     public function __construct()
     {
         $this->db = new Database();
         $this->db = $this->db->getDatabase();
+        $this->util = new Util();
     }
 
     public function getPhysicians() 
@@ -46,26 +48,15 @@ class SystemUser
     {
         $user_info = json_decode($userInfo, true);
 
-        $form_exceptions = ["apartment", "zipcode-ext"];
-
         $response = array(
             "invalid" => false,
             "message" => "",
             "user" => $user_info
         );
 
-        foreach($user_info as $key => $value) 
-        {
-            if(empty($value) && !in_array($key, $form_exceptions)) 
-            {
-                $response["invalid"] = true;
-                $response["message"] = "All required fields must be filled in.";
-            }
-        }
+        $response = $this->util->validate_user_fields($user_info, $response);
 
-        //echo "hello";
-
-        if($response["invalid"] == false)
+        if(!$response["invalid"])
         {
             $stmt = $this->db->prepare("SELECT * FROM system_user WHERE username = :username");
             $stmt->execute([':username' => $user_info["username"]]);
