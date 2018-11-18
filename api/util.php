@@ -14,6 +14,18 @@ class Util
         return !!filter_var($email, FILTER_VALIDATE_EMAIL);
     }
 
+    function validate_phone_num($phone_num)
+    {
+        return preg_match('/^[0-9]{10}+$/', $phone_num);
+    } 
+    
+    function validate_zip_code($zip_code) {
+        return (preg_match('#[0-9]{5}#', $zip_code)) ? true : false;
+    }
+
+    function validate_zip_code_ext($zip_code_ext) {
+        return (preg_match('#[0-9]{4}#', $zip_code_ext)) ? true : false;
+    }
     public function fetchAll($sql, $params)
     {
 
