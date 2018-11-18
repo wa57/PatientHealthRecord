@@ -128,7 +128,7 @@
             <div class="row">
                 <div class="form-group col">
                     <label for="bdate">Birth Date<span class="required-ast">&ast;</span></label>
-                    <input id="datepicker" class="form-control" value="YYYY-MM-DD" disabled/>
+                    <input id="datepicker" class="form-control" placeholder="YYYY-MM-DD" disabled/>
                 </div>
 
                 <div class="form-group col">
