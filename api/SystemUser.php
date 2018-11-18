@@ -34,13 +34,13 @@ class SystemUser
         $stmt->execute([':username' => $username]);
         $result = $stmt->fetch(PDO::FETCH_ASSOC);
 
-        if($password == $result["password"])
+        if($password === $result["password"])
         {
-            return json_encode($result);
+            return $result;
         }
         else
         {
-            return json_encode(false);
+            return null;
         }
     }
 

@@ -51,8 +51,38 @@ if(isset($_GET["GetPhysicians"]))
 
 if(isset($_POST["AuthenticateUser"]))
 {
+    $response = array(
+        "invalid" => false,
+        "message" => "",
+        "user_data" => null
+    );
+
+    if(empty($_POST['username'])) 
+    {
+        $response["invalid"] = true;
+        $response["message"] = "Username cannot be empty";
+        echo json_encode($response);
+        exit();
+    }
+
+    if(empty($_POST['password'])) 
+    {
+        $response["invalid"] = true;
+        $response["message"] = "Password cannot be empty";
+        echo json_encode($response);
+        exit();
+    }
+
     $SystemUser = new SystemUser();
-    echo $SystemUser->authenticateUser($_POST["username"], $_POST["password"]);
+    $response['user_data'] = $SystemUser->authenticateUser($_POST["username"], $_POST["password"]);
+    if($response['user_data'] === null) {
+        $response["invalid"] = true;
+        $response["message"] = "Access Denied";
+        echo json_encode($response);
+        exit();
+    } 
+
+    echo json_encode($response);
     exit();
 }
 

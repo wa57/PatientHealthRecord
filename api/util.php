@@ -101,6 +101,20 @@ class Util
                 return $response;
             }
         }
+
+        if(!$this->validate_all_alpha($user_info['city'])) 
+        {
+            $response['invalid'] = true;
+            $response['message'] = 'City must be all letters.';
+            return $response;
+        }
+
+        if(!$this->validate_zip_code($user_info['zipcode'])) 
+        {
+            $response['invalid'] = true;
+            $response['message'] = 'First name must be all letters.';
+            return $response;
+        }
         
     }
 

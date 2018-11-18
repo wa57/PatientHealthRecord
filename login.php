@@ -38,8 +38,15 @@
         }
 
         function handleLogin(response) {
-            localStorage.setItem("user", JSON.stringify(response));
-            window.location = "index.php";
+            response = JSON.parse(JSON.stringify(response));
+            if(response.invalid) {
+                document.getElementById("login-message-wrapper").style.display = "block";
+                document.getElementById("login-message").textContent = response.message;
+            } else {
+                localStorage.setItem("user", JSON.stringify(response));
+                window.location = "index.php";
+            }
+            
         }
 
         function handleResponse(response) {
@@ -94,6 +101,7 @@
     <div class="col-sm-4">
         <h3>Login</h3>
         <span class="required-ast">&ast;</span> Required Field
+        <div id="login-message-wrapper" class="alert alert-danger" style="display: none;"><i class="fas fa-exclamation-circle"></i> <span id="login-message"></span></div>
         <div class="form-group">
             <label for="username">Username<span class="required-ast">*</span></label>
             <input type="text" class="form-control" id="username">
