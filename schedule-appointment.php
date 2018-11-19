@@ -43,7 +43,7 @@
 
         function createAppointmentRow(appointment, physician_name) {
             var row = "";
-            var user = JSON.parse(localStorage.getItem("user"))
+            var user = getUser()
             var className = "";
             if(user.system_user_id === appointment.patient_id) {
                 className = "highlighted";
@@ -171,7 +171,7 @@
         }
 
         function getAppointmentsByPatientId() {
-            var system_user_id = JSON.parse(localStorage.getItem("user")).system_user_id;
+            var system_user_id = getUser().system_user_id;
             GET("GetAppointmentsByPatientId&patient_id="+system_user_id, addPatientAppointments);
         }
 

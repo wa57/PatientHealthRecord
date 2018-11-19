@@ -185,7 +185,8 @@
         }
 
         function getUser() {
-            return JSON.parse(localStorage.getItem("user"));
+            let user = JSON.parse(localStorage.getItem("user"));
+            return user.user_data;
         }
 
         function setUser(user) {
