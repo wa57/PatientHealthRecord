@@ -30,12 +30,18 @@ class Util
     
     public function validate_zip_code($zip_code) 
     {
-        return (preg_match('#[0-9]{5}#', $zip_code)) ? true : false;
+        if(strlen($zip_code)==5 && ctype_digit($zip_code)) {
+            return true;
+        } 
+        return false;
     }
 
     public function validate_zip_code_ext($zip_code_ext) 
     {
-        return (preg_match('#[0-9]{4}#', $zip_code_ext)) ? true : false;
+        if(strlen($zip_code_ext)==4 && ctype_digit($zip_code_ext)) {
+            return true;
+        } 
+        return false;
     }
 
     public function validate_all_numbers($test_case)
@@ -112,10 +118,24 @@ class Util
         if(!$this->validate_zip_code($user_info['zipcode'])) 
         {
             $response['invalid'] = true;
-            $response['message'] = 'First name must be all letters.';
+            $response['message'] = 'Invalid zip code';
             return $response;
         }
-        
+
+        if(!empty($user_info['zipcode-ext'])) {
+            if(!$this->validate_zip_code_ext($user_info['zipcode-ext'])) 
+            {
+                $response['invalid'] = true;
+                $response['message'] = 'Invalid zip code extension';
+                return $response;
+            }
+        }
+
+        if(!$this->validate_email($user_info['email'])) {
+            $response['invalid'] = true;
+            $response['message'] = 'Invalid email';
+            return $response;
+        }
     }
 
     //https://stackoverflow.com/a/6101969

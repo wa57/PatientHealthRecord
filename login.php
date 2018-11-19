@@ -13,6 +13,13 @@
             let el = document.getElementById("state");
             let state = el.options[el.selectedIndex].text;
             
+            if(document.getElementById('reg-password').value !== document.getElementById('confirm-password').value) {
+                document.getElementById("message").textContent = "Passwords do not match";
+                document.getElementById("message").style.color = "red";
+                document.getElementById("message").style.display = "inline";
+                return;
+            }
+            
             let fields = {
                 "fname": document.getElementById("fname").value,
                 "lname": document.getElementById("lname").value,
@@ -64,13 +71,14 @@
             document.getElementById("lname").value = "Kode";
             document.getElementById("datepicker").value = "1984-06-15";
             document.getElementById("phone").value = "5555555555";
-            document.getElementById("address").value = "666 Test Avenue";
+            document.getElementById("address").value = "555 Test Avenue";
             document.getElementById("apartment-num").value = "2";
             document.getElementById("city").value = "Fairfield";
             document.getElementById("zipcode").value = "06880";
-            document.getElementById("zipcode-ext").value = "66";
+            document.getElementById("zipcode-ext").value = "1234";
             document.getElementById("reg-username").value = "USERNAME" + guid();
             document.getElementById("reg-password").value = "PASSWORD";
+            document.getElementById("confirm-password").value = "PASSWORD";
             document.getElementById("email").value = "test@test.com";
             document.getElementById("message").style.display = "none";
         });
@@ -141,7 +149,7 @@
 
                 <div class="form-group col">
                     <label for="phone">Best phone number to be reached at<span class="required-ast">*</span></label>
-                    <input id="phone" type="text" class="form-control" tile="Phone Number" placeholder="5555555555 (No Dashes)" />
+                    <input id="phone" type="text" class="form-control" tile="Phone Number" placeholder="Ex. 5555555555 (No Dashes or Spaces)" />
                 </div>
             </div>
 

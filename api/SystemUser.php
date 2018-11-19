@@ -69,6 +69,9 @@ class SystemUser
             } 
             else 
             {
+                if(empty($user_info['zipcode-ext'])) {
+                    $user_info['zipcode-ext'] = null;
+                }
                 $stmt = $this->db->prepare("INSERT INTO system_user VALUES (NULL, 1, :fname, :lname, :birthdate, :phone, :username, :password, :address, :apartment, :city, :state, :zipcode, :zipcode_ext, :email)");
                 $stmt->execute(
                     [

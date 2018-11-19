@@ -186,7 +186,10 @@
 
         function getUser() {
             let user = JSON.parse(localStorage.getItem("user"));
-            return user.user_data;
+            if(user !== null) {
+                return user.user_data;
+            }
+            return null;
         }
 
         function setUser(user) {
