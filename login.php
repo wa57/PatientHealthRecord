@@ -95,6 +95,7 @@
             document.getElementById("zipcode-ext").value = "";
             document.getElementById("reg-username").value = "";
             document.getElementById("reg-password").value = "";
+            document.getElementById("confirm-password").value = "";
             document.getElementById("email").value = "";
             document.getElementById("message").style.display = "none";
         });
@@ -112,11 +113,11 @@
         <div id="login-message-wrapper" class="alert alert-danger" style="display: none;"><i class="fas fa-exclamation-circle"></i> <span id="login-message"></span></div>
         <div class="form-group">
             <label for="username">Username<span class="required-ast">*</span></label>
-            <input type="text" class="form-control" id="username">
+            <input type="text" class="form-control" id="username" placeholder="Username">
         </div>
         <div class="form-group">
             <label for="password">Password<span class="required-ast">*</span></label>
-            <input type="password" class="form-control" id="password">
+            <input type="password" class="form-control" id="password" placeholder="Password">
         </div>
         <div>
             <a href="?path=forgot-credentials">Forgot My Password</a>
@@ -149,7 +150,7 @@
 
                 <div class="form-group col">
                     <label for="phone">Best phone number to be reached at<span class="required-ast">*</span></label>
-                    <input id="phone" type="text" class="form-control" tile="Phone Number" placeholder="Ex. 5555555555 (No Dashes or Spaces)" />
+                    <input id="phone" type="text" class="form-control" tile="Phone Number" placeholder="Ex. 5555555555 (No Dashes or Spaces)" maxlength="10"/>
                 </div>
             </div>
 
@@ -172,73 +173,70 @@
                 <div class="form-group col">
                     <label htmlFor="state">State<span class="required-ast">&ast;</span></label>
                     <select id="state" class="form-control">
-                            <option disabled defaultValue>Select State</option>
-                            <option>AL</option>
-                            <option>AK</option>
-                            <option>AZ</option>
-                            <option>AR</option>
-                            <option>CA</option>
-                            <option>CO</option>
-                            <option>CT</option>
-                            <option>DE</option>
-                            <option>FL</option>
-                            <option>GA</option>
-                            <option>HI</option>
-                            <option>ID</option>
-                            <option>IL</option>
-                            <option>IN</option>
-                            <option>IA</option>
-                            <option>KS</option>
-                            <option>KY</option>
-                            <option>LA</option>
-                            <option>ME</option>
-                            <option>MD</option>
-                            <option>MA</option>
-                            <option>MI</option>
-                            <option>MN</option>
-                            <option>MS</option>
-                            <option>MO</option>
-                            <option>MT</option>
-                            <option>NE</option>
-                            <option>NV</option>
-                            <option>NH</option>
-                            <option>NJ</option>
-                            <option>NM</option>
-                            <option>NY</option>
-                            <option>NC</option>
-                            <option>ND</option>
-                            <option>OH</option>
-                            <option>OK</option>
-                            <option>OR</option>
-                            <option>PA</option>
-                            <option>RI</option>
-                            <option>SC</option>
-                            <option>SD</option>
-                            <option>TN</option>
-                            <option>TX</option>
-                            <option>UT</option>
-                            <option>VT</option>
-                            <option>VA</option>
-                            <option>WA</option>
-                            <option>WV</option>
-                            <option>WI</option>
-                            <option>WY</option>
-                        </select>
-                    <div>
-                        
-                    </div>
+                        <option disabled defaultValue>Select State</option>
+                        <option>AL</option>
+                        <option>AK</option>
+                        <option>AZ</option>
+                        <option>AR</option>
+                        <option>CA</option>
+                        <option>CO</option>
+                        <option>CT</option>
+                        <option>DE</option>
+                        <option>FL</option>
+                        <option>GA</option>
+                        <option>HI</option>
+                        <option>ID</option>
+                        <option>IL</option>
+                        <option>IN</option>
+                        <option>IA</option>
+                        <option>KS</option>
+                        <option>KY</option>
+                        <option>LA</option>
+                        <option>ME</option>
+                        <option>MD</option>
+                        <option>MA</option>
+                        <option>MI</option>
+                        <option>MN</option>
+                        <option>MS</option>
+                        <option>MO</option>
+                        <option>MT</option>
+                        <option>NE</option>
+                        <option>NV</option>
+                        <option>NH</option>
+                        <option>NJ</option>
+                        <option>NM</option>
+                        <option>NY</option>
+                        <option>NC</option>
+                        <option>ND</option>
+                        <option>OH</option>
+                        <option>OK</option>
+                        <option>OR</option>
+                        <option>PA</option>
+                        <option>RI</option>
+                        <option>SC</option>
+                        <option>SD</option>
+                        <option>TN</option>
+                        <option>TX</option>
+                        <option>UT</option>
+                        <option>VT</option>
+                        <option>VA</option>
+                        <option>WA</option>
+                        <option>WV</option>
+                        <option>WI</option>
+                        <option>WY</option>
+                    </select>
                 </div>
                 <div class="col form-group">
                     <div>
                         <label htmlFor="zipcode">Zipcode<span class="required-ast">&ast;</span></label>
                     </div>
                     <div>
-                        <input id="zipcode" type="text" class="form-control" placeholder="Zipcode"/>
+                        <input id="zipcode" type="text" class="form-control" placeholder="Zipcode" maxlength='5'/>
                     </div>
                 </div>
                 <div class="col form-group">
                     <label htmlFor="zipcode-ext">Zipcode Ext.</label>
-                    <input id="zipcode-ext" type="text" class="form-control" placeholder="Zipcode Ext."/>
+                    <input id="zipcode-ext" type="text" class="form-control" placeholder="Zipcode Ext." maxlength='4'/>
                 </div>
             </div>
 

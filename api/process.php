@@ -77,7 +77,7 @@ if(isset($_POST["AuthenticateUser"]))
     $response['user_data'] = $SystemUser->authenticateUser($_POST["username"], $_POST["password"]);
     if($response['user_data'] === null) {
         $response["invalid"] = true;
-        $response["message"] = "Access Denied";
+        $response["message"] = "Username or password is incorrect";
         echo json_encode($response);
         exit();
     } 
