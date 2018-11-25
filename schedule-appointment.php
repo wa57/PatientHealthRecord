@@ -200,12 +200,12 @@
 </script>
 <div>
     <h3>Schedule An Appointment</h3>
-    <span>Select your physician:</span>
-    <select id="physicians-list">
+    <div style="margin-bottom: 10px;">Select your physician:</div>
+    <select id="physicians-list" class="form-control" style="width: 250px;">
         <option selected disabled>Select a Physician</option>
     </select>
     <div id="appointments-section">
-        <div class="alert alert-info" style="margin-top: 15px; width: 500px;">
+        <div class="alert alert-info" style="margin-top: 15px; width: 100%;">
             <h5 class="alert-heading"><i class="fas fa-info-circle"></i> Important Information</h5>
             <ul>
                 <li>Call (555)-555-5555 for same day appointments</li>
@@ -216,7 +216,7 @@
         <input id="previous-page" type="button" class="btn btn-secondary" value="Back"/>
         <input id="next-page" type="button" class="btn btn-secondary" value="Next 5 Appointments"/>
         <span id="message"></span>
-        <table id="appointments-table">
+        <table id="appointments-table" style="width: 100%">
             <thead>
                 <th>Physican Name</th>
                 <th>Date</th>
@@ -228,9 +228,9 @@
         </table>
     </div>
 </div>
-<div>
+<div style="margin-top: 15px;">
     <h3>Your Appointments</h3>
-    <table id="patient-appointments">
+    <table id="patient-appointments" style="width: 100%">
         <thead>
             <th>Physician Name</th>
             <th>Date</th>
