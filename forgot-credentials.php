@@ -24,9 +24,9 @@ document.addEventListener("DOMContentLoaded", function() {
 <h3>Forgot Password</h3>
 
 <div class="row form-group">
-    <label for="username">Username you used to register: </label>
-    <input id="username" type="text" class="form-control" style="width: 200px; margin-right: 15px;" placeholder="username" />
-    <button id="reset-password">Send Password Reset</button>
+    <label for="username">Username you used to register</label>
+    <input id="username" type="text" class="form-control" style="margin-left: 15px; width: 200px; margin-right: 15px;" placeholder="Username" />
+    <button id="reset-password" class="btn btn-primary">Send Password Reset</button>
 </div>
 <div id="message" class="alert alert-success" style="width: 450px; display: none;">
     An email has been sent to the email address provided.
